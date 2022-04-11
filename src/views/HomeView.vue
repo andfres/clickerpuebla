@@ -35,15 +35,17 @@ const { productores } = storeToRefs(productoresStore);
 
 
 
-<style lang="scss" scoped >
+<style lang="scss"  >
+@import "@/scss/_variables.scss";
 main {
+  
   display: flex;
   flex-wrap: wrap;
   .banco {
     flex-shrink: 1;
     background-color: var(--colorPrincipal);
-    padding: var(--margen);
-    margin: var(--margen);
+    padding: $margin;
+    margin: $margin;
   }
 
   .productores {
@@ -51,9 +53,11 @@ main {
     display: flex;
     flex-direction: column;
     background-color: var(--colorPrincipal);
-    padding: var(--margen);
-    margin: var(--margen);
-    gap: 10px;
+    padding: $margin;
+    margin: $margin;
+    gap:5px;
+    z-index: -9;
+
   }
 }
 </style>

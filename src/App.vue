@@ -15,8 +15,7 @@ import { RouterLink, RouterView } from "vue-router";
 
 <style lang="scss">
 
-$base-color: #c6538c;
-$border-dark: rgba($base-color, 0.88);
+
 
 
 * {
@@ -24,7 +23,7 @@ $border-dark: rgba($base-color, 0.88);
   padding: 0;
   box-sizing: border-box;
   --margen: 0.5rem;
-  --colorPrincipal: rgb(255, 255, 255);
+  --colorPrincipal: rgb(10, 76, 156);
 }
 
 

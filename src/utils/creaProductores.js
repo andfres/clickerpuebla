@@ -7,8 +7,7 @@
 // ];
 
 export const creaProductores = () => {
-  const nombresProductores = ["Enanitos", "Extractor"];
-  const imagenesProductores = ["logo2.svg", "logo.svg"];
+  const nombresProductores = ["Granero", "Aserradero", "Templo", "Forja", "Muelle", "Mana"];
   const productores = [];
 
   const addToProductores = (array) => {
@@ -17,10 +16,10 @@ export const creaProductores = () => {
 
       objeto["autoRecolectar"] = false;
       objeto["nombre"] = nombresProductores[i];
-      objeto["imagen"] = imagenesProductores[i];
-      objeto["produccionInicial"] = 2 * i + 1;
-      objeto["costeInicial"] = 50 * i + 1;
-      objeto["tiempo"] = 4;
+      objeto["imagen"] = `${nombresProductores[i]}.png`;
+      objeto["produccionInicial"] = 2 * i + 2;
+      objeto["costeInicial"] = 50 * i + 50;
+      objeto["tiempo"] = 66;
       array.push(objeto);
     }
   };

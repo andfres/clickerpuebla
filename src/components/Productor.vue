@@ -2,60 +2,59 @@
 
 <template>
   <div class="productor">
-    <div class="contenedor_img">
-      <!-- <img alt="Vue logo" class="logo" :src="require(`${imagen}`)" />  -->
-      <img alt="Vue logo" class="logo" :src="`src/assets/${imagen}`" />
-    </div>
-
     <div class="recolectar">
-      <span v-if="autoRecolectar" class="lvl">
-        autoRecolecion: {{ autoRecolectar }}
-      </span>
-
-      <button v-else :disabled="!listoRecolectar" @click="recolectar">
-        Recolectar
+      <button
+        class="boton-recolectar"
+        :disabled="!listoRecolectar"
+        @click="recolectar"
+      >
+        <img alt="" class="" :src="`src/assets/${imagen}`" />
       </button>
+
+      <p v-if="animarRecolectar" class="recolectado">+ {{ produccion }}</p>
     </div>
+
 
     <div class="centro">
-      <div class="contenedor_nombre">
-        <p class="nombre">{{ nombre }}</p>
-        <span class="lvl">Lvl: {{ nivel }}</span>
-      </div>
-
-      <div class="contenedor_nombre">
-        <p class="produccion">Genera: {{ produccion }} 💰</p>
-      </div>
-
-      <div  class="barra">
-        <div class="barra-datos">
-          {{ tiempoFalta }}
+      <div class="centro-fondo"> </div> 
+      <div class="centro-datos">
+        <div class="contenedor_nombre">
+          <p class="nombre">{{ nombre }}</p>
+          <span class="lvl">Lvl: {{ nivel }}</span>
         </div>
-        <div
-          class="barra-interna"
-          :style="{ width: porcentaje * 100 + '%' }">
+
+         <!-- <div class="contenedor_nombre">
+          <p class="produccion">Genera: {{ produccion }} 💰</p>
+          <p v-if="autoRecolectar" class="lvl">Auto recolección on</p>
+        </div>  -->
+
+        <div class="barra">
+          <div v-if="listoRecolectar" class="barra-datos">
+            <span>listo para recolectar</span>
+          </div>
+          <div v-else class="barra-datos">
+            <span>{{ tiempoFalta }}</span>
+          </div>
+
+          <div
+            class="barra-interna"
+            :style="{ width: porcentaje * 100 + '%' }"
+          ></div>
         </div>
+        <!--fin barra -->
+
+        <button class="boton-mejorar" @click="mejorar" :disabled="disabled">
+          Mejorar💰 {{ coste }}
+        </button>
+
       </div>
-
-
-
-
-
+      <!--fin centrodatos -->
     </div>
-
-    <div class="boton">
-      <button @click="mejorar" :disabled="disabled">
-        <div>💰 {{ coste }}</div>
-        <div><span> Upgrade </span></div>
-      </button>
-    </div>
-  </div>
-
-
-            <!-- {{ tiempoActual }} / {{ tiempo }} -->
-          <!-- {{ Math.round(porcentaje * 100) }} % -->
+    <!--fin centro -->
+  </div> <!--fin productor -->
 </template>
-
+  <!-- {{ tiempoActual }} / {{ tiempo }} -->
+  <!-- {{ Math.round(porcentaje * 100) }} % -->
 
 <script setup>
 import { ref, computed, toRefs, onMounted, watch } from "vue";
@@ -107,6 +106,7 @@ const nivel = ref(props.nivel);
 const tiempoActual = ref(0);
 const lastUpdate = ref(Date.now());
 const listoRecolectar = ref(false);
+const animarRecolectar = ref(false);
 
 //** computed */
 const produccion = computed(() => {
@@ -127,8 +127,16 @@ const porcentaje = computed(() => {
 });
 
 const tiempoFalta = computed(() => {
-  return Math.round(props.tiempo - tiempoActual.value);
+  let segundos = Math.round(props.tiempo - tiempoActual.value);
+
+  var date = new Date(null);
+  date.setSeconds(segundos); // specify value for SECONDS here
+  var result = date.toISOString().substr(11, 8);
+  return result;
 });
+
+const wait = (timeToDelay) =>
+  new Promise((resolve) => setTimeout(resolve, timeToDelay));
 
 const mejorar = () => {
   recursosStore.recursos -= coste.value;
@@ -140,10 +148,15 @@ const recolectar = () => {
   lastUpdate.value = Date.now();
   tiempoActual.value = 0;
   listoRecolectar.value = false;
+
+  animarRecolect();
 };
 
-const wait = (timeToDelay) =>
-  new Promise((resolve) => setTimeout(resolve, timeToDelay));
+const animarRecolect = async () => {
+  animarRecolectar.value = true;
+  await wait(1000);
+  animarRecolectar.value = false;
+};
 
 const updateTiempo = async () => {
   while (true) {
@@ -182,33 +195,89 @@ watch(autoRecolectar, (val) => {
 
 <style lang="scss"  >
 @import "@/scss/_variables.scss";
+
+button,
+.productor {
+  font-size: 14px;
+}
 .productor {
   min-width: 350px;
-  background-color: rgb(244, 255, 214);
   display: flex;
-  gap: 10px;
   padding: 5px;
   font-weight: bolder;
 
-  .contenedor_img {
-    flex: 0 0 50px;
+  .recolectar {
+    display: flex;
+    position: relative;
 
-    img {
+    .boton-recolectar {
+      padding: -5px;
       height: 100%;
-      width: 100%;
-      padding: 2px;
+      border: 2px solid orange;
+      border-radius:  50% ;
+      animation: infinite resplandorAnimation 1s;
+      background-color: rgb(244, 255, 214);
+
+
+      img {
+        --width: 60px;
+      }
+    }
+
+    .boton-recolectar:disabled {
+      border: 2px solid transparent;
+      animation: none;
+    }
+
+    .recolectado {
+      position: absolute;
+      width: max-content;
+      top: 50%;
+      right: 50%;
+      color: rgb(132, 255, 132);
+      animation: 1 generarDinero 1s;
     }
   }
 
-  .recolectar {
-    font-size: 10px;
+  .centro{
+    width: 100%;
+    display: flex;
+    --align-items: flex-end;
+    position: relative;
   }
 
-  .centro {
-    flex: 1 1 200px;
-    color: grey;
+  .centro-fondo{
+    align-self: center;
+    flex: 1;
+    background-color: rgb(244, 255, 214);
+    position: absolute;
+    width: calc(100% + 30px);
+    height: 75%;
+    margin-left: -30px;
+    border-radius: 0 10px 10px 0;
+    z-index: -1;
+  }
+
+  .centro-datos{
+    flex: 1 0;
+    height: 100%;
+
+    
+
+    margin-left: -30px;
+    padding: 25px 10px 0px 0;
+    padding-left: 37px;
+    border-radius: 0 10px 10px 0;
+
+  
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    --background-color: rgb(244, 255, 214);
+    gap: 5px;
+   
+  
+
     .contenedor_nombre {
       display: flex;
       align-items: center;
@@ -220,28 +289,29 @@ watch(autoRecolectar, (val) => {
       color: black;
     }
     .lvl {
-      font-size: 0.8rem;
       color: grey;
     }
 
     .produccion {
-      font-size: 0.7rem;
       margin-bottom: 3px;
     }
     .barra {
-      font-size: 0.7rem;
       text-align: center;
       border: 2px solid green;
       position: relative;
-      height: 1rem;
+      height: 1.5rem;
+      border-radius: 5px;
+      color: rgb(15, 15, 15);
 
-      .barra-interna, .barra-datos {
+      .barra-interna,
+      .barra-datos {
         position: absolute;
         height: 100%;
         width: 100%;
         max-width: 100%;
         top: 0;
         left: 0;
+        border-radius: 3px;
       }
       .barra-interna {
         background-color: greenyellow;
@@ -249,41 +319,40 @@ watch(autoRecolectar, (val) => {
 
       .barra-datos {
         z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
 
-  .boton {
-    min-width: 90px;
-    margin-left: auto;
+  .boton-mejorar {
+    background-color: $base-color;
+    border-radius: 5px;
+  }
+}
 
-    button {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      border: none;
-      color: white;
+@keyframes resplandorAnimation {
+  0%,
+  100% {
+    box-shadow: 0px 0px 5px orange;
+  }
+  50% {
+    box-shadow: 0px 0px 0px orangered;
+  }
+}
 
-      div {
-        text-align: right;
-        width: 100%;
-      }
-
-      div:nth-of-type(1) {
-        background-color: $base-color-dark;
-        padding: 2px;
-      }
-      div:nth-of-type(2) {
-        background-color: $base-color;
-
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: inset 2px 2px $base-color-lingten;
-      }
-    }
+@keyframes generarDinero {
+  0% {
+    top: 50%;
+  }
+  70% {
+    top: 0%;
+    color: rgba(132, 255, 132);
+  }
+  100% {
+    top: -20%;
+    color: rgba(132, 255, 132, 0);
   }
 }
 </style>
