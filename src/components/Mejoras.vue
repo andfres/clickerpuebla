@@ -1,5 +1,5 @@
 <template>
-  <div class="mejoras">
+  <div class="mejoras mejoras-i">
     <h3>Mejoras</h3>
 
 
@@ -11,7 +11,6 @@
     ></Mejora>
     
   </div>
-  <div></div>
 </template>
 
 <script setup>
@@ -48,8 +47,6 @@ const mejoras = generarMejoras();
 .mejoras {
   display: flex;
   flex-direction: column;
-  padding: var(--margen);
-  margin: var(--margen);
-  background-color: var(--colorPrincipal);
+ 
 }
 </style>

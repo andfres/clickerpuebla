@@ -8,7 +8,7 @@
         :disabled="!listoRecolectar"
         @click="recolectar"
       >
-        <img alt="" class="" :src="`src/assets/${imagen}`" />
+        <img alt="" class="" :src="`/src/assets/${imagen}`" />
       </button>
 
       <p v-if="animarRecolectar" class="recolectado">+ {{ produccion }}</p>
@@ -16,7 +16,6 @@
 
 
     <div class="centro">
-      <div class="centro-fondo"> </div> 
       <div class="centro-datos">
         <div class="contenedor_nombre">
           <p class="nombre">{{ nombre }}</p>
@@ -196,6 +195,8 @@ watch(autoRecolectar, (val) => {
 <style lang="scss"  >
 @import "@/scss/_variables.scss";
 
+
+
 button,
 .productor {
   font-size: 14px;
@@ -204,20 +205,21 @@ button,
   min-width: 350px;
   display: flex;
   padding: 5px;
+  height: min-content;
   font-weight: bolder;
+  filter: drop-shadow(-2px 4px 1px  #00000047);
+
 
   .recolectar {
     display: flex;
     position: relative;
+    z-index: 2;
 
     .boton-recolectar {
-      padding: -5px;
-      height: 100%;
       border: 2px solid orange;
       border-radius:  50% ;
       animation: infinite resplandorAnimation 1s;
-      background-color: rgb(244, 255, 214);
-
+      background-color: $color-fondo-productor;
 
       img {
         --width: 60px;
@@ -242,42 +244,21 @@ button,
   .centro{
     width: 100%;
     display: flex;
-    --align-items: flex-end;
-    position: relative;
-  }
-
-  .centro-fondo{
-    align-self: center;
-    flex: 1;
-    background-color: rgb(244, 255, 214);
-    position: absolute;
-    width: calc(100% + 30px);
-    height: 75%;
-    margin-left: -30px;
-    border-radius: 0 10px 10px 0;
-    z-index: -1;
+    align-items: center;
   }
 
   .centro-datos{
     flex: 1 0;
-    height: 100%;
-
-    
-
-    margin-left: -30px;
-    padding: 25px 10px 0px 0;
-    padding-left: 37px;
-    border-radius: 0 10px 10px 0;
-
-  
+    height: 85%;
+    margin-left: -20px;
+    padding: 0 10px 0 30px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    --background-color: rgb(244, 255, 214);
-    gap: 5px;
-   
-  
-
+    gap: 6%;
+    background-color: $color-fondo-productor;
+    
     .contenedor_nombre {
       display: flex;
       align-items: center;
@@ -285,8 +266,10 @@ button,
       gap: 10px;
     }
     .nombre {
-      font-size: 1.1rem;
-      color: black;
+      font-family: 'Lexend Deca', sans-serif;
+      font-size: 1.2rem;
+      color: rgb(255, 255, 255);
+      text-shadow: 1px 1px 1px black, -1px -1px 1px black, -1px 1px 1px black, 1px -1px 1px black;
     }
     .lvl {
       color: grey;
@@ -299,7 +282,7 @@ button,
       text-align: center;
       border: 2px solid green;
       position: relative;
-      height: 1.5rem;
+      height: 1.4rem;
       border-radius: 5px;
       color: rgb(15, 15, 15);
 
@@ -315,6 +298,7 @@ button,
       }
       .barra-interna {
         background-color: greenyellow;
+        box-shadow: inset 0px -9px rgba(0, 0, 255, 0.1);
       }
 
       .barra-datos {
@@ -329,13 +313,15 @@ button,
   .boton-mejorar {
     background-color: $base-color;
     border-radius: 5px;
+    height:  1.4rem;
+    box-shadow: inset 0px -9px rgba(0, 0, 255, 0.1);
   }
 }
 
 @keyframes resplandorAnimation {
   0%,
   100% {
-    box-shadow: 0px 0px 5px orange;
+    box-shadow: 0px 0px 7px orange;
   }
   50% {
     box-shadow: 0px 0px 0px orangered;
