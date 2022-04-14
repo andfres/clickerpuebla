@@ -20,6 +20,7 @@ export const creaProductores = () => {
       objeto["produccionInicial"] = 2 * i + 2;
       objeto["costeInicial"] = 50 * i + 50;
       objeto["tiempo"] = 66;
+      objeto["nivel"] = 1;
       array.push(objeto);
     }
   };

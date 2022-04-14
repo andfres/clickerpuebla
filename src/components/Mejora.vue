@@ -24,12 +24,13 @@ const nombre = ref(props.nombre);
 const tipo = ref(props.tipo);
 
 const cambiar = () => {
+  
   if (tipo.value === "autorecoleccion") {
-    autoRecolectar(nombre);
+    autoRecolectar(nombre.value);
   }
 
   if (tipo.value === "dobleVelocidad") {
-    duplicarVelocidad(nombre);
+    duplicarVelocidad(nombre.value);
   }
 };
 

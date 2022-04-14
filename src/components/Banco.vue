@@ -6,7 +6,7 @@
 
 <script setup>
 
-import { useRecursosStore } from '@/store/recursos';  
+import { useRecursosStore } from '@/store/recursos';
 
 const recursosStore = useRecursosStore();
 

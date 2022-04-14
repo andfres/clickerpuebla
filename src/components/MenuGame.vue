@@ -4,6 +4,7 @@
     <div class="menu-i">
       <RouterLink to="/game/pueblo">Pueblo</RouterLink>
       <RouterLink to="/game/mejoras">Mejoras</RouterLink>
+      <RouterLink to="/game/managers">Managers</RouterLink>
     </div>
   </div>
 </template>

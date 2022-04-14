@@ -2,6 +2,7 @@
 
 <template>
   <div class="productor">
+
     <div class="recolectar">
       <button
         class="boton-recolectar"
@@ -100,8 +101,9 @@ const props = defineProps({
 
 const MULTIPLICADOR = 1.17;
 
-const { produccionInicial, costeInicial, autoRecolectar } = toRefs(props);
-const nivel = ref(props.nivel);
+const { produccionInicial, costeInicial, autoRecolectar, nombre , nivel } = toRefs(props);
+
+const tiempo = ref(props.tiempo);
 const tiempoActual = ref(0);
 const lastUpdate = ref(Date.now());
 const listoRecolectar = ref(false);
@@ -139,7 +141,9 @@ const wait = (timeToDelay) =>
 
 const mejorar = () => {
   recursosStore.recursos -= coste.value;
-  nivel.value++;
+  //nivel.value++;
+  productoresStore.subirNivel(nombre.value);
+
 };
 
 const recolectar = () => {
@@ -179,16 +183,23 @@ onMounted(() => {
   updateTiempo();
 });
 
-watch(props.tiempo, (val) => {
-  lastUpdate.value = Date.now();
-  tiempoActual.value = 0;
-});
 
-watch(autoRecolectar, (val) => {
-  if (listoRecolectar.value) {
-    recolectar();
-  }
-});
+ watch(autoRecolectar, (val) => {
+   if (listoRecolectar.value) {
+     recolectar();
+   }
+ });
+
+watch(tiempo, (val) => {
+ lastUpdate.value = Date.now();
+ tiempoActual.value = 0;
+ });
+
+// watch(nivel, (val) =>{
+//   console.log('nivel', val)
+// })
+
+
 </script>
 
 
@@ -203,9 +214,10 @@ button,
 }
 .productor {
   min-width: 350px;
+  max-width: 400px;
   display: flex;
   padding: 5px;
-  height: min-content;
+  --height: min-content;
   font-weight: bolder;
   filter: drop-shadow(-2px 4px 1px  #00000047);
 
@@ -214,17 +226,20 @@ button,
     display: flex;
     position: relative;
     z-index: 2;
+    --flex: 1 1 20%;
 
     .boton-recolectar {
+   
       border: 2px solid orange;
       border-radius:  50% ;
       animation: infinite resplandorAnimation 1s;
       background-color: $color-fondo-productor;
 
-      img {
-        --width: 60px;
+      img{
+        --width: 100px;
       }
     }
+
 
     .boton-recolectar:disabled {
       border: 2px solid transparent;
@@ -242,7 +257,8 @@ button,
   }
 
   .centro{
-    width: 100%;
+    --width: 100%;
+    flex: 1 1 80%;
     display: flex;
     align-items: center;
   }
@@ -267,7 +283,7 @@ button,
     }
     .nombre {
       font-family: 'Lexend Deca', sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.2em;
       color: rgb(255, 255, 255);
       text-shadow: 1px 1px 1px black, -1px -1px 1px black, -1px 1px 1px black, 1px -1px 1px black;
     }
@@ -282,7 +298,8 @@ button,
       text-align: center;
       border: 2px solid green;
       position: relative;
-      height: 1.4rem;
+      height: max(1.4rem, 20%);
+      
       border-radius: 5px;
       color: rgb(15, 15, 15);
 
@@ -313,7 +330,7 @@ button,
   .boton-mejorar {
     background-color: $base-color;
     border-radius: 5px;
-    height:  1.4rem;
+    height: max(1.4rem, 20%);
     box-shadow: inset 0px -9px rgba(0, 0, 255, 0.1);
   }
 }
@@ -341,4 +358,7 @@ button,
     color: rgba(132, 255, 132, 0);
   }
 }
+
+
+
 </style>

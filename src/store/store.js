@@ -1,9 +1,11 @@
 import { defineStore } from "pinia";
 
 export const useProductoresStore = defineStore({
-  id: "productores",
+  id: "main",
   state: () => ({
     productores: [],
+    recursos: 100000,
+    multiplicador: 1
   }),
   actions: {
     autoRecolectar(nombre) {

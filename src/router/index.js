@@ -31,6 +31,10 @@ const router = createRouter({
           path: 'mejoras',
           component: () => import('../components/Mejoras.vue')
         },
+        {
+          path: 'managers',
+          component: () => import('../components/Managers.vue')
+        },
       ],
     }
 
