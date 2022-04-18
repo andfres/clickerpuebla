@@ -9,19 +9,21 @@
       <p>administra {{ nombreProductor }}</p>
       <p>{{precio}}$</p>
     </div>
-    <button class="contratar" @click="contratar">Contratar!</button>
+    <button class="contratar" @click="contratar" :disabled="disabled">Contratar!</button>
   </div>
 </template>
 
 <script setup>
 
-import { ref } from "vue";
+import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "@/store/store";
 
 const store = useStore();
 const { mensaje } = storeToRefs(store);
-const { comprar , autoRecolectar , cambiarMensaje} = store;
+const { sePuedeComprar, comprar , autoRecolectar , cambiarMensaje, } = store;
+
+
 
 
 const props = defineProps({
@@ -47,6 +49,9 @@ const props = defineProps({
   },
 });
 
+const disabled = computed(() => {
+  return !sePuedeComprar(props.precio)
+});
 
 
 const contratar = () => {

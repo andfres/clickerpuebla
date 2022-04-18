@@ -58,6 +58,8 @@
 import { ref, computed, toRefs, onMounted, watch } from "vue";
 import { useStore } from "@/store/store";
 const store = useStore();
+ const { sePuedeComprar, comprar ,  cambiarMensaje, } = store;
+
 
 const props = defineProps({
   nombre: {
@@ -111,8 +113,7 @@ const coste = computed(() => {
 });
 
 const disabled = computed(() => {
-  let disabled = store.recursos > coste.value ? false : true;
-  return disabled;
+  return !sePuedeComprar(coste.value)
 });
 
 const porcentaje = computed(() => {
@@ -152,11 +153,12 @@ const animarRecolect = async () => {
 };
 
 const updateTiempo = async () => {
-  while (true) {
-    await wait(100);
-    if (listoRecolectar.value) continue;
+  await wait(100);
+
+  if (!listoRecolectar.value) {
     const elapsed = Date.now() - lastUpdate.value;
     tiempoActual.value = elapsed / 1000;
+
     if (elapsed > props.tiempo * 1000) {
       lastUpdate.value = Date.now();
       listoRecolectar.value = true;
@@ -167,6 +169,7 @@ const updateTiempo = async () => {
       }
     }
   }
+  updateTiempo();
 };
 
 onMounted(() => {

@@ -23,7 +23,7 @@ const toggleVisible = () => {
 
 watch(mensaje, (val) => {
   oculto.value = false;
-  setTimeout(() => ocultar(), 1000);
+  setTimeout(() => ocultar(), 2000);
 });
 
 // :class="oculto ? 'oculto' : 'visible'">
@@ -33,26 +33,26 @@ watch(mensaje, (val) => {
 <style lang="scss">
 .mensaje {
   background-color: rgb(241, 254, 222);
-  // width: 200px;
-  min-height: 100px;
-  max-width: 200px;
-  padding: 1rem;
+  width: 200px;
+  height: 90px;
+
   border: 5px solid rgb(23, 255, 23);
   color: black;
   border-radius: 10px;
 
-  --position: absolute;
-  --position: sticky;
   position: fixed;
 
-  top: 50%;
-  left: 50%;
+  top: calc(50% - 90px / 2);;
   z-index: 9;
 
-  transform: translate(-50%, -50%);
+  left: calc(50% -  100px);;
+
+  --transform: translate(-50%, -50%);
 
   display: flex;
+  justify-content: center;
   align-items: center;
+
 
   p {
     //border: 2px solid red;
@@ -63,16 +63,17 @@ watch(mensaje, (val) => {
 
 .oculto {
   opacity: 0;
-  height: 0;
+  height: 0 ;
   padding: 0;
-  transition: height 0ms 2000ms, padding 0ms 2000ms, opacity 1000ms 0ms;
+  margin: 0;
+  border: 0;
+  transform: translate(-500px, 0);
+
+  transition: transform 1000ms 0ms ,opacity 500ms 500ms , height 0ms 2000ms, padding 0ms 2000ms,;
+  pointer-events: none;
+
 }
 
-.visible {
-  /* opacity: 100%;
-  height: 0;
-  padding: 0; */
-}
 
 .nombreProductor{
   font-size: 1.2rem;

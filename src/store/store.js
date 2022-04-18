@@ -9,6 +9,11 @@ export const useStore = defineStore({
     mensaje: "<p>mensaje desde storeeeeeeeeee</p>"
   }),
   actions: {
+
+    sePuedeComprar(cantidad){
+      return this.recursos > cantidad;
+    },
+
     comprar(cantidad) {
       this.recursos = this.recursos - cantidad
       console.log("cantidad", cantidad);
