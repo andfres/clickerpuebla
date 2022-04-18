@@ -15,16 +15,13 @@
 
 <script setup>
 
-import { useRecursosStore } from '@/store/recursos';
-import { useProductoresStore } from "@/store/productores";
 import { ref } from "vue";
+import { storeToRefs } from "pinia";
+import { useStore } from "@/store/store";
 
-const productoresStore = useProductoresStore();
-const recursosStore = useRecursosStore();
-
-const { autoRecolectar } = productoresStore;
-const { comprar } = recursosStore;
-
+const store = useStore();
+const { mensaje } = storeToRefs(store);
+const { comprar , autoRecolectar , cambiarMensaje} = store;
 
 
 const props = defineProps({
@@ -55,17 +52,19 @@ const props = defineProps({
 const contratar = () => {
   autoRecolectar(props.nombreProductor);
   comprar(props.precio);
+  mensaje.value = `
+  <p class="nombreProductor">${props.nombreProductor}</p>
+  <p><strong>autorecolección</strong> on</p>`;
 };
 
 </script>
 
 <style lang="scss">
+
 @import "@/scss/_variables.scss";
 .manager {
 
-  
   display: flex;
-  
   width: 100%;
   min-width: 350px;
   max-width: 400px;
@@ -87,8 +86,7 @@ const contratar = () => {
 
     img {
       width: 100%;
-      display: block;
-      
+      display: block;  
     }
   }
 

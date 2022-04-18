@@ -2,7 +2,6 @@
 
 <template>
   <div class="productor">
-
     <div class="recolectar">
       <button
         class="boton-recolectar"
@@ -15,7 +14,6 @@
       <p v-if="animarRecolectar" class="recolectado">+ {{ produccion }}</p>
     </div>
 
-
     <div class="centro">
       <div class="centro-datos">
         <div class="contenedor_nombre">
@@ -23,7 +21,7 @@
           <span class="lvl">Lvl: {{ nivel }}</span>
         </div>
 
-         <!-- <div class="contenedor_nombre">
+        <!-- <div class="contenedor_nombre">
           <p class="produccion">Genera: {{ produccion }} 💰</p>
           <p v-if="autoRecolectar" class="lvl">Auto recolección on</p>
         </div>  -->
@@ -46,27 +44,20 @@
         <button class="boton-mejorar" @click="mejorar" :disabled="disabled">
           Mejorar💰 {{ coste }}
         </button>
-
       </div>
       <!--fin centrodatos -->
     </div>
     <!--fin centro -->
-  </div> <!--fin productor -->
+  </div>
+  <!--fin productor -->
 </template>
   <!-- {{ tiempoActual }} / {{ tiempo }} -->
   <!-- {{ Math.round(porcentaje * 100) }} % -->
 
 <script setup>
 import { ref, computed, toRefs, onMounted, watch } from "vue";
-import { useRecursosStore } from "@/store/recursos";
-
-import { storeToRefs } from "pinia";
-import { useProductoresStore } from "@/store/productores";
-
-const productoresStore = useProductoresStore();
-const { productores } = storeToRefs(productoresStore);
-
-const recursosStore = useRecursosStore();
+import { useStore } from "@/store/store";
+const store = useStore();
 
 const props = defineProps({
   nombre: {
@@ -101,7 +92,8 @@ const props = defineProps({
 
 const MULTIPLICADOR = 1.17;
 
-const { produccionInicial, costeInicial, autoRecolectar, nombre , nivel } = toRefs(props);
+const { produccionInicial, costeInicial, autoRecolectar, nombre, nivel } =
+  toRefs(props);
 
 const tiempo = ref(props.tiempo);
 const tiempoActual = ref(0);
@@ -119,7 +111,7 @@ const coste = computed(() => {
 });
 
 const disabled = computed(() => {
-  let disabled = recursosStore.recursos > coste.value ? false : true;
+  let disabled = store.recursos > coste.value ? false : true;
   return disabled;
 });
 
@@ -140,14 +132,12 @@ const wait = (timeToDelay) =>
   new Promise((resolve) => setTimeout(resolve, timeToDelay));
 
 const mejorar = () => {
-  recursosStore.recursos -= coste.value;
-  //nivel.value++;
-  productoresStore.subirNivel(nombre.value);
-
+  store.recursos -= coste.value;
+  store.subirNivel(nombre.value);
 };
 
 const recolectar = () => {
-  recursosStore.recursos += produccion.value;
+  store.recursos += produccion.value;
   lastUpdate.value = Date.now();
   tiempoActual.value = 0;
   listoRecolectar.value = false;
@@ -183,30 +173,21 @@ onMounted(() => {
   updateTiempo();
 });
 
-
- watch(autoRecolectar, (val) => {
-   if (listoRecolectar.value) {
-     recolectar();
-   }
- });
+watch(autoRecolectar, (val) => {
+  if (listoRecolectar.value) {
+    recolectar();
+  }
+});
 
 watch(tiempo, (val) => {
- lastUpdate.value = Date.now();
- tiempoActual.value = 0;
- });
-
-// watch(nivel, (val) =>{
-//   console.log('nivel', val)
-// })
-
-
+  lastUpdate.value = Date.now();
+  tiempoActual.value = 0;
+});
 </script>
 
 
 <style lang="scss"  >
 @import "@/scss/_variables.scss";
-
-
 
 button,
 .productor {
@@ -219,8 +200,7 @@ button,
   padding: 5px;
   --height: min-content;
   font-weight: bolder;
-  filter: drop-shadow(-2px 4px 1px  #00000047);
-
+  filter: drop-shadow(-2px 4px 1px #00000047);
 
   .recolectar {
     display: flex;
@@ -229,17 +209,15 @@ button,
     --flex: 1 1 20%;
 
     .boton-recolectar {
-   
       border: 2px solid orange;
-      border-radius:  50% ;
+      border-radius: 50%;
       animation: infinite resplandorAnimation 1s;
       background-color: $color-fondo-productor;
 
-      img{
+      img {
         --width: 100px;
       }
     }
-
 
     .boton-recolectar:disabled {
       border: 2px solid transparent;
@@ -256,14 +234,14 @@ button,
     }
   }
 
-  .centro{
+  .centro {
     --width: 100%;
     flex: 1 1 80%;
     display: flex;
     align-items: center;
   }
 
-  .centro-datos{
+  .centro-datos {
     flex: 1 0;
     height: 85%;
     margin-left: -20px;
@@ -274,7 +252,7 @@ button,
     justify-content: center;
     gap: 6%;
     background-color: $color-fondo-productor;
-    
+
     .contenedor_nombre {
       display: flex;
       align-items: center;
@@ -282,10 +260,11 @@ button,
       gap: 10px;
     }
     .nombre {
-      font-family: 'Lexend Deca', sans-serif;
+      font-family: "Lexend Deca", sans-serif;
       font-size: 1.2em;
       color: rgb(255, 255, 255);
-      text-shadow: 1px 1px 1px black, -1px -1px 1px black, -1px 1px 1px black, 1px -1px 1px black;
+      text-shadow: 1px 1px 1px black, -1px -1px 1px black, -1px 1px 1px black,
+        1px -1px 1px black;
     }
     .lvl {
       color: grey;
@@ -299,7 +278,7 @@ button,
       border: 2px solid green;
       position: relative;
       height: max(1.4rem, 20%);
-      
+
       border-radius: 5px;
       color: rgb(15, 15, 15);
 
@@ -358,7 +337,4 @@ button,
     color: rgba(132, 255, 132, 0);
   }
 }
-
-
-
 </style>

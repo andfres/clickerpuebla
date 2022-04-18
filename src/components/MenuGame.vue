@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h3>Menú</h3>
+  
     <div class="menu-i">
-      <RouterLink to="/game/pueblo">Pueblo</RouterLink>
-      <RouterLink to="/game/mejoras">Mejoras</RouterLink>
-      <RouterLink to="/game/managers">Managers</RouterLink>
+      <RouterLink class="router-link" to="/game/managers">Managers</RouterLink>
+      <RouterLink class="router-link" to="/game/mejoras">Mejoras</RouterLink>
+      <RouterLink class="router-link volver"  to="/game">></RouterLink>
     </div>
   </div>
 </template>
@@ -16,9 +16,30 @@
 .menu-i {
   color: white;
   display: flex;
-  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1rem ;
+
+
+  .router-link{
+    font-size: 1.3rem;
+    padding: 5px;
+    border: 2px solid white;
+    border-radius: 10px;
+    
+    &:hover{
+      background-color: orange ;
+      color: black;
+    }
+  }
+
+  
+
+  .volver{
+    margin-left: auto;
+  }
   a {
     color: white;
+    text-decoration: none;
   }
 }
 </style>

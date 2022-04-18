@@ -1,9 +1,10 @@
 <script setup>
 import Banco from "@/components/Banco.vue";
-import Mejoras from "@/components/Mejoras.vue";
 import Productores from "@/components/Productores.vue";
 import Managers from "@/components/Managers.vue";
 import MenuGame from "@/components/MenuGame.vue";
+
+
 </script>
 
 <template>
@@ -12,13 +13,14 @@ import MenuGame from "@/components/MenuGame.vue";
 
     <div class="contenedor-router">
       <Productores></Productores>
-      <!-- <router-view ></router-view> -->
-    </div>
-    <div class="contenedor-router">
-      <Managers></Managers>
     </div>
 
-    <!-- <MenuGame class="menu"></MenuGame> -->
+    <div class="menu">
+       <MenuGame class="menu-nav"></MenuGame>
+      <router-view class=""></router-view>
+    </div>
+    
+   
   </main>
 </template>
 
@@ -31,16 +33,19 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  position: relative;
 
   .contenedor-router {
-    flex: 0 0 100%;
+    flex: 0 0 300px;
+  }
 
-
+  .menu{
+    flex: 0 0 300px;
   }
 
   .banco,
   .menu,
-  .contenedor-router {
+  .contenedor-router, .routerview, .modal {
     padding: $margin;
     margin: $margin;
   }
@@ -50,11 +55,7 @@ main {
     background-color: $colorPrincipal;
   }
 
-  .productores,
-  .mejoras {
-    max-width: 100%;
-    flex: 0 0;
-  }
+
 
   .banco {
     width: 100%;
@@ -68,7 +69,6 @@ main {
     text-align: center;
     font-size: 1.5rem;
 
-    border: 1px solid red;
     margin: $margin;
     position: sticky;
     top: 10px;
@@ -79,7 +79,25 @@ main {
   .productores {
     display: flex;
     flex-direction: column;
+    align-items: center;
     --max-width: 400px;
+  }
+
+  .modal{
+    position: absolute;
+    top: 5rem;
+    background: rgba(17, 17, 17, 0.699);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin: var(--max-width);
+
+    .routerview{
+      border: 2px solid red;
+      max-width: 499px;
+      background-color: $colorPrincipal;
+    }
   }
 }
 

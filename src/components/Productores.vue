@@ -10,16 +10,17 @@
 </template>
 
 <script setup>
+
 import Productor from "@/components/Productor.vue";
-
 import { storeToRefs } from "pinia";
-import { useProductoresStore } from "@/store/productores";
+import { useStore } from "@/store/store";
 
-const productoresStore = useProductoresStore();
+const store = useStore();
+const { productores } = storeToRefs(store);
 
-const { productores } = storeToRefs(productoresStore);
 </script>
 
 <style>
+
 
 </style>

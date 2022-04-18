@@ -23,17 +23,15 @@ const router = createRouter({
       name: 'game',
       component: () => import('../views/GameView.vue'),
       children: [
-        {
-          path: 'pueblo',
-          component: () => import('../components/Productores.vue')
-        },
-        {
-          path: 'mejoras',
-          component: () => import('../components/Mejoras.vue')
-        },
+    
         {
           path: 'managers',
           component: () => import('../components/Managers.vue')
+        },
+
+        {
+          path: 'mejoras',
+          component: () => import('../components/Mejoras.vue')
         },
       ],
     }

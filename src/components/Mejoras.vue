@@ -1,52 +1,39 @@
 <template>
-  <div class="mejoras mejoras-i">
-    <h3>Mejoras</h3>
+  <div class="managers">
+    <h3 class="titulo">Mejoras</h3>
+    <p>Las mejoras aumentan la eficiencia de los edificios</p>
+
+      <div class="contenedor-managers">
+
+    </div>
 
 
-    <Mejora
-      v-for="(item, i) in mejoras"
-      :key="i"
-      :nombre="mejoras[i].nombre"
-      :tipo="mejoras[i].tipo"
-    ></Mejora>
-    
   </div>
 </template>
 
 <script setup>
-import Mejora from "@/components/Mejora.vue";
 
-import { storeToRefs } from "pinia";
-import { useProductoresStore } from "@/store/productores";
+import { useStore } from "@/store/store";
 
-const productoresStore = useProductoresStore();
-//const { productores } = storeToRefs(productoresStore);
+const store = useStore();
 
-const productores = productoresStore.productores;
+const productores = store.productores;
 const nombreProductores = productores.map((ele) => ele.nombre);
-const tipos = ["autorecoleccion", "dobleVelocidad"];
 
-const generarMejoras = () => {
-  const array = [];
-  for (let nombre of nombreProductores) {
-    for (let tipo of tipos) {
-      const objeto = {};
-      objeto["nombre"] = nombre;
-      objeto["tipo"] = tipo;
-      array.push(objeto)
-    }
-  }
-  return array;
-};
 
-const mejoras = generarMejoras();
+
 
 </script>
 
 <style>
-.mejoras {
-  display: flex;
-  flex-direction: column;
- 
+
+
+.managers{
+  text-align: center;
 }
+.titulo{
+  color: white;
+  
+}
+
 </style>

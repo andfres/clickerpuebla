@@ -1,14 +1,14 @@
 <template>
   <div>
-      <span> {{ recursosStore.recursos }}  💰 </span>    
+      <span> {{ store.recursos }}  💰 </span>    
   </div>
 </template>
 
 <script setup>
 
-import { useRecursosStore } from '@/store/recursos';
+import { useStore } from '@/store/store';
 
-const recursosStore = useRecursosStore();
+const store = useStore();
 
 
 </script>

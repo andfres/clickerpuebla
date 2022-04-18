@@ -2,19 +2,20 @@
 import { RouterLink, RouterView } from "vue-router";
 
 //import { ref } from "vue";
- 
+
+
+import Mensaje from "@/components/Mensaje.vue";
 import { creaProductores } from "@/utils/creaProductores";
-import { storeToRefs } from "pinia";
-import { useProductoresStore } from "@/store/productores";
+import { useStore } from "@/store/store";
 import { onBeforeMount } from "@vue/runtime-core";
 
 const productoresCreados = creaProductores();
-const productoresStore = useProductoresStore();
+const store = useStore();
 
 let unicaVez = true;
 const guardarProductosCreados = () => {
   if (unicaVez){
-    productoresStore.productores = [...productoresCreados];
+    store.productores = [...productoresCreados];
     unicaVez= false;
     console.log(unicaVez)
   }
@@ -33,15 +34,16 @@ onBeforeMount(()=>{
     <nav>
       <RouterLink to="/">Home</RouterLink> |
       <RouterLink to="/about">About</RouterLink> |
-      <RouterLink to="/game/pueblo">Game</RouterLink>
+      <RouterLink to="/game">Game</RouterLink>
     </nav>
   </header>
 
+  <Mensaje />
   <RouterView />
 </template>
 
 <style lang="scss">
-
+@import "@/scss/_variables.scss";
 
 
 
@@ -54,12 +56,19 @@ onBeforeMount(()=>{
 
 
 body{
+  
   background-image: url("/src/assets/fondo.jpg");
   background-size: cover;
   background-attachment: fixed;
   height: 100vh ;
   --overflow-y: hidden;
+  position: relative;
+
+  font-family: $fuente-principal;
 }
+
+
+
 
 nav{
   color: white;

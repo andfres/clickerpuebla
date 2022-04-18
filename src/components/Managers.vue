@@ -8,7 +8,7 @@
       v-for="(item, i) in managers"
       :key="i"
       v-bind="item"
-      :imagen="i+1"
+      :imagen="i+1+''"
       
     ></Manager>
     </div>
@@ -18,14 +18,13 @@
 </template>
 
 <script setup>
+
 import Manager from "@/components/Manager.vue";
+import { useStore } from "@/store/store";
 
-import { storeToRefs } from "pinia";
-import { useProductoresStore } from "@/store/productores";
+const store = useStore();
 
-const productoresStore = useProductoresStore();
-
-const productores = productoresStore.productores;
+const productores = store.productores;
 const nombreProductores = productores.map((ele) => ele.nombre);
 
 const generarManagers = () => {
@@ -51,13 +50,17 @@ const managers = generarManagers();
 
 <style>
 
+
+.managers{
+  text-align: center;
+}
 .titulo{
   color: white;
+  
 }
 .contenedor-managers {
  margin: 1rem 0;
  box-sizing: border-box;
- border: 2px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
