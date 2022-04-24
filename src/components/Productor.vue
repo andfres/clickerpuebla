@@ -31,7 +31,10 @@
             <span>listo para recolectar</span>
           </div>
           <div v-else class="barra-datos">
-            <span>{{ tiempoFalta }}</span>
+            <div>
+              <span>{{ produccion }} 💰</span>
+              <span> {{ tiempoFalta }}</span>
+            </div>
           </div>
 
           <div
@@ -43,23 +46,30 @@
 
         <button class="boton-mejorar" @click="mejorar" :disabled="disabled">
           Mejorar💰 {{ coste }}
+         
+          <!-- no borrar este div, si se quita renderiza todo el botton y los números flotantes desaparecen -->
+           <div></div> 
         </button>
+
+   
       </div>
+
+
       <!--fin centrodatos -->
     </div>
     <!--fin centro -->
   </div>
   <!--fin productor -->
 </template>
-  <!-- {{ tiempoActual }} / {{ tiempo }} -->
-  <!-- {{ Math.round(porcentaje * 100) }} % -->
+
 
 <script setup>
 import { ref, computed, toRefs, onMounted, watch } from "vue";
 import { useStore } from "@/store/store";
+import { animacionDinero, wait } from "../utils/funciones";
 const store = useStore();
- const { sePuedeComprar, comprar ,  cambiarMensaje, } = store;
 
+const { sePuedeComprar, comprar, cambiarMensaje } = store;
 
 const props = defineProps({
   nombre: {
@@ -102,6 +112,7 @@ const tiempoActual = ref(0);
 const lastUpdate = ref(Date.now());
 const listoRecolectar = ref(false);
 const animarRecolectar = ref(false);
+const animarComprar = ref(false);
 
 //** computed */
 const produccion = computed(() => {
@@ -113,7 +124,7 @@ const coste = computed(() => {
 });
 
 const disabled = computed(() => {
-  return !sePuedeComprar(coste.value)
+  return !sePuedeComprar(coste.value);
 });
 
 const porcentaje = computed(() => {
@@ -121,36 +132,48 @@ const porcentaje = computed(() => {
 });
 
 const tiempoFalta = computed(() => {
-  let segundos = Math.round(props.tiempo - tiempoActual.value);
+  let segundosFaltan = Math.round(props.tiempo - tiempoActual.value);
 
   var date = new Date(null);
-  date.setSeconds(segundos); // specify value for SECONDS here
-  var result = date.toISOString().substr(11, 8);
-  return result;
+  date.setSeconds(segundosFaltan);
+  //var result = date.toISOString().substr(11, 8);
+
+  let resultado = "";
+
+  let horas = date.getUTCHours();
+  if (horas > 0) resultado = horas + "h ";
+
+  let minutos = date.getUTCMinutes();
+  if (minutos > 0) resultado += minutos + "m ";
+
+  let segundos = date.getUTCSeconds();
+  resultado += segundos + "s";
+
+  return resultado;
 });
 
-const wait = (timeToDelay) =>
-  new Promise((resolve) => setTimeout(resolve, timeToDelay));
 
-const mejorar = () => {
-  store.recursos -= coste.value;
-  store.subirNivel(nombre.value);
-};
 
-const recolectar = () => {
-  store.recursos += produccion.value;
-  lastUpdate.value = Date.now();
-  tiempoActual.value = 0;
-  listoRecolectar.value = false;
+              const recolectar = () => {
+                store.recursos += produccion.value;
+                lastUpdate.value = Date.now();
+                tiempoActual.value = 0;
+                listoRecolectar.value = false;
+                
 
-  animarRecolect();
-};
 
-const animarRecolect = async () => {
-  animarRecolectar.value = true;
-  await wait(1000);
-  animarRecolectar.value = false;
-};
+                animarRecolect();
+              };
+
+              const animarRecolect = async () => {
+                animarRecolectar.value = true;
+                await wait(1000);
+                animarRecolectar.value = false;
+              };
+
+
+
+
 
 const updateTiempo = async () => {
   await wait(100);
@@ -186,11 +209,25 @@ watch(tiempo, (val) => {
   lastUpdate.value = Date.now();
   tiempoActual.value = 0;
 });
+
+
+
+const mejorar = (e) => {
+  let targ = e.target
+   store.recursos -= coste.value;
+   store.subirNivel(nombre.value);
+   animacionDinero(targ, coste.value, false)
+};
+
+
+
+
 </script>
 
 
 <style lang="scss"  >
 @import "@/scss/_variables.scss";
+@import "@/scss/_animaciones.scss";
 
 button,
 .productor {
@@ -233,7 +270,7 @@ button,
       top: 50%;
       right: 50%;
       color: rgb(132, 255, 132);
-      animation: 1 generarDinero 1s;
+      animation: 1 animacionDinero 1s;
     }
   }
 
@@ -305,6 +342,17 @@ button,
         display: flex;
         justify-content: center;
         align-items: center;
+
+        div {
+          width: 90%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          span {
+            --border: 1px solid red;
+          }
+        }
       }
     }
   }
@@ -314,6 +362,7 @@ button,
     border-radius: 5px;
     height: max(1.4rem, 20%);
     box-shadow: inset 0px -9px rgba(0, 0, 255, 0.1);
+    position: relative;
   }
 }
 
@@ -327,17 +376,4 @@ button,
   }
 }
 
-@keyframes generarDinero {
-  0% {
-    top: 50%;
-  }
-  70% {
-    top: 0%;
-    color: rgba(132, 255, 132);
-  }
-  100% {
-    top: -20%;
-    color: rgba(132, 255, 132, 0);
-  }
-}
 </style>

@@ -1,0 +1,32 @@
+.gastoBeneficioContenedor {
+  position: relative;
+}
+
+
+.beneficio,
+.gasto {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: 1 animacionDinero 2s;
+  font-weight: bold;
+  z-index: 999;
+}
+
+.beneficio {
+  color: rgba(132, 255, 132);
+}
+
+.gasto {
+  color: red;
+}
+@keyframes animacionDinero {
+  80% {
+    opacity: 0.7;
+    transform: translate(0, -50px);
+  }
+  100% {
+    transform: translate(0, -60px);
+    opacity: 0.2;
+  }
+}

@@ -2,9 +2,10 @@
   <div>
   
     <div class="menu-i">
+      <RouterLink class="router-link" to="/game">Trabajo</RouterLink>
       <RouterLink class="router-link" to="/game/managers">Managers</RouterLink>
       <RouterLink class="router-link" to="/game/mejoras">Mejoras</RouterLink>
-      <RouterLink class="router-link volver"  to="/game">></RouterLink>
+      <!-- <RouterLink class="router-link volver"  to="/game">></RouterLink> -->
     </div>
   </div>
 </template>

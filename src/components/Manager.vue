@@ -5,11 +5,11 @@
     </div>
 
     <div class="manager-centro">
-      <h4>{{ nombreManager }}</h4>
+      <h4>{{ nombre }}</h4>
       <p>administra {{ nombreProductor }}</p>
       <p>{{precio}}$</p>
     </div>
-    <button class="contratar" @click="contratar" :disabled="disabled">Contratar!</button>
+    <button v-if="disponible" class="contratar" @click="contratar" :disabled="disabled">Contratar!</button>
   </div>
 </template>
 
@@ -18,16 +18,18 @@
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "@/store/store";
+import { animacionDinero, wait } from "../utils/funciones";
+
 
 const store = useStore();
 const { mensaje } = storeToRefs(store);
-const { sePuedeComprar, comprar , autoRecolectar , cambiarMensaje, } = store;
+const { sePuedeComprar, comprar , autoRecolectar , cambiarMensaje, quitarDisponible } = store;
 
 
 
 
 const props = defineProps({
-  nombreManager: {
+  nombre: {
     type: String,
     default: "Gnomos",
   },
@@ -47,6 +49,10 @@ const props = defineProps({
     type: String,
     default: "1",
   },
+    disponible: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const disabled = computed(() => {
@@ -54,12 +60,14 @@ const disabled = computed(() => {
 });
 
 
-const contratar = () => {
+const contratar = (e) => {
   autoRecolectar(props.nombreProductor);
   comprar(props.precio);
-  mensaje.value = `
-  <p class="nombreProductor">${props.nombreProductor}</p>
-  <p><strong>autorecolección</strong> on</p>`;
+  animacionDinero(e.target, props.precio ,false);
+  // mensaje.value = `
+  // <p class="nombreProductor">${props.nombreProductor}</p>
+  // <p><strong>autorecolección</strong> on</p>`;
+  quitarDisponible(props.nombre)
 };
 
 </script>

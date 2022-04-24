@@ -4,23 +4,43 @@ export const useStore = defineStore({
   id: "main",
   state: () => ({
     productores: [],
-    recursos: 100000,
+    managers: [],
+    recursos: 100000000000,
     multiplicador: 1,
-    mensaje: "<p>mensaje desde storeeeeeeeeee</p>"
-  }),
+    mensaje: "<p>mensaje desde storeeeeeeeeee</p>",
+  }), //Fin state
+
+  getters: {
+    managersChicas: (state) => {
+      return state.managers.filter(
+        (m) => m.nombre === "Maria" || m.nombre === "Ana"
+      );
+    },
+
+    managersDisponibles: (state) => {
+      return state.managers.filter((m) => m.disponible === true);
+    },
+    managersAdquiridos: (state) => {
+      return state.managers.filter((m) => m.disponible === false);
+    },
+  }, //Fin getters
   actions: {
 
-    sePuedeComprar(cantidad){
+    sePuedeComprar(cantidad) {
       return this.recursos > cantidad;
     },
 
     comprar(cantidad) {
-      this.recursos = this.recursos - cantidad
-      console.log("cantidad", cantidad);
+      this.recursos = this.recursos - cantidad;
     },
 
+    recolectar(cantidad) {
+      this.recursos = this.recursos + cantidad;
+    },
+
+
+
     autoRecolectar(nombre) {
-      console.log(`${nombre} auto`);
       this.productores.some((ele) => {
         if (ele.nombre === nombre) {
           ele.autoRecolectar = true;
@@ -47,5 +67,14 @@ export const useStore = defineStore({
         }
       });
     },
-  },
+
+    quitarDisponible(nombre){
+      this.managers.some(ele => {
+        if (ele.nombre === nombre){
+          ele.disponible = false
+          console.log(nombre + " ya no disponible")
+        }
+      })
+    }
+  }, //Fin actions
 });

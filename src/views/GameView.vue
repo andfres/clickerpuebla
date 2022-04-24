@@ -3,8 +3,6 @@ import Banco from "@/components/Banco.vue";
 import Productores from "@/components/Productores.vue";
 import Managers from "@/components/Managers.vue";
 import MenuGame from "@/components/MenuGame.vue";
-
-
 </script>
 
 <template>
@@ -16,11 +14,9 @@ import MenuGame from "@/components/MenuGame.vue";
     </div>
 
     <div class="menu">
-       <MenuGame class="menu-nav"></MenuGame>
+      <MenuGame class="menu-nav"></MenuGame>
       <router-view class=""></router-view>
     </div>
-    
-   
   </main>
 </template>
 
@@ -29,7 +25,6 @@ import MenuGame from "@/components/MenuGame.vue";
 <style lang="scss"  >
 @import "@/scss/_variables.scss";
 main {
-
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -39,13 +34,15 @@ main {
     flex: 0 0 300px;
   }
 
-  .menu{
+  .menu {
     flex: 0 0 300px;
   }
 
   .banco,
   .menu,
-  .contenedor-router, .routerview, .modal {
+  .contenedor-router,
+  .routerview,
+  .modal {
     padding: $margin;
     margin: $margin;
   }
@@ -54,8 +51,6 @@ main {
   .menu {
     background-color: $colorPrincipal;
   }
-
-
 
   .banco {
     width: 100%;
@@ -83,7 +78,7 @@ main {
     --max-width: 400px;
   }
 
-  .modal{
+  .modal {
     position: absolute;
     top: 5rem;
     background: rgba(17, 17, 17, 0.699);
@@ -93,15 +88,11 @@ main {
     justify-content: center;
     margin: var(--max-width);
 
-    .routerview{
+    .routerview {
       border: 2px solid red;
       max-width: 499px;
       background-color: $colorPrincipal;
     }
   }
 }
-
-
-
-
 </style>

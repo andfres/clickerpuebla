@@ -5,19 +5,21 @@ import { RouterLink, RouterView } from "vue-router";
 
 
 import Mensaje from "@/components/Mensaje.vue";
-import { creaProductores } from "@/utils/creaProductores";
+import { creaProductores, crearManagers } from "@/utils/creaObjetos";
 import { useStore } from "@/store/store";
 import { onBeforeMount } from "@vue/runtime-core";
 
-const productoresCreados = creaProductores();
-const store = useStore();
+const productoresCreados = creaProductores()
+const managersCreados = crearManagers()
+const store = useStore()
+
 
 let unicaVez = true;
 const guardarProductosCreados = () => {
   if (unicaVez){
-    store.productores = [...productoresCreados];
-    unicaVez= false;
-    console.log(unicaVez)
+    store.productores = [...productoresCreados]
+    store.managers = [...managersCreados]
+    unicaVez= false
   }
 }
 
