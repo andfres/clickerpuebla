@@ -1,7 +1,7 @@
 <template>
   <div class="manager">
     <div class="manager-img">
-       <img alt="" class="" :src="`${base}/img/managers/${imagen}.png`" /> 
+       <img alt="" class="" :src="`${base}img/managers/${imagen}.png`" /> 
       
 
     </div>

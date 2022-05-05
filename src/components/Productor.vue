@@ -1,6 +1,9 @@
 
 
 <template>
+  <div>
+    <img alt="foto" class="" :src="`${base}img/edificios/aserradero.png`" />
+  </div>
   <div class="productor">
     <div class="recolectar">
       <button
@@ -8,7 +11,7 @@
         :disabled="!listoRecolectar"
         @click="recolectar"
       >
-         <img alt="" class="" :src="`${base}img/edificios/${imagen}`" />
+        <img alt="" class="" :src="`${base}img/edificios/${imagen}`" />
       </button>
 
       <!-- <img alt="" class="" :src="require(`@assets/img/edificios/${imagen}`)" />   -->
