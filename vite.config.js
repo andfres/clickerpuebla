@@ -20,7 +20,7 @@ export default defineConfig({
     emptyOutDir: true,
   },
 
-  //assetsInclude: ['**/*.`png`' ,'**/*.`jpg`' ],
+  assetsInclude: ['**/*.png' ,'**/*.jpg' ],
 
 
   resolve: {
