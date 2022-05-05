@@ -1,7 +1,9 @@
 <template>
   <div class="manager">
     <div class="manager-img">
-      <img alt="" class="" :src="`/public/img/managers/${imagen}.png`" />
+       <img alt="" class="" :src="`/img/managers/${imagen}.png`" /> 
+      
+
     </div>
 
     <div class="manager-centro">
@@ -24,9 +26,6 @@ import { animacionDinero, wait } from "../utils/funciones";
 const store = useStore();
 const { mensaje } = storeToRefs(store);
 const { sePuedeComprar, comprar , autoRecolectar , cambiarMensaje, quitarDisponible } = store;
-
-
-
 
 const props = defineProps({
   nombre: {
@@ -54,6 +53,8 @@ const props = defineProps({
     default: false,
   },
 });
+
+
 
 const disabled = computed(() => {
   return !sePuedeComprar(props.precio)

@@ -8,7 +8,7 @@
         :disabled="!listoRecolectar"
         @click="recolectar"
       >
-        <img alt="" class="" :src="`/public/img/${imagen}`" />
+        <img alt="" class="" :src="`/img/${imagen}`" />
       </button>
 
       <p v-if="animarRecolectar" class="recolectado">+ {{ produccion }}</p>
@@ -42,7 +42,6 @@
             :style="{ width: porcentaje * 100 + '%' }"
           ></div>
         </div>
-        <!--fin barra -->
 
         <button class="boton-mejorar" @click="mejorar" :disabled="disabled">
           Mejorar💰 {{ coste }}
