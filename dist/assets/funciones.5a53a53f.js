@@ -1,0 +1,1 @@
+const l=(s,e,t)=>{const i=t?"beneficio":"gasto";t||(e="-"+e),s.classList.add("gastoBeneficioContenedor");let a=document.createElement("div");a.classList.add(i),a.append(e),s.append(a),(async(n,o)=>{await c(1e3),o.removeChild(n)})(a,s)},c=s=>new Promise(e=>setTimeout(e,s));export{l as a,c as w};
