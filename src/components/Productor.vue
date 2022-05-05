@@ -8,7 +8,7 @@
         :disabled="!listoRecolectar"
         @click="recolectar"
       >
-        <img alt="" class="" :src="`/src/assets/${imagen}`" />
+        <img alt="" class="" :src="`/public/img/${imagen}`" />
       </button>
 
       <p v-if="animarRecolectar" class="recolectado">+ {{ produccion }}</p>

@@ -1,14 +1,18 @@
 <template>
-    <p>Siempre puedes trabjar tu mismo</p>
-    <p>Limpia zapatos para ganarte un dinerillo</p>
-    <div 
-    ref="div"
-    class="zapato" > 
-        <img  @click="limpiarZapato" alt="" class=""  :src="`/src/assets/zapatos/1.png`"
-         draggable="false" />
-    </div>
+  <p>Siempre puedes trabjar tu mismo</p>
+  <p>Limpia zapatos para ganarte un dinerillo</p>
+  <div ref="div" class="zapato">
+    <img
+      @mousemove="limpiarZapato"
+      @touchmove="limpiarZapato"
+      alt=""
+      class=""
+      :src="`/public/img/zapatos/${imagen}.png`"
+      draggable="false"
+    />
+  </div>
 
-    <!-- <div class="prueba">ees</div> -->
+  <!-- <div class="prueba">ees</div> -->
 </template>
 
 <script setup>
@@ -18,36 +22,55 @@ import { ref } from "vue";
 import { useStore } from "@/store/store";
 import { animacionDinero, wait } from "../utils/funciones";
 
-
 const store = useStore();
-const { sePuedeComprar, comprar, cambiarMensaje } = store;
-const div = ref(null)
+const { recolectar } = store;
+const div = ref(null);
 
-const ganacias = 10000000
+const imagen = ref(1);
+const cambiarImagen= () => {
 
-const limpiarZapato= () => {
-    console.log("eee")
-    comprar(ganacias)
-    animacionDinero(div.value, ganacias, true)
-   
+    imagen.value ++
+
+    if (imagen.value > 3){
+        imagen.value = 1
+    }
 }
 
+const ganacias = 1;
+
+let count = 0;
+let count2 = 0;
+const limpiarZapato = () => {
+  count++;
+  count2++;
+
+  if (count >= 30) {
+    count = 0;
+    recolectar(ganacias);
+    animacionDinero(div.value, ganacias, true);
+  }
+
+  if (count2 >= 300){
+    count2 = 2;
+    cambiarImagen()
+    recolectar(20);
+    animacionDinero(div.value, 20, true);
+  } 
+};
 </script>
 
 
 
 <style lang="scss">
+.zapato {
+  height: min-content;
+  background-color: rgb(50, 171, 205);
 
-.zapato{
-    height: min-content;
-    background-color: rgb(50, 171, 205);
-    
-    img{
-        min-width: 150px;
-        cursor: url('@/assets/cepillo.png'), auto;
-     }
+  img {
+    min-width: 150px;
+    cursor: url("@/assets/cepillo.png"), auto;
+  }
 }
-
 
 // .prueba{
 //     width: 500px;
@@ -55,5 +78,4 @@ const limpiarZapato= () => {
 //     background-color: red;
 //     background-image: url('@/assets/cepillo.png');
 // }
-
 </style>

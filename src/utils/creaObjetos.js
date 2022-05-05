@@ -15,7 +15,7 @@ export const creaProductores = () => {
     for (let i = 0; i < nombresProductores.length; i++) {
       const objeto = {};
 
-      objeto["autoRecolectar"] = true;
+      objeto["autoRecolectar"] = false;
       objeto["nombre"] = nombresProductores[i];
       objeto["imagen"] = `${nombresProductores[i]}.png`;
       objeto["produccionInicial"] = 2 * i + 2;

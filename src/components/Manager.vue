@@ -1,7 +1,7 @@
 <template>
   <div class="manager">
     <div class="manager-img">
-      <img alt="" class="" :src="`/src/assets/managers/${imagen}.png`" />
+      <img alt="" class="" :src="`/public/img/managers/${imagen}.png`" />
     </div>
 
     <div class="manager-centro">

@@ -5,7 +5,7 @@ export const useStore = defineStore({
   state: () => ({
     productores: [],
     managers: [],
-    recursos: 100000000000,
+    recursos: 0,
     multiplicador: 1,
     mensaje: "<p>mensaje desde storeeeeeeeeee</p>",
   }), //Fin state
