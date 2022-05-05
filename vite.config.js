@@ -16,7 +16,7 @@ export default defineConfig({
   base: '/tap2022',
 
   build: {
-    //outDir: "./docs",
+    outDir: "./docs",
     emptyOutDir: true,
   },
 
