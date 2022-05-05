@@ -5,7 +5,7 @@ import Zapatero from "../components/Zapatero.vue";
 import Managers from "../components/Managers.vue";
 import Mejoras from "../components/Mejoras.vue";
 import AboutView from "../views/AboutView.vue";
-
+import Productores from "@/components/Productores.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,6 +37,10 @@ const router = createRouter({
         {
           path: "mejoras",
           component: Mejoras,
+        },
+        {
+          path: "productores",
+          component: Productores,
         },
       ],
     },
