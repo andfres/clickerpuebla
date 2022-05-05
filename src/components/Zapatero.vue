@@ -7,7 +7,7 @@
       @touchmove="limpiarZapato"
       alt=""
       class=""
-      :src="`/img/zapatos/${imagen}.png`"
+      :src="`${base}/img/zapatos/${imagen}.png`"
       draggable="false"
     />
   </div>
@@ -21,6 +21,8 @@
 import { ref } from "vue";
 import { useStore } from "@/store/store";
 import { animacionDinero, wait } from "../utils/funciones";
+
+const base = import.meta.env.BASE_URL
 
 const store = useStore();
 const { recolectar } = store;

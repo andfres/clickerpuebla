@@ -8,7 +8,7 @@
         :disabled="!listoRecolectar"
         @click="recolectar"
       >
-        <img alt="" class="" :src="`/img/${imagen}`" />
+         <img alt="" class="" :src="`${base}/img/${imagen}`" />  
       </button>
 
       <p v-if="animarRecolectar" class="recolectado">+ {{ produccion }}</p>
@@ -45,14 +45,11 @@
 
         <button class="boton-mejorar" @click="mejorar" :disabled="disabled">
           Mejorar💰 {{ coste }}
-         
+
           <!-- no borrar este div, si se quita renderiza todo el botton y los números flotantes desaparecen -->
-           <div></div> 
+          <div></div>
         </button>
-
-   
       </div>
-
 
       <!--fin centrodatos -->
     </div>
@@ -67,6 +64,7 @@ import { ref, computed, toRefs, onMounted, watch } from "vue";
 import { useStore } from "@/store/store";
 import { animacionDinero, wait } from "../utils/funciones";
 const store = useStore();
+const base = import.meta.env.BASE_URL;
 
 const { sePuedeComprar, comprar, cambiarMensaje } = store;
 
@@ -151,28 +149,20 @@ const tiempoFalta = computed(() => {
   return resultado;
 });
 
+const recolectar = () => {
+  store.recursos += produccion.value;
+  lastUpdate.value = Date.now();
+  tiempoActual.value = 0;
+  listoRecolectar.value = false;
 
+  animarRecolect();
+};
 
-              const recolectar = () => {
-                store.recursos += produccion.value;
-                lastUpdate.value = Date.now();
-                tiempoActual.value = 0;
-                listoRecolectar.value = false;
-                
-
-
-                animarRecolect();
-              };
-
-              const animarRecolect = async () => {
-                animarRecolectar.value = true;
-                await wait(1000);
-                animarRecolectar.value = false;
-              };
-
-
-
-
+const animarRecolect = async () => {
+  animarRecolectar.value = true;
+  await wait(1000);
+  animarRecolectar.value = false;
+};
 
 const updateTiempo = async () => {
   await wait(100);
@@ -209,18 +199,12 @@ watch(tiempo, (val) => {
   tiempoActual.value = 0;
 });
 
-
-
 const mejorar = (e) => {
-  let targ = e.target
-   store.recursos -= coste.value;
-   store.subirNivel(nombre.value);
-   animacionDinero(targ, coste.value, false)
+  let targ = e.target;
+  store.recursos -= coste.value;
+  store.subirNivel(nombre.value);
+  animacionDinero(targ, coste.value, false);
 };
-
-
-
-
 </script>
 
 
@@ -235,6 +219,7 @@ button,
 .productor {
   min-width: 350px;
   max-width: 400px;
+  min-height: 100px;
   display: flex;
   padding: 5px;
   --height: min-content;
@@ -247,11 +232,15 @@ button,
     z-index: 2;
     --flex: 1 1 20%;
 
+    min-width: 20px;
+    min-height: 20px;
     .boton-recolectar {
       border: 2px solid orange;
       border-radius: 50%;
       animation: infinite resplandorAnimation 1s;
       background-color: $color-fondo-productor;
+      min-width: 20px;
+      min-height: 20px;
 
       img {
         --width: 100px;
@@ -317,6 +306,7 @@ button,
       border: 2px solid green;
       position: relative;
       height: max(1.4rem, 20%);
+      min-height: 10px;
 
       border-radius: 5px;
       color: rgb(15, 15, 15);
@@ -374,5 +364,4 @@ button,
     box-shadow: 0px 0px 0px orangered;
   }
 }
-
 </style>

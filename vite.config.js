@@ -11,12 +11,17 @@ export default defineConfig({
   //   // assetsDir: "asssets"
   // },
   // // publicDir: "public",
-  // base: '/tap2022',
+
+
+  base: '/tap2022',
 
   build: {
-    outDir: "./docs",
+    //outDir: "./docs",
     emptyOutDir: true,
   },
+
+  //assetsInclude: ['**/*.`png`' ,'**/*.`jpg`' ],
+
 
   resolve: {
     alias: {
