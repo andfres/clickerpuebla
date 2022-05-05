@@ -11,7 +11,7 @@ export default defineConfig({
   //   // assetsDir: "asssets"
   // },
   // // publicDir: "public",
-  base: '/tap2022',
+  // base: '/tap2022',
 
   build: {
     outDir: "./docs",
