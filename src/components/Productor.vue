@@ -2,14 +2,14 @@
 
 <template>
   <div class="productor">
-    <h1>1</h1>
+    <h1>2</h1>
     <div class="recolectar">
       <button
         class="boton-recolectar"
         :disabled="!listoRecolectar"
         @click="recolectar"
       >
-         <img alt="" class="" :src="`${base}/img/${imagen}`" />  
+         <img alt="" class="" :src="`${base}/img/edificios/${imagen}`" />  
       </button>
 
       <p v-if="animarRecolectar" class="recolectado">+ {{ produccion }}</p>
