@@ -1,11 +1,11 @@
 
 const nombresProductores = [
-  "Granero",
-  "Aserradero",
-  "Templo",
-  "Forja",
-  "Muelle",
-  "Mana",
+  "granero",
+  "aserradero",
+  "templo",
+  "forja",
+  "muelle",
+  "mana",
 ];
 
 export const creaProductores = () => {

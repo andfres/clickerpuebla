@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <img alt="foto" class="" :src="`${base}img/edificios/aserradero.png`" />
+    <!-- <img alt="foto" class="" :src="`${base}img/edificios/aserradero.png`" /> -->
   </div>
   <div class="productor">
     <div class="recolectar">
@@ -78,10 +78,7 @@ const props = defineProps({
     type: String,
     default: "Gnomos",
   },
-  imagen: {
-    type: String,
-    default: "logo.svg",
-  },
+  imagen:  String,
   nivel: {
     type: Number,
     default: 1,
