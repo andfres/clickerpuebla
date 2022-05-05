@@ -1,1 +1,0 @@
-import{u as o,o as t,c as a,a as e}from"./index.bddf4bda.js";const c={class:"managers"},r=e("h3",{class:"titulo"},"Mejoras",-1),n=e("p",null,"Las mejoras aumentan la eficiencia de los edificios",-1),_=e("div",{class:"contenedor-managers"},null,-1),i=[r,n,_],h={setup(d){return o().productores.map(s=>s.nombre),(s,p)=>(t(),a("div",c,i))}};export{h as default};
