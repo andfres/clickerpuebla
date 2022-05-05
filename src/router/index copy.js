@@ -1,10 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import GameView from "../views/GameView.vue";
-import Zapatero from "../components/Zapatero.vue";
-import Managers from "../components/Managers.vue";
-import Mejoras from "../components/Mejoras.vue";
-import AboutView from "../views/AboutView.vue";
+//import GameView from "../views/GameView.vue";
 
 
 const router = createRouter({
@@ -18,30 +14,33 @@ const router = createRouter({
     {
       path: "/about",
       name: "about",
-      component: AboutView,
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/AboutView.vue"),
     },
 
     {
       path: "/game",
       name: "game",
-      component: GameView,
+      //component: GameView,
+       component: () => import("../views/GameView.vue"),
       children: [
         {
           path: "",
-          component: Zapatero,
+          component: () => import("../components/Zapatero.vue"),
         },
         {
           path: "managers",
-          component: Managers,
+          component: () => import("../components/Managers.vue"),
         },
         {
           path: "mejoras",
-          component: Mejoras,
+          component: () => import("../components/Mejoras.vue"),
         },
       ],
     },
   ],
 });
-
 
 export default router;

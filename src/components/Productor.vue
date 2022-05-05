@@ -2,7 +2,7 @@
 
 <template>
   <div class="productor">
-    <h1>pruebaaa</h1>
+    <h1>1</h1>
     <div class="recolectar">
       <button
         class="boton-recolectar"
