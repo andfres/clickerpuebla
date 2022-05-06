@@ -1,1 +1,1 @@
-web: npm dev
+web: npm vite preview --port 5050
