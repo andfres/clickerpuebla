@@ -1,1 +1,1 @@
-web: npm preview
+web: npm run preview
