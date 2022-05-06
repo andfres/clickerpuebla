@@ -7,7 +7,7 @@
       @touchmove="limpiarZapato"
       alt=""
       class=""
-      :src="`${base}/img/zapatos/${imagen}.png`"
+      :src="`${base}img/zapatos/${imagen}.png`"
       draggable="false"
     />
   </div>
