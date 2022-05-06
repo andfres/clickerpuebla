@@ -9,6 +9,12 @@
 //heroku config:set NODE_ENV=production
 
 
+//heroku buildpacks:set heroku-community/static
+// Buildpack set. Next release on damp-stream-50121 will use heroku-community/static.
+// Run git push heroku main to create a new release using this buildpack.
+
+
+
 //https://devcenter.heroku.com/articles/dynos
 //heroku ps 
 //heroku ps:restart
