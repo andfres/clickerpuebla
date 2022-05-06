@@ -14,8 +14,7 @@ export default defineConfig({
 
 
   //base: '/tap2022',
-  //git subtree push --prefix docs origin gh-pages
-
+  base: '/',
   build: {
     //outDir: "./docs",
     emptyOutDir: true,

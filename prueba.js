@@ -25,7 +25,9 @@
 // "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
 
 
-//heroku buildpacks:set heroku/nodejs -a clickerpueblo
+
+
+//git subtree push --prefix docs origin gh-pages
 
 
 console.log("ha funcionado")
