@@ -38,10 +38,7 @@ const router = createRouter({
           path: "mejoras",
           component: Mejoras,
         },
-        {
-          path: "productores",
-          component: Productores,
-        },
+  
       ],
     },
   ],

@@ -14,13 +14,14 @@ export default defineConfig({
 
 
   //base: '/tap2022',
+  //git subtree push --prefix docs origin gh-pages
 
   build: {
-    outDir: "./docs",
+    //outDir: "./docs",
     emptyOutDir: true,
   },
 
-  assetsInclude: ['**/*.png' ,'**/*.jpg' ],
+  //assetsInclude: ['**/*.png' ,'**/*.jpg' ],
 
 
   resolve: {
