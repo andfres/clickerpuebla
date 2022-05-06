@@ -2,11 +2,14 @@
   "name": "vue-project",
   "version": "0.0.0",
   "scripts": {
-    "start": "vite",
-    "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
+    "prebuild": "echo This runs before Heroku installs dependencies.",
+    "build ": "vite build",
+    "start": "vite preview",
+    "preview": "vite preview --port 5050",
     "dev": "vite",
-    "manual-build ": "vite build",
-    "preview": "vite preview --port 5050"
+    
+    "start_prueba": "npm run prueba",
+    "prueba" : "node prueba.js"
 
   },
   "dependencies": {
