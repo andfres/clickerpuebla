@@ -15,8 +15,11 @@ export const creaProductores = () => {
     for (let i = 0; i < nombresProductores.length; i++) {
       const objeto = {};
 
+      const nameCapitalized = nombresProductores[i].charAt(0).toUpperCase() + nombresProductores[i].slice(1)
+
+
       objeto["autoRecolectar"] = false;
-      objeto["nombre"] = nombresProductores[i];
+      objeto["nombre"] = nameCapitalized;
       objeto["imagen"] = `${nombresProductores[i]}.png`;
       objeto["produccionInicial"] = 2 * i + 2;
       objeto["costeInicial"] = 50 * i + 50;

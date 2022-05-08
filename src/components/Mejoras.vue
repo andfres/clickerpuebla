@@ -25,15 +25,9 @@ const nombreProductores = productores.map((ele) => ele.nombre);
 
 </script>
 
-<style>
+<style lang="scss">
 
 
-.managers{
-  text-align: center;
-}
-.titulo{
-  color: white;
-  
-}
+
 
 </style>

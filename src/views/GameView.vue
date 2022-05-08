@@ -32,6 +32,7 @@ main {
 
   .contenedor-router {
     flex: 0 0 300px;
+    
   }
 
   .menu {
@@ -50,6 +51,7 @@ main {
   .contenedor-router,
   .menu {
     background-color: $colorPrincipal;
+    border-radius: 15px;
   }
 
   .banco {

@@ -65,11 +65,16 @@ const limpiarZapato = () => {
 
 <style lang="scss">
 .zapato {
-  height: min-content;
-  background-color: rgb(50, 171, 205);
+  width: 100%;
+  --background-color: rgb(50, 171, 205);
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 
   img {
+    padding: 1rem;
     min-width: 150px;
+    background-color: rgb(50, 171, 205);
     cursor: url("@/assets/cepillo.png"), auto;
   }
 }

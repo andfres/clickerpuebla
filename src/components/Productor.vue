@@ -228,21 +228,22 @@ button,
   font-weight: bolder;
   filter: drop-shadow(-2px 4px 1px #00000047);
 
+
   .recolectar {
     display: flex;
     position: relative;
     z-index: 2;
     --flex: 1 1 20%;
 
-    min-width: 20px;
-    min-height: 20px;
+
+
     .boton-recolectar {
       border: 2px solid orange;
       border-radius: 50%;
       animation: infinite resplandorAnimation 1s;
       background-color: $color-fondo-productor;
-      min-width: 20px;
-      min-height: 20px;
+
+
 
       img {
         --width: 100px;

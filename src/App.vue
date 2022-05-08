@@ -1,8 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 
-//import { ref } from "vue";
-
 
 import Mensaje from "@/components/Mensaje.vue";
 import { creaProductores, crearManagers } from "@/utils/creaObjetos";
@@ -12,6 +10,8 @@ import { onBeforeMount } from "@vue/runtime-core";
 const productoresCreados = creaProductores()
 const managersCreados = crearManagers()
 const store = useStore()
+
+
 
 
 let unicaVez = true;
