@@ -23,11 +23,14 @@ export const useStore = defineStore({
     managersAdquiridos: (state) => {
       return state.managers.filter((m) => m.disponible === false);
     },
+
+    getProductores: (state) => {
+      return state.productores;
+    },
   }, //Fin getters
   actions: {
-
     sePuedeComprar(cantidad) {
-      return this.recursos > cantidad;
+      return this.recursos >= cantidad;
     },
 
     comprar(cantidad) {
@@ -37,8 +40,6 @@ export const useStore = defineStore({
     recolectar(cantidad) {
       this.recursos = this.recursos + cantidad;
     },
-
-
 
     autoRecolectar(nombre) {
       this.productores.some((ele) => {
@@ -68,13 +69,13 @@ export const useStore = defineStore({
       });
     },
 
-    quitarDisponible(nombre){
-      this.managers.some(ele => {
-        if (ele.nombre === nombre){
-          ele.disponible = false
-          console.log(nombre + " ya no disponible")
+    quitarDisponible(nombre) {
+      this.managers.some((ele) => {
+        if (ele.nombre === nombre) {
+          ele.disponible = false;
+          console.log(nombre + " ya no disponible");
         }
-      })
-    }
+      });
+    },
   }, //Fin actions
 });

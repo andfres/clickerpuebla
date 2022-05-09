@@ -1,11 +1,11 @@
 
 const nombresProductores = [
-  "granero",
-  "aserradero",
-  "templo",
-  "forja",
-  "muelle",
-  "mana",
+  "Granero",
+  "Aserradero",
+  "Templo",
+  "Forja",
+  "Muelle",
+  "Mana",
 ];
 
 export const creaProductores = () => {
@@ -15,12 +15,18 @@ export const creaProductores = () => {
     for (let i = 0; i < nombresProductores.length; i++) {
       const objeto = {};
 
-      const nameCapitalized = nombresProductores[i].charAt(0).toUpperCase() + nombresProductores[i].slice(1)
+      // const nameCapitalized = nombresProductores[i].charAt(0).toUpperCase() + nombresProductores[i].slice(1)
+      // const nameCapitalized = nombresProductores[i].charAt(0).toUpperCase() + nombresProductores[i].slice(1)
+
+      const nombreLowercase = nombresProductores[i].toLowerCase();
 
 
       objeto["autoRecolectar"] = false;
-      objeto["nombre"] = nameCapitalized;
-      objeto["imagen"] = `${nombresProductores[i]}.png`;
+      // objeto["nombre"] = nameCapitalized;
+      objeto["nombre"] = nombresProductores[i];
+      //objeto["imagen"] = `${nombresProductores[i]}.png`;
+      objeto["imagen"] = `${nombreLowercase}.png`;
+
       objeto["produccionInicial"] = 2 * i + 2;
       objeto["costeInicial"] = 50 * i + 50;
       objeto["tiempo"] = 1 + 10 * i;

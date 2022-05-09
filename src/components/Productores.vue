@@ -18,7 +18,6 @@ import { useStore } from "@/store/store";
 const store = useStore();
 const { productores } = storeToRefs(store);
 
-console.log("productores", productores)
 
 </script>
 
