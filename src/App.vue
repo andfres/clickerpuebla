@@ -49,8 +49,8 @@ const importData = () => {
   if (datos) {
     console.log("se han cargado datos");
   } else {
-    datos = datosIniciales;
-    console.log("no se han encontrado datos, empezando de 0");
+    datos = datosIniciales();
+    console.log("empezando de 0", datos);
   }
 
   almacenarDatosStorage(datos);
@@ -58,13 +58,11 @@ const importData = () => {
 
 const reiniciarJuego = () => {
   almacenarDatosStorage(datosIniciales());
-}
-
+};
 
 onMounted(() => {
   importData();
-  // setInterval(guardarDatos, 5000);
-
+  setInterval(guardarDatos, 5000);
 });
 </script>
 
@@ -76,10 +74,13 @@ onMounted(() => {
       <RouterLink to="/game">Game</RouterLink>
     </nav>
   </header>
+
+  <div class="contenedor_prueba"> 
   <button class="prueba" @click="guardarDatos">guardarStorage</button>
   <button class="prueba" @click="leerDatos">leerStorage</button>
-    <button class="prueba" @click="reiniciarJuego">reiniciarJuego</button>
-
+  <button class="prueba" @click="reiniciarJuego">reiniciarJuego</button>
+  <p>Los datos se guardan cada 5 segundos</p>
+  </div>
 
   <Mensaje />
   <RouterView />
@@ -92,6 +93,12 @@ onMounted(() => {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+
+.contenedor_prueba{
+  border: 1px solid red;
+  color: white;
 }
 
 .prueba,
