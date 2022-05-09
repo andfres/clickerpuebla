@@ -3,8 +3,6 @@
 # abort on errors
 set -e
 
-node ./prueba.js
-
 npm run build
 
 git add .

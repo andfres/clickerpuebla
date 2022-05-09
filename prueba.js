@@ -1,4 +1,3 @@
-// console.log("NPM_CONFIG_PRODUCTION" , process.env.NPM_CONFIG_PRODUCTION);
 
 
 
@@ -31,4 +30,11 @@
 //git subtree push --prefix docs origin gh-pages
 
 
-console.log("deployando...")
+//SET NODE_ENV=development
+
+console.log("DEV??" , process.env.NODE_ENV === 'dev') // true false
+
+console.log("env" , process.env)
+
+console.log("NPM_CONFIG_PRODUCTION" , process.env.NPM_CONFIG_PRODUCTION);
+console.log("NODE_ENV", process.env.NODE_ENV)
