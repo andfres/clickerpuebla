@@ -6,6 +6,9 @@ import { creaProductores, crearManagers } from "@/utils/creaObjetos";
 import { useStore } from "@/store/store";
 import { onBeforeMount, onMounted } from "@vue/runtime-core";
 import ProductoresVue from "./components/Productores.vue";
+import ls from "localStorage-slim";
+
+ls.config.encrypt = true;
 
 const almacenarDatosStorage = (datos) => {
   const { productores, managers, recursos } = datos;
@@ -25,11 +28,14 @@ const guardarDatos = () => {
 
   console.log("Los datos han sido guardados");
   //console.log("DATOS", datos);
-  window.localStorage.setItem("datos", JSON.stringify(datos));
+  //window.localStorage.setItem("datos", JSON.stringify(datos));
+  ls.set("datos", JSON.stringify(datos));
 };
 
 const leerDatos = () => {
-  const datos = JSON.parse(window.localStorage.getItem("datos"));
+  //const datos = JSON.parse(window.localStorage.getItem("datos"));
+  const datos = JSON.parse(ls.get("datos"));
+
   console.log("DATOS", datos);
   return datos;
 };
@@ -62,7 +68,7 @@ const reiniciarJuego = () => {
 
 onMounted(() => {
   importData();
-  setInterval(guardarDatos, 5000);
+  setInterval(guardarDatos, 30000);
 });
 </script>
 
@@ -75,11 +81,30 @@ onMounted(() => {
     </nav>
   </header>
 
-  <div class="contenedor_prueba"> 
-  <button class="prueba" @click="guardarDatos">guardarStorage</button>
-  <button class="prueba" @click="leerDatos">leerStorage</button>
-  <button class="prueba" @click="reiniciarJuego">reiniciarJuego</button>
-  <p>Los datos se guardan cada 5 segundos</p>
+  <div class="contenedor_prueba">
+    <button class="prueba" @click="guardarDatos">guardarStorage</button>
+    <button class="prueba" @click="leerDatos">leerStorage</button>
+    <button class="prueba" @click="reiniciarJuego">reiniciarJuego</button>
+    <div class="flex"> 
+      <div>
+          <h1>novedadades</h1>
+
+    <ul>
+      <li>Los datos se guardan automaticamente cada 30 segundos</li>
+      <li>Los datos de la localStorage han sido ofuscados</li>
+    </ul>
+</div>
+
+<div>
+    <h1>To do</h1>
+    <ul>
+  <li>configuracion acciones para deploy ->  glup?  deploy.sh github?</li>
+      <li>Modal + teleport</li>
+      <li>loggin + vuelidate?</li>
+    </ul>
+</div>
+    </div>
+    <p></p>
   </div>
 
   <Mensaje />
@@ -95,13 +120,21 @@ onMounted(() => {
   box-sizing: border-box;
 }
 
-
-.contenedor_prueba{
+.contenedor_prueba {
   border: 1px solid red;
   color: white;
+  background-color: black;
+  padding: 1rem;
+  .prueba {
+    margin-right: 1rem;
+    padding: 5px;
+  }
+  .flex{
+    display: flex;
+    gap: 3rem;
+  }
 }
 
-.prueba,
 header {
   padding: 1rem;
   margin: 0.5rem;
