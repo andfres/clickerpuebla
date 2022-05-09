@@ -3,6 +3,7 @@
 
 
 // git push heroku master
+//git subtree push --prefix dist heroku master   no tira dice its remote conterpart
 //heroku logs --tail
 
 //heroku config:set NODE_MODULES_CACHE=false
