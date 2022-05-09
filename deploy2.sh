@@ -12,4 +12,4 @@ git commit -m 'deploy'
 
 # git push origin master
 
-# git push heroku master
+git push heroku master
