@@ -30,6 +30,10 @@ main {
   justify-content: center;
   position: relative;
 
+  & > h1{
+    color: white;
+  }
+
   .contenedor-router {
     flex: 0 0 300px;
     

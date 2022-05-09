@@ -85,26 +85,6 @@ onMounted(() => {
     <button class="prueba" @click="guardarDatos">guardarStorage</button>
     <button class="prueba" @click="leerDatos">leerStorage</button>
     <button class="prueba" @click="reiniciarJuego">reiniciarJuego</button>
-    <div class="flex"> 
-      <div>
-          <h1>novedadades</h1>
-
-    <ul>
-      <li>Los datos se guardan automaticamente cada 30 segundos</li>
-      <li>Los datos de la localStorage han sido ofuscados</li>
-      <li>Creado script "deploy.sh" para la automaticación del despliegue</li>
-    </ul>
-</div>
-
-<div>
-    <h1>To do</h1>
-    <ul>
-      <li>Modal + teleport</li>
-      <li>loggin + vuelidate?</li>
-    </ul>
-</div>
-    </div>
-    <p></p>
   </div>
 
   <Mensaje />
@@ -120,18 +100,13 @@ onMounted(() => {
   box-sizing: border-box;
 }
 
+
 .contenedor_prueba {
-  border: 1px solid red;
-  color: white;
-  background-color: black;
+
   padding: 1rem;
   .prueba {
     margin-right: 1rem;
     padding: 5px;
-  }
-  .flex{
-    display: flex;
-    gap: 3rem;
   }
 }
 
