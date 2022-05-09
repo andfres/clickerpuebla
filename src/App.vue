@@ -92,13 +92,13 @@ onMounted(() => {
     <ul>
       <li>Los datos se guardan automaticamente cada 30 segundos</li>
       <li>Los datos de la localStorage han sido ofuscados</li>
+      <li>Creado script "deploy.sh" para la automaticación del despliegue</li>
     </ul>
 </div>
 
 <div>
     <h1>To do</h1>
     <ul>
-  <li>configuracion acciones para deploy ->  glup?  deploy.sh github?</li>
       <li>Modal + teleport</li>
       <li>loggin + vuelidate?</li>
     </ul>
