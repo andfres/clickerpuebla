@@ -31,4 +31,4 @@
 //git subtree push --prefix docs origin gh-pages
 
 
-console.log("ha funcionado")
+console.log("deployando...")
