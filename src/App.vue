@@ -73,16 +73,17 @@ const reiniciarJuego = () => {
 
 
 onBeforeMount(() => {
+    console.log("se activo")
+
   importData();
 
   //setInterval(guardarDatos, 1000);
-  console.log("se activo")
 });
 </script>
 
 <template>
   <header>
-    2
+    3
     <nav>
       <RouterLink to="/">Home</RouterLink> |
       <RouterLink to="/about">About</RouterLink> |
