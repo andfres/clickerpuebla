@@ -4,7 +4,12 @@ import { RouterLink, RouterView } from "vue-router";
 import Mensaje from "@/components/Mensaje.vue";
 import { creaProductores, crearManagers } from "@/utils/creaObjetos";
 import { useStore } from "@/store/store";
-import { onBeforeMount, onMounted  , onActivated, onServerPrefetch} from "@vue/runtime-core";
+import {
+  onBeforeMount,
+  onMounted,
+  onActivated,
+  onServerPrefetch,
+} from "@vue/runtime-core";
 import ProductoresVue from "./components/Productores.vue";
 import ls from "localStorage-slim";
 
@@ -36,15 +41,22 @@ const guardarDatos = () => {
 //lee Datos guardados en la localStorage
 const leerDatos = () => {
   //const datos = JSON.parse(window.localStorage.getItem("datos"));
-  const datos_localstorage = ls.get("datos")
+  try {
+    const datos_localstorage = ls.get("datos");
 
-  if (datos_localstorage) {
-    console.log("leyendo datos" , datos_localstorage);
-    return JSON.parse(datos_localstorage);
-  }
-  console.log("no habia datos");
-  return;
+    if (datos_localstorage) {
+      console.log("leyendo datos", datos_localstorage);
+      return JSON.parse(datos_localstorage);
+    }
+    console.log("no habia datos");
+    return;
+  } catch (e) {
+    console.log("peto al leer los datos" , e);
+    return;
+  } 
 };
+
+//intentar leer datos, si estan corruptos borrarlos
 
 const datosIniciales = () => {
   const datos = {
@@ -70,14 +82,13 @@ const importData = () => {
 
 const reiniciarJuego = () => {
   almacenarDatosStore(datosIniciales());
-  guardarDatos()
+  guardarDatos();
 };
 
 // onServerPrefetch onActivated no funciona no muestra error ni log
 
-
 onBeforeMount(() => {
-    console.log("se activo")
+  console.log("se activo");
 
   importData();
 
@@ -114,9 +125,7 @@ onBeforeMount(() => {
   box-sizing: border-box;
 }
 
-
 .contenedor_prueba {
-
   padding: 1rem;
   .prueba {
     margin-right: 1rem;
@@ -128,12 +137,12 @@ header {
   padding: 1rem;
   margin: 0.5rem;
   nav {
-  color: white;
-
-  a {
     color: white;
+
+    a {
+      color: white;
+    }
   }
-}
 }
 
 body {
@@ -143,6 +152,4 @@ body {
   height: 100vh;
   font-family: $fuente-principal;
 }
-
-
 </style>
