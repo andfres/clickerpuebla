@@ -69,9 +69,9 @@ const reiniciarJuego = () => {
   guardarDatos()
 };
 
-onMounted(() => {
+onBeforeMount(() => {
   importData();
-  setInterval(guardarDatos, 1000);
+  //setInterval(guardarDatos, 1000);
 });
 </script>
 
