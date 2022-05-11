@@ -69,10 +69,10 @@ const reiniciarJuego = () => {
   guardarDatos()
 };
 
-//onActivated no funciona no muestra error
+// onServerPrefetch onActivated no funciona no muestra error ni log
 
 
-onServerPrefetch(() => {
+onBeforeMount(() => {
   importData();
 
   //setInterval(guardarDatos, 1000);
