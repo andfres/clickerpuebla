@@ -36,10 +36,14 @@ const guardarDatos = () => {
 //lee Datos guardados en la localStorage
 const leerDatos = () => {
   //const datos = JSON.parse(window.localStorage.getItem("datos"));
-  const datos = JSON.parse(ls.get("datos"));
+  const datos_localstorage = ls.get("datos")
 
-  console.log("DATOS", datos);
-  return datos;
+  if (datos_localstorage) {
+    console.log("leyendo datos" , datos_localstorage);
+    return JSON.parse(datos_localstorage);
+  }
+  console.log("no habia datos");
+  return;
 };
 
 const datosIniciales = () => {
