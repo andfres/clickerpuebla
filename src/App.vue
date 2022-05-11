@@ -13,7 +13,7 @@ import {
 import ProductoresVue from "./components/Productores.vue";
 import ls from "localStorage-slim";
 
-ls.config.encrypt = false;
+ls.config.encrypt = true;
 
 const almacenarDatosStore = (datos) => {
   const { productores, managers, recursos } = datos;

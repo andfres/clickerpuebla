@@ -48,6 +48,7 @@
             <h1>Arreglos</h1>
       <ul>
             <li>reinicar el juego solo cambiaba la store pero no la localStorage</li>
+            <li></li>
 
       </ul>
     </div>
