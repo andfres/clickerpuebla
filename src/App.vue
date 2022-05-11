@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from "vue-router";
 import Mensaje from "@/components/Mensaje.vue";
 import { creaProductores, crearManagers } from "@/utils/creaObjetos";
 import { useStore } from "@/store/store";
-import { onBeforeMount, onMounted  , onActivated} from "@vue/runtime-core";
+import { onBeforeMount, onMounted  , onActivated, onServerPrefetch} from "@vue/runtime-core";
 import ProductoresVue from "./components/Productores.vue";
 import ls from "localStorage-slim";
 
@@ -69,10 +69,12 @@ const reiniciarJuego = () => {
   guardarDatos()
 };
 
+//onActivated no funciona no muestra error
 
-importData();
-onActivated(() => {
-  
+
+onServerPrefetch(() => {
+  importData();
+
   //setInterval(guardarDatos, 1000);
   console.log("se activo")
 });
