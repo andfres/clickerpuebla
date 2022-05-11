@@ -51,12 +51,13 @@ const leerDatos = () => {
     console.log("no habia datos");
     return;
   } catch (e) {
+    //intentar leer datos, si estan corruptos borrarlos
     console.log("peto al leer los datos" , e);
+    ls.remove('datos');
     return;
   } 
 };
 
-//intentar leer datos, si estan corruptos borrarlos
 
 const datosIniciales = () => {
   const datos = {
