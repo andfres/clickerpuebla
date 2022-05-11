@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from "vue-router";
 import Mensaje from "@/components/Mensaje.vue";
 import { creaProductores, crearManagers } from "@/utils/creaObjetos";
 import { useStore } from "@/store/store";
-import { onBeforeMount, onMounted } from "@vue/runtime-core";
+import { onBeforeMount, onMounted  , onActivated} from "@vue/runtime-core";
 import ProductoresVue from "./components/Productores.vue";
 import ls from "localStorage-slim";
 
@@ -69,7 +69,7 @@ const reiniciarJuego = () => {
   guardarDatos()
 };
 
-onBeforeMount(() => {
+onActivated(() => {
   importData();
   //setInterval(guardarDatos, 1000);
 });
@@ -77,6 +77,7 @@ onBeforeMount(() => {
 
 <template>
   <header>
+    1
     <nav>
       <RouterLink to="/">Home</RouterLink> |
       <RouterLink to="/about">About</RouterLink> |
