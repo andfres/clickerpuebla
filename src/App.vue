@@ -69,15 +69,18 @@ const reiniciarJuego = () => {
   guardarDatos()
 };
 
+
+importData();
 onActivated(() => {
-  importData();
+  
   //setInterval(guardarDatos, 1000);
+  console.log("se activo")
 });
 </script>
 
 <template>
   <header>
-    1
+    2
     <nav>
       <RouterLink to="/">Home</RouterLink> |
       <RouterLink to="/about">About</RouterLink> |
