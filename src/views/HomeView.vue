@@ -8,10 +8,10 @@
 
   <div class="novedades">
     <div>
-      <h1>novedadades</h1>
+      <h1>Novedadades</h1>
 
       <ul>
-        <li>Los datos se guardan automaticamente cada 30 segundos</li>
+        <li>Los datos se guardan automaticamente cada X segundos</li>
         <li>Los datos de la localStorage han sido ofuscados</li>
         <li>Creado script "deploy.sh" para la automaticación del despliegue</li>
       </ul>
@@ -20,29 +20,20 @@
     <div>
       <h1>To do</h1>
       <ul>
-        <li>Modal + teleport</li>
-        <li>loggin + vuelidate?</li>
-
-        <li>proyecto react hacer deploy ( 1º hay que setear la base, %PUBLIC_URL% )</li>
-        <li>estudiar como se puede servir en una subcarpeta con live server</li>
+        <li>deploy api de prueba</li>
+        <li>almacenar el estado del tiempo de creación de los edificios</li>
+        <li>estudiar que bash de git no se cierre despues de ejecutar script sh</li>
+        <li>crear los servicios</li>
+        <li>[X] Modal + teleport (en  about) </li>
+        <li>[X] formulario -> vee-Validate + yup</li>
+        <li>[X] hacer deploy proyecto react</li>
+        <li>[X] estudiar como lanzar LIVE SERVER en una subcarpeta</li>
       </ul>
     </div>
 
     <div>
       <h1>Problemas</h1>
       <ul>
-        <li>
-          reinicar el juego da fallo, reinicia la store pero los componentes no
-          se actualizan, sobre todo la autogerenación
-        </li>
-
-        <li>
-          setear o leer "process. env.NODE_ENV" no tira, solo usando "heroku
-          config:set NODE_ENV=dev" <br />
-          necestio dotenv? <br />
-          devtools de vue se ven afectads por las de heroku..
-        </li>
-
         <li>escribir en html process. env. junto peta</li>
         <li>
           usar live server en /dist sale este error: <br />
@@ -50,6 +41,14 @@
           references must start with either "/", "./", or "../". <br />
           usando el server que ofrece vite (preview) tira perfectamente
         </li>
+
+      </ul>
+      </div>
+<div>
+            <h1>Arreglos</h1>
+      <ul>
+            <li>reinicar el juego solo cambiaba la store pero no la localStorage</li>
+
       </ul>
     </div>
 

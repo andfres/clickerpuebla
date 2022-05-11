@@ -84,21 +84,5 @@ main {
     --max-width: 400px;
   }
 
-  .modal {
-    position: absolute;
-    top: 5rem;
-    background: rgba(17, 17, 17, 0.699);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    margin: var(--max-width);
-
-    .routerview {
-      border: 2px solid red;
-      max-width: 499px;
-      background-color: $colorPrincipal;
-    }
-  }
 }
 </style>

@@ -8,9 +8,9 @@ import { onBeforeMount, onMounted } from "@vue/runtime-core";
 import ProductoresVue from "./components/Productores.vue";
 import ls from "localStorage-slim";
 
-ls.config.encrypt = true;
+ls.config.encrypt = false;
 
-const almacenarDatosStorage = (datos) => {
+const almacenarDatosStore = (datos) => {
   const { productores, managers, recursos } = datos;
   const store = useStore();
   store.recursos = recursos;
@@ -18,6 +18,7 @@ const almacenarDatosStorage = (datos) => {
   store.managers = [...managers];
 };
 
+//guarda datos en de la store en localStorage
 const guardarDatos = () => {
   const store = useStore();
   const datos = {
@@ -32,6 +33,7 @@ const guardarDatos = () => {
   ls.set("datos", JSON.stringify(datos));
 };
 
+//lee Datos guardados en la localStorage
 const leerDatos = () => {
   //const datos = JSON.parse(window.localStorage.getItem("datos"));
   const datos = JSON.parse(ls.get("datos"));
@@ -59,16 +61,17 @@ const importData = () => {
     console.log("empezando de 0", datos);
   }
 
-  almacenarDatosStorage(datos);
+  almacenarDatosStore(datos);
 };
 
 const reiniciarJuego = () => {
-  almacenarDatosStorage(datosIniciales());
+  almacenarDatosStore(datosIniciales());
+  guardarDatos()
 };
 
 onMounted(() => {
   importData();
-  setInterval(guardarDatos, 30000);
+  setInterval(guardarDatos, 1000);
 });
 </script>
 
@@ -113,6 +116,13 @@ onMounted(() => {
 header {
   padding: 1rem;
   margin: 0.5rem;
+  nav {
+  color: white;
+
+  a {
+    color: white;
+  }
+}
 }
 
 body {
@@ -120,17 +130,8 @@ body {
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
-  --overflow-y: hidden;
-  position: relative;
-
   font-family: $fuente-principal;
 }
 
-nav {
-  color: white;
 
-  a {
-    color: white;
-  }
-}
 </style>

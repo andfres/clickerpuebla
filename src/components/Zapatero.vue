@@ -1,17 +1,19 @@
 <template>
-  <p>Siempre puedes trabjar tu mismo</p>
-  <p>Limpia zapatos para ganarte un dinerillo</p>
-  <div ref="div" class="zapato">
-    <img
-      @mousemove="limpiarZapato"
-      @touchmove="limpiarZapato"
-      alt=""
-      class=""
-      :src="`${base}img/zapatos/${imagen}.png`"
-      draggable="false"
-    />
-  </div>
+  <div>
+    <p>Siempre puedes trabjar tu mismo</p>
+    <p>Limpia zapatos para ganarte un dinerillo</p>
 
+    <div ref="divZapato" class="zapato">
+      <img
+        @mousemove="limpiarZapato"
+        @touchmove="limpiarZapato"
+        alt=""
+        class=""
+        :src="`${base}img/zapatos/${imagen}.png`"
+        draggable="false"
+      />
+    </div>
+  </div>
   <!-- <div class="prueba">ees</div> -->
 </template>
 
@@ -22,21 +24,20 @@ import { ref } from "vue";
 import { useStore } from "@/store/store";
 import { animacionDinero, wait } from "../utils/funciones";
 
-const base = import.meta.env.BASE_URL
+const base = import.meta.env.BASE_URL;
 
 const store = useStore();
 const { recolectar } = store;
-const div = ref(null);
+const divZapato = ref(null);
 
 const imagen = ref(1);
-const cambiarImagen= () => {
+const cambiarImagen = () => {
+  imagen.value++;
 
-    imagen.value ++
-
-    if (imagen.value > 3){
-        imagen.value = 1
-    }
-}
+  if (imagen.value > 3) {
+    imagen.value = 1;
+  }
+};
 
 const ganacias = 1;
 
@@ -49,15 +50,15 @@ const limpiarZapato = () => {
   if (count >= 30) {
     count = 0;
     recolectar(ganacias);
-    animacionDinero(div.value, ganacias, true);
+    animacionDinero(divZapato.value, ganacias, true);
   }
 
-  if (count2 >= 300){
+  if (count2 >= 300) {
     count2 = 2;
-    cambiarImagen()
+    cambiarImagen();
     recolectar(20);
-    animacionDinero(div.value, 20, true);
-  } 
+    animacionDinero(divZapato.value, 20, true);
+  }
 };
 </script>
 
