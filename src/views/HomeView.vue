@@ -32,9 +32,10 @@
     <div>
       <h1>Problemas</h1>
       <ul>
-        <li>con "disabled cache" en devtools las imagenes de los managers al reiniciar cambian <br>
+        <li>con "disabled cache" en devtools las imagenes de los managers al reiniciar cambian. <br>
         las imagnes ya no son estaticas (no estan en la carpeta public) aun asi sigue fallando <br>
-        depende de la conexion de internet, voy a probar cargando todas las imagnes en el componente</li>
+        depende de la conexion de internet, <br>
+        </li>
         <li>escribir en html process. env. junto peta</li>
         <li>
           usar live server en /dist sale este error: <br />
