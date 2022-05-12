@@ -2,7 +2,7 @@
   <div class="manager">
     <div class="manager-img">
        <!-- <img alt="" class="" :src="`${base}img/managers/${imagen}.png`" />  -->
-       <img alt="" class="" :src="imagen2" />  
+       <img alt="" class="" :src="imagenesManager()[imagen-1]" />  
 
     </div>
 
@@ -25,6 +25,7 @@
 
 <script setup>
 
+import {imagenesManager} from "@/assets/img/managers";
 
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
@@ -66,9 +67,8 @@ const props = defineProps({
   disponible: {
     type: Boolean,
     default: false,
-  },
-  imagen2:String
-});
+  }
+  });
 
 const disabled = computed(() => {
   return !sePuedeComprar(props.precio);
