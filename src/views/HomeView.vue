@@ -20,10 +20,13 @@
     <div>
       <h1>To do</h1>
       <ul>
-        <li>deploy api de prueba</li>
+    
+        
         <li>almacenar el estado del tiempo de creación de los edificios</li>
         <li>estudiar que bash de git no se cierre despues de ejecutar script sh</li>
         <li>crear los servicios</li>
+
+        <li>[X] deploy API de prueba spring + posgrest</li>
         <li>[X] Modal + teleport (en  about) </li>
         <li>[X] formulario -> vee-Validate + yup</li>
         <li>[X] hacer deploy proyecto react</li>
@@ -35,6 +38,7 @@
       <h1>Problemas</h1>
       <ul>
         <li>escribir en html process. env. junto peta</li>
+        
         <li>
           usar live server en /dist sale este error: <br />
           Uncaught TypeError: Failed to resolve module specifier "vue". Relative
@@ -47,8 +51,8 @@
 <div>
             <h1>Arreglos</h1>
       <ul>
-            <li>reinicar el juego solo cambiaba la store pero no la localStorage</li>
-            <li></li>
+            <li>reinicar el juego solo se reiniciaba la store pero no la localStorage</li>
+            
 
       </ul>
     </div>

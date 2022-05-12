@@ -55,6 +55,7 @@ export const crearManagers = () => {
   for ( let [i,  nombreProductor] of nombresProductores.entries()) {
 
     const objeto = {};
+    objeto["id"] = i;
     objeto["nombreProductor"] = nombreProductor;
     objeto["nombre"] = nombreManager[i];
     objeto["precio"] = 100000 * i + 100;

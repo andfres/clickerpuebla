@@ -1,7 +1,9 @@
 <template>
   <div class="manager">
     <div class="manager-img">
-      <img alt="" class="" :src="`${base}img/managers/${imagen}.png`" />
+       <!-- <img alt="" class="" :src="`${base}img/managers/${imagen}.png`" />  -->
+       <img alt="" class="" :src="imagen2" />  
+
     </div>
 
     <div class="manager-centro">
@@ -22,6 +24,8 @@
 </template>
 
 <script setup>
+
+
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "@/store/store";
@@ -63,6 +67,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  imagen2:String
 });
 
 const disabled = computed(() => {

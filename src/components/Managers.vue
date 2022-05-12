@@ -1,5 +1,12 @@
 <template>
   <div class="managers">
+
+    
+
+  <!-- <img alt="" class="fotoprueba" :src="imagenesManager()[0]" />  -->
+
+
+
     <h3 class="titulo">¡Los Managers te hacen la vida más facil!</h3>
     <p>
       Contrata a managers para que <br />
@@ -13,6 +20,7 @@
         v-for="(item, i) in managersDisponibles"
         :key="i"
         v-bind="item"
+        :imagen2="imagenesManager()[item.id]"
       ></Manager>
 
       <h3 class="titulo" v-if="algunoComprado && !todosComprados">
@@ -25,16 +33,23 @@
         v-for="(item, i) in managersAdquiridos"
         :key="i"
         v-bind="item"
+        :imagen2="imagenesManager()[item.id]"
       ></Manager>
     </div>
   </div>
 </template>
 
 <script setup>
+import {imagenesManager} from "@/assets/img/managers";
+
 import Manager from "@/components/Manager.vue";
 import { useStore } from "@/store/store";
 import { storeToRefs } from "pinia";
 import { ref, computed, toRefs, onMounted, watch } from "vue";
+
+
+
+console.log("imagenesManager", imagenesManager())
 
 const store = useStore();
 const { managersDisponibles, managersAdquiridos } = storeToRefs(store);
@@ -54,6 +69,12 @@ const todosComprados = computed(() => {
   & > p {
     color: white;
   }
+}
+
+.fotoprueba{
+  width: 40px;
+  height: 40px;
+  border: 2px solid red;
 }
 
 .contenedor-managers {
