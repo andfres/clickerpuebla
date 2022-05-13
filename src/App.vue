@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-
+import { ref } from "vue";
 import Mensaje from "@/components/Mensaje.vue";
 import { creaProductores, crearManagers } from "@/utils/creaObjetos";
 import { useStore } from "@/store/store";
@@ -12,6 +12,8 @@ import {
 } from "@vue/runtime-core";
 import ProductoresVue from "./components/Productores.vue";
 import ls from "localStorage-slim";
+import {imagenesManager} from "@/assets/img/managers";
+
 
 ls.config.encrypt = true;
 
@@ -33,7 +35,6 @@ const guardarDatos = () => {
   };
 
   console.log("Los datos han sido guardados");
-  //console.log("DATOS", datos);
   //window.localStorage.setItem("datos", JSON.stringify(datos));
   ls.set("datos", JSON.stringify(datos));
 };
@@ -45,7 +46,7 @@ const leerDatos = () => {
     const datos_localstorage = ls.get("datos");
 
     if (datos_localstorage) {
-      console.log("leyendo datos", datos_localstorage);
+      //console.log("leyendo datos", datos_localstorage);
       return JSON.parse(datos_localstorage);
     }
     console.log("no habia datos");
@@ -89,23 +90,59 @@ const reiniciarJuego = () => {
 // onServerPrefetch onActivated no funciona no muestra error ni log
 
 onBeforeMount(() => {
-  console.log("se activo");
 
   importData();
 
   //setInterval(guardarDatos, 1000);
 });
+
+
+const cargando = ref(true);
+const cargando_msg = ref("...")
+
+onMounted(async() => {
+  console.log("Precargar imagenes");
+  // const imagenes = [
+  //   "src/assets/img/managers/1.png",
+  //   "src/assets/img/managers/2.png",
+  //   "src/assets/img/managers/3.png",
+  //   "src/assets/img/managers/4.png",
+  //   "src/assets/img/managers/5.png",
+  //   "src/assets/img/managers/6.png",
+  // ]
+
+  const imagenes = imagenesManager();
+
+  for(const img of imagenes){
+    const response = await fetch(img);
+    await response.blob();
+    console.log(response)
+    cargando_msg.value = img;
+  }
+
+  cargando.value = false;
+})
+
+
+
+
+
+
+
+
 </script>
 
 <template>
   <header>
-    3
+   sdfsdfsdf
     <nav>
       <RouterLink to="/">Home</RouterLink> |
       <RouterLink to="/about">About</RouterLink> |
       <RouterLink to="/game">Game</RouterLink>
     </nav>
   </header>
+
+  <div v-if="cargando"> Cargando {{ cargando_msg }}</div>
 
   <div class="contenedor_prueba">
     <button class="prueba" @click="guardarDatos">guardarStorage</button>

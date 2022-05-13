@@ -1,9 +1,12 @@
 <template>
   <div class="manager">
-    <div class="manager-img">
-       <!-- <img alt="" class="" :src="`${base}img/managers/${imagen}.png`" />  -->
-       <img alt="" class="" :src="imagenesManager()[imagen-1]" />  
 
+    <!-- <div class="manager-img">
+      <img alt="" class="" :src="`${base}img/managers/${imagen}.png`" />
+    </div> -->
+
+    <div class="manager-img">
+      <img alt="" class="" :src="imagenesManager()[imagen - 1]" />
     </div>
 
     <div class="manager-centro">
@@ -24,9 +27,7 @@
 </template>
 
 <script setup>
-
-import {imagenesManager} from "@/assets/img/managers";
-
+import { imagenesManager } from "@/assets/img/managers";
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "@/store/store";
@@ -44,31 +45,17 @@ const {
 } = store;
 
 const props = defineProps({
-  nombre: {
-    type: String,
-    default: "Gnomos",
-  },
-  foto: {
-    type: String,
-    default: "",
-  },
-  precio: {
-    type: Number,
-    default: 1000,
-  },
-  nombreProductor: {
-    type: String,
-    default: "",
-  },
-  imagen: {
-    type: String,
-    default: "1",
-  },
+  nombre: String,
+  foto: String,
+  precio: Number,
+  nombreProductor: String,
+  imagen:  String,
+
   disponible: {
     type: Boolean,
     default: false,
-  }
-  });
+  },
+});
 
 const disabled = computed(() => {
   return !sePuedeComprar(props.precio);
@@ -88,7 +75,6 @@ const contratar = (e) => {
 </script>
 
 <style lang="scss">
-
 @import "@/scss/_variables.scss";
 .manager {
   display: flex;
@@ -109,6 +95,7 @@ const contratar = (e) => {
     border-radius: 10%;
     border: 4px solid rgb(255, 255, 255);
     background-color: rgba(227, 227, 227, 0.678);
+    background-color: red;
 
     img {
       width: 100%;

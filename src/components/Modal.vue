@@ -22,9 +22,6 @@ const cerrar = () => {
 };
 
 
-
-// devolver prop false al paddre?
-
 </script>
 
 <style lang = "scss">

@@ -8,56 +8,62 @@
         @mousemove="limpiarZapato"
         @touchmove="limpiarZapato"
         alt=""
-        class=""
-        :src="`${base}img/zapatos/${imagen}.png`"
+        :src="imgZapatos[imagen]"
         draggable="false"
       />
     </div>
   </div>
-  <!-- <div class="prueba">ees</div> -->
 </template>
 
 <script setup>
 //    @mousemove="limpiarZapato"
+// :src="`${base}img/zapatos/${imagen}.png`"
 
+
+import  imagenesZapatos  from "@/assets/img/zapatos";
 import { ref } from "vue";
 import { useStore } from "@/store/store";
 import { animacionDinero, wait } from "../utils/funciones";
 
-const base = import.meta.env.BASE_URL;
+// const base = import.meta.env.BASE_URL;
 
 const store = useStore();
 const { recolectar } = store;
 const divZapato = ref(null);
+const imgZapatos = imagenesZapatos()
+const imagen = ref(0);
 
-const imagen = ref(1);
 const cambiarImagen = () => {
   imagen.value++;
-
-  if (imagen.value > 3) {
-    imagen.value = 1;
+ console.log("length",  imgZapatos.length)
+  if (imagen.value >= imgZapatos.length ) {
+    imagen.value = 0;
   }
 };
 
 const ganacias = 1;
+const gananciasTerminar = 20;
+const maxCount1 = 20;
+const maxCount2 = 200;
 
 let count = 0;
 let count2 = 0;
+
 const limpiarZapato = () => {
   count++;
   count2++;
 
-  if (count >= 30) {
+  if (count >= maxCount1) {
     count = 0;
     recolectar(ganacias);
     animacionDinero(divZapato.value, ganacias, true);
   }
 
-  if (count2 >= 300) {
+  if (count2 >= maxCount2) {
     count2 = 2;
     cambiarImagen();
     recolectar(20);
-    animacionDinero(divZapato.value, 20, true);
+    animacionDinero(divZapato.value, gananciasTerminar, true);
   }
 };
 </script>

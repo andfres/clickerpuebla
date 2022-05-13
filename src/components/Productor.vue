@@ -2,7 +2,6 @@
 
 <template>
   <div>
-    <!-- <img alt="foto" class="" :src="`${base}img/edificios/aserradero.png`" /> -->
   </div>
   <div class="productor">
     <div class="recolectar">
@@ -11,10 +10,10 @@
         :disabled="!listoRecolectar"
         @click="recolectar"
       >
-        <img alt="" class="" :src="`${base}img/edificios/${imagen}`" />
+        <!-- <img alt="" class="" :src="`${base}img/edificios/${imagen}`" /> -->
+        <img :alt="nombre" :src="imagenesEdificios()[id]" />
       </button>
 
-      <!-- <img alt="" class="" :src="require(`@assets/img/edificios/${imagen}`)" />   -->
 
       <p v-if="animarRecolectar" class="recolectado">+ {{ produccion }}</p>
     </div>
@@ -65,6 +64,8 @@
 
 
 <script setup>
+
+import  imagenesEdificios  from "@/assets/img/edificios";
 import { ref, computed, toRefs, onMounted, watch } from "vue";
 import { useStore } from "@/store/store";
 import { animacionDinero, wait } from "../utils/funciones";
@@ -74,27 +75,14 @@ const base = import.meta.env.BASE_URL;
 const { sePuedeComprar, comprar, cambiarMensaje } = store;
 
 const props = defineProps({
-  nombre: {
-    type: String,
-    default: "Gnomos",
-  },
+  nombre:  String,
+  id:  Number,
   imagen:  String,
-  nivel: {
-    type: Number,
-    default: 1,
-  },
-  produccionInicial: {
-    type: Number,
-    default: 5,
-  },
-  costeInicial: {
-    type: Number,
-    default: 50,
-  },
-  tiempo: {
-    type: Number,
-    default: 1,
-  },
+  nivel: Number,
+  produccionInicial: Number,
+  costeInicial: Number,
+  tiempo: Number,
+
   autoRecolectar: {
     type: Boolean,
     default: false,

@@ -32,17 +32,7 @@
     <div>
       <h1>Problemas</h1>
       <ul>
-        <li>con "disabled cache" en devtools las imagenes de los managers al reiniciar cambian. <br>
-        las imagnes ya no son estaticas (no estan en la carpeta public) aun asi sigue fallando <br>
-        depende de la conexion de internet, <br>
-        </li>
         <li>escribir en html process. env. junto peta</li>
-        <li>
-          usar live server en /dist sale este error: <br />
-          Uncaught TypeError: Failed to resolve module specifier "vue". Relative
-          references must start with either "/", "./", or "../". <br />
-          usando el server que ofrece vite (preview) tira perfectamente
-        </li>
       </ul>
     </div>
     <div>

@@ -1,13 +1,10 @@
-import foto1 from "./1.png"; 
-import foto2 from "./2.png"; 
-import foto3 from "./3.png"; 
-import foto4 from "./4.png"; 
-import foto5 from "./5.png"; 
-import foto6 from "./6.png"; 
-
-//export modules?? 
+import manager1 from "./1.png"; 
+import manager2 from "./2.png"; 
+import manager3 from "./3.png"; 
+import manager4 from "./4.png"; 
+import manager5 from "./5.png"; 
+import manager6 from "./6.png"; 
 
 export const imagenesManager = () => {
-
-    return [foto1, foto2, foto3, foto4, foto5, foto6];
+    return [manager1, manager2, manager3, manager4, manager5, manager6];
 }

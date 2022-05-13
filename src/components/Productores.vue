@@ -4,6 +4,7 @@
       v-for="(item, i) in productores"
       :key="i"
       v-bind="productores[i]"
+      :id="i"
     >
     </Productor>
   </div>

@@ -1,10 +1,6 @@
 <template>
   <div class="managers">
 
-    
-
-  <!-- <img alt="" class="fotoprueba" :src="imagenesManager()[0]" />  -->
-
 
 
     <h3 class="titulo">¡Los Managers te hacen la vida más facil!</h3>
