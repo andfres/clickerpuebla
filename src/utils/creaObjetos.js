@@ -18,18 +18,13 @@ export const creaProductores = () => {
       // const nameCapitalized = nombresProductores[i].charAt(0).toUpperCase() + nombresProductores[i].slice(1)
       // const nameCapitalized = nombresProductores[i].charAt(0).toUpperCase() + nombresProductores[i].slice(1)
 
-      const nombreLowercase = nombresProductores[i].toLowerCase();
-
+      //objeto["imagen"] = `${nombresProductores[i]}.png`;
 
       objeto["autoRecolectar"] = false;
-      // objeto["nombre"] = nameCapitalized;
       objeto["nombre"] = nombresProductores[i];
-      //objeto["imagen"] = `${nombresProductores[i]}.png`;
-      objeto["imagen"] = `${nombreLowercase}.png`;
-
       objeto["produccionInicial"] = 2 * i + 2;
       objeto["costeInicial"] = 50 * i + 50;
-      objeto["tiempo"] = 1 + 10 * i;
+      objeto["tiempo"] = 10 + 3 * i;
       objeto["nivel"] = 1;
       array.push(objeto);
     }

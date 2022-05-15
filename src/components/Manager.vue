@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { imagenesManager } from "@/assets/img/managers";
+import  imagenesManager  from "@/assets/img/managers";
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "@/store/store";

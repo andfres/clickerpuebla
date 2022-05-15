@@ -66,7 +66,7 @@
 <script setup>
 
 import  imagenesEdificios  from "@/assets/img/edificios";
-import { ref, computed, toRefs, onMounted, watch } from "vue";
+import { ref, computed, toRefs, onMounted, onUnmounted, watch } from "vue";
 import { useStore } from "@/store/store";
 import { animacionDinero, wait } from "../utils/funciones";
 const store = useStore();
@@ -154,13 +154,30 @@ const animarRecolect = async () => {
   animarRecolectar.value = false;
 };
 
-const updateTiempo = async () => {
-  await wait(100);
+// const updateTiempo = async () => {
+//   await wait(100);
 
+//   if (!listoRecolectar.value) {
+//     const elapsed = Date.now() - lastUpdate.value;
+//     tiempoActual.value = elapsed / 1000;
+
+//     if (elapsed > props.tiempo * 1000) {
+//       lastUpdate.value = Date.now();
+//       listoRecolectar.value = true;
+//       tiempoActual.value = props.tiempo;
+
+//       if (autoRecolectar.value) {
+//         recolectar();
+//       }
+//     }
+//   }
+//   updateTiempo();
+// };
+
+const updateTiem = () => {
   if (!listoRecolectar.value) {
     const elapsed = Date.now() - lastUpdate.value;
     tiempoActual.value = elapsed / 1000;
-
     if (elapsed > props.tiempo * 1000) {
       lastUpdate.value = Date.now();
       listoRecolectar.value = true;
@@ -171,18 +188,41 @@ const updateTiempo = async () => {
       }
     }
   }
-  updateTiempo();
 };
 
+const updateTiempo = setInterval(updateTiem , 100) 
+
+
+
+
 onMounted(() => {
-  updateTiempo();
+  updateTiempo;
 });
 
-watch(autoRecolectar, (val) => {
-  if (listoRecolectar.value) {
-    recolectar();
-  }
+onUnmounted(() => {
+   clearInterval(updateTiempo)
 });
+
+
+//
+// watch(autoRecolectar, (val) => {
+//   if (listoRecolectar.value) {
+//     recolectar();
+//   }
+// });
+
+//se pone en listoRecolectar false para que no espere a dar el boton
+watch(autoRecolectar, (val) => {
+  listoRecolectar.value = false;
+});
+
+
+
+
+
+
+
+
 
 watch(tiempo, (val) => {
   lastUpdate.value = Date.now();

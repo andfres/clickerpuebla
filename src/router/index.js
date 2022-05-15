@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import GameView from "../views/GameView.vue";
+import Registro from "../views/Registro.vue";
+import Login from "../views/Login.vue";
 import Zapatero from "../components/Zapatero.vue";
 import Managers from "../components/Managers.vue";
 import Mejoras from "../components/Mejoras.vue";
@@ -19,6 +21,16 @@ const router = createRouter({
       path: "/about",
       name: "about",
       component: AboutView,
+    },
+    {
+      path: "/registro",
+      name: "registro",
+      component: Registro,
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: Login,
     },
 
     {

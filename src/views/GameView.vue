@@ -1,12 +1,60 @@
 <script setup>
+import { ref } from "vue";
+import { onMounted, onUnmounted } from "@vue/runtime-core";
+
 import Banco from "@/components/Banco.vue";
 import Productores from "@/components/Productores.vue";
 import Managers from "@/components/Managers.vue";
 import MenuGame from "@/components/MenuGame.vue";
+import Header from "@/components/layaouts/Header.vue";
+import MenuGuardar from "@/components/layaouts/MenuGuardar.vue";
+import imagenesTodas from "@/assets/img";
+import { guardarDatos } from "@/utils/partida";
+
+const cargando = ref(true);
+const cargando_msg = ref("...");
+
+onMounted(async () => {
+  console.log("Precargar imagenes");
+
+  const imagenes = imagenesTodas();
+
+  for (const img of imagenes) {
+    const response = await fetch(img);
+    await response.blob();
+    console.log(response);
+    cargando_msg.value = img;
+  }
+
+  cargando.value = false;
+});
+
+const guarDardatosTiempo = setInterval(guardarDatos, 1000);
+
+// onMounted( () => {
+//   guarDardatosTiempo
+// })
+
+onUnmounted(() => {
+  clearInterval(guarDardatosTiempo);
+});
 </script>
 
 <template>
-  <main>
+  <Header></Header>
+  
+  <div v-if="cargando">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>Cargando {{ cargando_msg }}</div>
+  </div>
+
+  <main v-else>
+    <MenuGuardar></MenuGuardar>
     <Banco class="banco"></Banco>
 
     <div class="contenedor-router">
@@ -24,19 +72,20 @@ import MenuGame from "@/components/MenuGame.vue";
 
 <style lang="scss"  >
 @import "@/scss/_variables.scss";
+@import "@/scss/_spiner.scss";
+
 main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   position: relative;
 
-  & > h1{
+  & > h1 {
     color: white;
   }
 
   .contenedor-router {
     flex: 0 0 300px;
-    
   }
 
   .menu {
@@ -83,6 +132,5 @@ main {
     align-items: center;
     --max-width: 400px;
   }
-
 }
 </style>

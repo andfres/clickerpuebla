@@ -1,8 +1,8 @@
-import imagenesZapatos from "../"; 
-import imagenesEdificios from "../"; 
-import imagenesManagers from "../"; 
+import imagenesZapatos from "./zapatos"; 
+import imagenesEdificios from "./edificios"; 
+import imagenesManagers from "./managers"; 
 
 
-export default todasImagenes = () => {
-    return [...imagenesEdificios, ...imagenesManagers, ...imagenesZapatos];
+export default function todasImagenes() {
+    return [...imagenesEdificios(), ...imagenesManagers(), ...imagenesZapatos()];
 }
