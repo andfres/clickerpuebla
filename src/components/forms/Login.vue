@@ -1,0 +1,71 @@
+<template>
+  <div class="formulario">
+    <h2 class="titulo-form">Login</h2>
+    <form @submit="onSubmit">
+      <div class="form-grup">
+        <label for="email">Email</label>
+        <input name="email" id="email" v-model="email" />
+        <span>{{ emailError }}</span>
+      </div>
+      <div class="form-grup">
+        <label for="password">Contraseña</label>
+        <input
+          name="password"
+          id="password"
+          v-model="password"
+          type="password"
+        />
+        <span>{{ passwordError }}</span>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div>
+      <p>¿No tienes cuenta?</p>
+      <RouterLink to="/registro">registrate</RouterLink>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { useForm, useField } from "vee-validate";
+import * as yup from "yup";
+
+const schema = yup.object({
+  email: yup.string().required().email(),
+  password: yup.string().required().min(1),
+});
+
+const { handleSubmit } = useForm({
+  validationSchema: schema,
+});
+
+function onInvalidSubmit({ values, errors, results }) {
+  console.log(values); // current form values
+  console.log(errors); // a map of field names and their first error message
+  console.log(results); // a detailed map of field names and their validation results
+}
+const onSubmit = handleSubmit((values) => {
+  alert(JSON.stringify(values));
+  console.log(values);
+}, onInvalidSubmit);
+
+// Create a form context with the validation schema
+
+// No need to define rules for fields
+const { value: email, errorMessage: emailError } = useField("email");
+const { value: password, errorMessage: passwordError } = useField("password");
+</script>
+
+<style lang = "scss">
+.formulario {
+  .titulo-form {
+    text-align: center;
+  }
+  .form-grup {
+    display: flex;
+    flex-direction: column;
+  }
+}
+</style>

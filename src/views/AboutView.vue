@@ -1,24 +1,46 @@
 <template>
   <Header></Header>
 
-  <button @click="visible = true">mostrar ocultar modal</button>
+  <!-- <button @click="visible = true">mostrar ocultar modal</button>
   <teleport to="body">
     <Modal v-bind:showModal="visible" @close="visible = false">
-      <Loggin />
+      <Login />
     </Modal>
-  </teleport>
+  </teleport> -->
 
   <div class="novedades">
+    <!-- 
     <div>
       <h1>To do</h1>
       <ul>
-        <li>en login y registro rutas a home  y entre ellas </li>
-        <li>almacenar el estado del tiempo de creación de los edificios</li>
-        <li>
-          estudiar que bash de git no se cierre despues de ejecutar script sh
-        </li>
-        <li>crear los servicios</li>
-  
+        almacenar el estado del tiempo de creación de los edificios
+        crear los servicios
+
+        
+        
+        [] jwt (prioritario) 
+        [] modificar edificios?
+        [] buscar x paginador 
+
+        [X] devolver usuario name y puntos x puntos
+        [X] alamacenar datos prueba server (prioritario)
+        
+        [X] swagger (prioritario)
+        
+        [] mejorar formularios  (poco prioritario)
+        [] estilo carga  (poco prioritario)
+        
+        [] clasificatoria modal? arriba del jueguito? o donde?
+
+        [] mejorar sh para que cargue desde otra rama de github (poco prioritario)
+        [] mejorar mejoras
+        [] empezar documentacion
+
+
+        <li> descubir xq escribir en html process. env. junto peta</li>
+        <li>[X] aprender a inicializar la base de datos</li>
+        <li>[X] cargar imagenes antes de poder jugar</li>
+        <li>[X] estudiar que bash de git no se cierre despues de ejecutar script sh</li>
         <li>[X] Los datos se guardan automaticamente cada X segundos</li>
         <li>[X] Los datos de la localStorage han sido ofuscados</li>
         <li>[X] deploy API de prueba spring + posgrest</li>
@@ -26,28 +48,11 @@
         <li>[X] formulario -> vee-Validate + yup</li>
         <li>[X] hacer deploy proyecto react</li>
         <li>[X] estudiar como lanzar LIVE SERVER en una subcarpeta</li>
-        <li>
-          [X] Creado script "deploy.sh" para la automaticación del despliegue
-        </li>
+        <li>[X] Creado script "deploy.sh" para la automaticación del despliegue</li>
       </ul>
     </div>
 
-    <div>
-      <h1>Problemas</h1>
-      <ul>
-        <li>escribir en html process. env. junto peta</li>
-      </ul>
-    </div>
-    <div>
-      <h1>Arreglos</h1>
-      <ul>
-        <li>
-          reinicar el juego solo se reiniciaba la store pero no la localStorage
-        </li>
-      </ul>
-    </div>
-
-
+    -->
   </div>
 </template>
 
@@ -56,11 +61,11 @@
 
 <script setup>
 import Header from "@/components/layaouts/Header.vue";
-import Modal from "@/components/layaouts/Modal.vue";
-import Loggin from "@/components/forms/Loggin.vue";
-import { ref } from "vue";
 
-const visible = ref(false);
+// import Modal from "@/components/layaouts/Modal.vue";
+// import Login from "@/components/forms/Login.vue";
+// import { ref } from "vue";
+// const visible = ref(false);
 </script>
 
 <style lang="scss">
@@ -70,7 +75,7 @@ const visible = ref(false);
 
 .novedades {
   font-family: "arial";
-  border: 1px solid red;
+  border: 1px solid white;
   padding: 2rem;
   margin: 1rem;
   color: white;

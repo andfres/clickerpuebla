@@ -1,16 +1,18 @@
 <template>
 
     <div class="modal">
+      
       <div class="modal-content"> 
-        <Loggin />
+        <Login />
       </div>
+
     </div>
 
 </template>
 
 
 <script setup>
-import Loggin from "@/components/forms/Loggin.vue";
+import Login from "@/components/forms/Login.vue";
 
 </script>
 

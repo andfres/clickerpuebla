@@ -1,6 +1,6 @@
 <template>
   <div class="formulario">
-    <h2 class="titulo-form">Loggin</h2>
+    <h2 class="titulo-form">Registro</h2>
     <form @submit="onSubmit">
       <div class="form-grup">
         <label for="email">Email</label>
@@ -20,6 +20,11 @@
 
       <button type="submit">Submit</button>
     </form>
+
+    <div>
+      <p>Ya tienes cuenta</p>
+      <RouterLink to="/login">incia sesión</RouterLink>
+    </div>
   </div>
 </template>
 
@@ -54,17 +59,13 @@ const { value: password, errorMessage: passwordError } = useField("password");
 </script>
 
 <style lang = "scss">
-
-
-.formulario{
-
-.titulo-form{
-  text-align: center;
+.formulario {
+  .titulo-form {
+    text-align: center;
+  }
+  .form-grup {
+    display: flex;
+    flex-direction: column;
+  }
 }
-.form-grup {
-  display: flex;
-  flex-direction: column;
-}
-}
-
 </style>

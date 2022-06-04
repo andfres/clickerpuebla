@@ -218,12 +218,6 @@ watch(autoRecolectar, (val) => {
 
 
 
-
-
-
-
-
-
 watch(tiempo, (val) => {
   lastUpdate.value = Date.now();
   tiempoActual.value = 0;

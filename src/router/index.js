@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import GameView from "../views/GameView.vue";
-import Registro from "../views/Registro.vue";
-import Login from "../views/Login.vue";
+import Registro from "../views/RegistroView.vue";
+import Login from "../views/LoginView.vue";
 import Zapatero from "../components/Zapatero.vue";
 import Managers from "../components/Managers.vue";
 import Mejoras from "../components/Mejoras.vue";

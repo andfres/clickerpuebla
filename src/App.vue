@@ -4,7 +4,15 @@ import { ref } from "vue";
 import { onBeforeMount, onMounted } from "@vue/runtime-core";
 
 import { importData  } from "@/utils/partida"
+import { getAll , registrarse } from "@/servicios/users"
 
+
+const f = async() => {
+  console.log("obteniendo todos");
+   getAll();
+} 
+
+f()
 
 // {almacenarDatosStore , guardarDatos , leerDatos , datosIniciales, reiniciarJuego, importData}
 
@@ -13,23 +21,6 @@ onBeforeMount(() => {
   importData();
 });
 
-// const cargando = ref(true);
-// const cargando_msg = ref("...");
-
-// onMounted(async () => {
-//   console.log("Precargar imagenes");
-
-//   const imagenes = imagenesTodas();
-
-//   for (const img of imagenes) {
-//     const response = await fetch(img);
-//     await response.blob();
-//     console.log(response);
-//     cargando_msg.value = img;
-//   }
-
-//   cargando.value = false;
-// });
 
 
 </script>

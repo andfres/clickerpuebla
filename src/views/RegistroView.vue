@@ -1,17 +1,15 @@
 <template>
-
-    <div class="modal">
-      <div class="modal-content"> 
-        <Loggin />
-      </div>
+  <div class="modal">
+    <div class="modal-content">
+      <Registro />
     </div>
+  </div>
 
 </template>
 
 
 <script setup>
-import Loggin from "@/components/forms/Loggin.vue";
-
+import Registro from "@/components/forms/Registro.vue";
 </script>
 
 <style lang="scss">
@@ -33,8 +31,6 @@ import Loggin from "@/components/forms/Loggin.vue";
     position: relative;
     border-radius: 10px;
     padding: 1rem;
-    }
   }
-
-
+}
 </style>
