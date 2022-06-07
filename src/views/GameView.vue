@@ -22,18 +22,16 @@ onMounted(async () => {
   for (const img of imagenes) {
     const response = await fetch(img);
     await response.blob();
-    console.log(response);
+    // console.log(response);
     cargando_msg.value = img;
   }
 
   cargando.value = false;
 });
 
-const guarDardatosTiempo = setInterval(guardarDatos, 1000);
+// const guarDardatosTiempo = setInterval(guardarDatos, 1000);
 
-// onMounted( () => {
-//   guarDardatosTiempo
-// })
+
 
 onUnmounted(() => {
   clearInterval(guarDardatosTiempo);

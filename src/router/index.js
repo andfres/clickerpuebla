@@ -8,6 +8,7 @@ import Managers from "../components/Managers.vue";
 import Mejoras from "../components/Mejoras.vue";
 import AboutView from "../views/AboutView.vue";
 import Productores from "@/components/Productores.vue";
+import Logros from "@/components/Logros.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,6 +50,10 @@ const router = createRouter({
         {
           path: "mejoras",
           component: Mejoras,
+        },
+        {
+          path: "logros",
+          component: Logros,
         },
   
       ],

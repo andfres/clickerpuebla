@@ -1,38 +1,55 @@
 import { useStore } from "@/store/store";
 import { creaProductores, crearManagers } from "@/utils/creaObjetos";
 import ls from "localStorage-slim";
-ls.config.encrypt = true;
+ls.config.encrypt = false;
 
 const almacenarDatosStore = (datos) => {
-  const { productores, managers, recursos } = datos;
+  const { recursos, productores, managers } = datos;
   const store = useStore();
   store.recursos = recursos;
   store.productores = [...productores];
   store.managers = [...managers];
 };
 
+const actualizarDatosStore = (datos) => {
+  const {recursos_guardados, productores_guardados, managers_guardados } = datos;
+  const store = useStore();
+  store.recursos = recursos_guardados;
+
+  // esto me lo va a pisar y se van a
+  // store.productores = [...productores_guardados];
+  // store.managers = [...managers_guardados];
+};
+
 //guarda datos en de la store en localStorage
 export const guardarDatos = () => {
   const store = useStore();
   const datos = {
-    recursos: store.recursos,
-    productores: store.getProductores,
-    managers: store.managers,
+    recursos_guardados: store.recursos,
+    productores_guardados: store.getProductores,
+    managers_guardados: store.managers,
   };
 
+  const datos_guardar = {
+    recursos_guardados: store.recursos ,
+    productores_guardados: store.getDatosGuardarProductores,
+    managers_guardados: store.getDatosGuardarManagers,
+  };
+
+  console.log("datos_guardar" , datos_guardar );
   console.log("Los datos han sido guardados");
   //window.localStorage.setItem("datos", JSON.stringify(datos));
-  ls.set("datos", JSON.stringify(datos));
+  ls.set("datos_guardados", JSON.stringify(datos));
 };
 
 //lee Datos guardados en la localStorage
 export const leerDatos = () => {
   //const datos = JSON.parse(window.localStorage.getItem("datos"));
   try {
-    const datos_localstorage = ls.get("datos");
+    const datos_localstorage = ls.get("datos_guardados");
 
     if (datos_localstorage) {
-      //console.log("leyendo datos", datos_localstorage);
+      console.log("leyendo datos", datos_localstorage);
       return JSON.parse(datos_localstorage);
     }
     console.log("no habia datos");
@@ -54,23 +71,19 @@ const datosIniciales = () => {
   return datos;
 };
 
+
+
+export const importData = () => {
+  almacenarDatosStore(datosIniciales());
+  // if (leerDatos()) actualizarDatosStore(leerDatos());
+};
+
 export const reiniciarJuego = () => {
   almacenarDatosStore(datosIniciales());
   guardarDatos();
 };
 
-export const importData = () => {
-  let datos = leerDatos();
 
-  if (datos) {
-    console.log("se han cargado datos");
-  } else {
-    datos = datosIniciales();
-    console.log("empezando de 0", datos);
-  }
-
-  almacenarDatosStore(datos);
-};
 
 
 //retorna true si hay datos
