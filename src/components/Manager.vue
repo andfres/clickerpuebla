@@ -41,7 +41,7 @@ const {
   comprar,
   autoRecolectar,
   cambiarMensaje,
-  quitarDisponible,
+  contratarManager,
 } = store;
 
 const props = defineProps({
@@ -53,7 +53,7 @@ const props = defineProps({
 
   disponible: {
     type: Boolean,
-    default: false,
+    default: true,
   },
 });
 
@@ -62,7 +62,6 @@ const disabled = computed(() => {
 });
 
 const contratar = (e) => {
-  autoRecolectar(props.nombreProductor);
   comprar(props.precio);
   animacionDinero(e.target, props.precio, false);
 
@@ -70,7 +69,7 @@ const contratar = (e) => {
   // <p class="nombreProductor">${props.nombreProductor}</p>
   // <p><strong>autorecolección</strong> on</p>`;
 
-  quitarDisponible(props.nombre);
+  contratarManager(props.nombre);
 };
 </script>
 

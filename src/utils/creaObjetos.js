@@ -20,7 +20,6 @@ export const creaProductores = () => {
 
       //objeto["imagen"] = `${nombresProductores[i]}.png`;
 
-      objeto["autoRecolectar"] = false;
       objeto["nombre"] = nombresProductores[i];
       objeto["produccionInicial"] = 2 * i + 2;
       objeto["costeInicial"] = 50 * i + 50;
@@ -55,7 +54,7 @@ export const crearManagers = () => {
     objeto["nombre"] = nombreManager[i];
     objeto["precio"] = 100000 * i + 100;
     objeto["imagen"] = i + 1 + "";
-    objeto["disponible"] = true;
+    objeto["contratado"] = false
 
 
     array.push(objeto);

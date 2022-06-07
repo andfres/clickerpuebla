@@ -5,7 +5,7 @@ export const useStore = defineStore({
   state: () => ({
     productores: [],
     managers: [],
-    recursos: 0,
+    recursos: 999999999999999999999999,
     multiplicador: 1,
     mensaje: "<p>mensaje desde storeeeeeeeeee</p>",
   }), //Fin state
@@ -18,10 +18,10 @@ export const useStore = defineStore({
     },
 
     managersDisponibles: (state) => {
-      return state.managers.filter((m) => m.disponible === true);
+      return state.managers.filter((m) => m.contratado === false);
     },
     managersAdquiridos: (state) => {
-      return state.managers.filter((m) => m.disponible === false);
+      return state.managers.filter((m) => m.contratado === true);
     },
 
     getProductores: (state) => {
@@ -39,14 +39,6 @@ export const useStore = defineStore({
 
     recolectar(cantidad) {
       this.recursos = this.recursos + cantidad;
-    },
-
-    autoRecolectar(nombre) {
-      this.productores.some((ele) => {
-        if (ele.nombre === nombre) {
-          ele.autoRecolectar = true;
-        }
-      });
     },
 
     duplicarVelocidad(nombre) {
@@ -69,11 +61,13 @@ export const useStore = defineStore({
       });
     },
 
-    quitarDisponible(nombre) {
+
+
+    contratarManager(nombre) {
       this.managers.some((ele) => {
         if (ele.nombre === nombre) {
-          ele.disponible = false;
-          console.log(nombre + " ya no disponible");
+          ele.contratado = true;
+          console.log(nombre + " contratado");
         }
       });
     },

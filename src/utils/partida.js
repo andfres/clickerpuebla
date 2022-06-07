@@ -47,7 +47,7 @@ export const leerDatos = () => {
 
 const datosIniciales = () => {
   const datos = {
-    recursos: 100,
+    recursos: 9999999999999999999999999999999999999,
     productores: creaProductores(),
     managers: crearManagers(),
   };

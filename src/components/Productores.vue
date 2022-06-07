@@ -4,6 +4,7 @@
       v-for="(item, i) in productores"
       :key="i"
       v-bind="productores[i]"
+      :autoRecolectar="managers[i].contratado"
       :id="i"
     >
     </Productor>
@@ -17,7 +18,7 @@ import { storeToRefs } from "pinia";
 import { useStore } from "@/store/store";
 
 const store = useStore();
-const { productores } = storeToRefs(store);
+const { productores, managers } = storeToRefs(store);
 
 
 </script>

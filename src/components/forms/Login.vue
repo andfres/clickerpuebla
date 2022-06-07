@@ -29,6 +29,7 @@
 </template>
 
 <script setup>
+import { login } from "@/servicios/users"
 import { useForm, useField } from "vee-validate";
 import * as yup from "yup";
 
@@ -42,13 +43,16 @@ const { handleSubmit } = useForm({
 });
 
 function onInvalidSubmit({ values, errors, results }) {
+  console.log("invalidsubmit");
   console.log(values); // current form values
   console.log(errors); // a map of field names and their first error message
   console.log(results); // a detailed map of field names and their validation results
 }
 const onSubmit = handleSubmit((values) => {
-  alert(JSON.stringify(values));
-  console.log(values);
+  console.log("valores", values);
+  login(values);
+  // alert(JSON.stringify(values));
+  
 }, onInvalidSubmit);
 
 // Create a form context with the validation schema

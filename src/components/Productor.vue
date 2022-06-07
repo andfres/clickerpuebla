@@ -55,11 +55,8 @@
         </button>
       </div>
 
-      <!--fin centrodatos -->
     </div>
-    <!--fin centro -->
   </div>
-  <!--fin productor -->
 </template>
 
 
@@ -87,12 +84,12 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+
 });
 
 const MULTIPLICADOR = 1.17;
 
-const { produccionInicial, costeInicial, autoRecolectar, nombre, nivel } =
-  toRefs(props);
+const { produccionInicial, costeInicial, nombre, nivel, autoRecolectar } = toRefs(props);
 
 const tiempo = ref(props.tiempo);
 const tiempoActual = ref(0);
@@ -154,25 +151,7 @@ const animarRecolect = async () => {
   animarRecolectar.value = false;
 };
 
-// const updateTiempo = async () => {
-//   await wait(100);
 
-//   if (!listoRecolectar.value) {
-//     const elapsed = Date.now() - lastUpdate.value;
-//     tiempoActual.value = elapsed / 1000;
-
-//     if (elapsed > props.tiempo * 1000) {
-//       lastUpdate.value = Date.now();
-//       listoRecolectar.value = true;
-//       tiempoActual.value = props.tiempo;
-
-//       if (autoRecolectar.value) {
-//         recolectar();
-//       }
-//     }
-//   }
-//   updateTiempo();
-// };
 
 const updateTiem = () => {
   if (!listoRecolectar.value) {
@@ -204,12 +183,6 @@ onUnmounted(() => {
 });
 
 
-//
-// watch(autoRecolectar, (val) => {
-//   if (listoRecolectar.value) {
-//     recolectar();
-//   }
-// });
 
 //se pone en listoRecolectar false para que no espere a dar el boton
 watch(autoRecolectar, (val) => {

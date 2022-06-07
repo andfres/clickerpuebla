@@ -1,28 +1,22 @@
 <script setup>
-
 import { ref } from "vue";
 import { onBeforeMount, onMounted } from "@vue/runtime-core";
 
-import { importData  } from "@/utils/partida"
-import { getAll , registrarse } from "@/servicios/users"
+import { importData } from "@/utils/partida";
+import { getAll } from "@/servicios/users";
 
-
-const f = async() => {
+const f = async () => {
   console.log("obteniendo todos");
-   getAll();
-} 
+  getAll();
+};
 
-f()
+f();
 
 // {almacenarDatosStore , guardarDatos , leerDatos , datosIniciales, reiniciarJuego, importData}
-
 
 onBeforeMount(() => {
   importData();
 });
-
-
-
 </script>
 
 <template>
