@@ -23,6 +23,7 @@
 import  imagenesZapatos  from "@/assets/img/zapatos";
 import { ref } from "vue";
 import { useStore } from "@/store/store";
+import { storeToRefs } from "pinia";
 import { animacionDinero, wait } from "../utils/funciones";
 
 // const base = import.meta.env.BASE_URL;
@@ -32,6 +33,9 @@ const { recolectar } = store;
 const divZapato = ref(null);
 const imgZapatos = imagenesZapatos()
 const imagen = ref(0);
+const { zapatero } = store;
+
+
 
 const cambiarImagen = () => {
   imagen.value++;
@@ -41,7 +45,10 @@ const cambiarImagen = () => {
   }
 };
 
-const ganacias = 1;
+const ganacias = zapatero.genera_por_clic;
+console.log("genera" , ganacias);
+
+// const ganacias = 1;
 const gananciasTerminar = 20;
 const maxCount1 = 20;
 const maxCount2 = 200;

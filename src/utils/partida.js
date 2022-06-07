@@ -1,7 +1,7 @@
 import { useStore } from "@/store/store";
 import { creaProductores, crearManagers } from "@/utils/creaObjetos";
 import ls from "localStorage-slim";
-ls.config.encrypt = true;
+ls.config.encrypt = false;
 
 const almacenarDatosStore = (datos) => {
   const { productores, managers, recursos } = datos;

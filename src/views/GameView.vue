@@ -22,7 +22,7 @@ onMounted(async () => {
   for (const img of imagenes) {
     const response = await fetch(img);
     await response.blob();
-    console.log(response);
+    // console.log(response);
     cargando_msg.value = img;
   }
 

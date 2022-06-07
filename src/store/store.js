@@ -7,7 +7,55 @@ export const useStore = defineStore({
     managers: [],
     recursos: 0,
     multiplicador: 1,
+    zapatero:
+    {
+      genera_por_clic: 2,
+      genera_al_cambiar: 15
+    },
     mensaje: "<p>mensaje desde storeeeeeeeeee</p>",
+    logros: [
+
+      { id: 1,
+        logrado: true,
+        titulo: "buen inicio",
+        descripcion: "almacenar 200 monedas",
+        imagen: "trophy",
+        fecha: "null",
+        logradoFuncion: function() {
+          if (this.logrado) return;
+          this.fecha = "cambio fecha -----------------------------------";
+          if (true){
+
+
+          }
+          console.log("fecha", this.fecha)
+          return true
+        }
+        
+      },
+      {
+        id: 2,
+        logrado: true,
+        titulo: "el amo del pueblo",
+        descripcion: "almacenar 1000 monedas",
+        imagen: "trophy",
+        fecha: "null",
+        logradoFuncion: (() => { return true; })
+        
+      },
+      {
+        id:3,
+        logrado: true,
+        titulo: "el amo del pueblo",
+        descripcion: "almacenar 1000 monedas",
+        imagen: "trophy",
+        fecha: "null",
+        logradoFuncion: (() => { return true; })
+        
+      },
+
+
+    ]
   }), //Fin state
 
   getters: {
@@ -77,5 +125,8 @@ export const useStore = defineStore({
         }
       });
     },
+
+
+    settearFecha(id){}
   }, //Fin actions
 });
