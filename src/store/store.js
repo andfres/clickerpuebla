@@ -15,23 +15,21 @@ export const useStore = defineStore({
     mensaje: "<p>mensaje desde storeeeeeeeeee</p>",
     logros: [
 
-      { id: 1,
+      {
+        id: 1,
         logrado: true,
         titulo: "buen inicio",
         descripcion: "almacenar 200 monedas",
         imagen: "trophy",
         fecha: "null",
-        logradoFuncion: function() {
+        logradoFuncion: function () {
           if (this.logrado) return;
           this.fecha = "cambio fecha -----------------------------------";
-          if (true){
-
-
+          if (true) {
           }
           console.log("fecha", this.fecha)
           return true
         }
-        
       },
       {
         id: 2,
@@ -41,20 +39,16 @@ export const useStore = defineStore({
         imagen: "trophy",
         fecha: "null",
         logradoFuncion: (() => { return true; })
-        
       },
       {
-        id:3,
+        id: 3,
         logrado: true,
         titulo: "el amo del pueblo",
         descripcion: "almacenar 1000 monedas",
         imagen: "trophy",
         fecha: "null",
         logradoFuncion: (() => { return true; })
-        
       },
-
-
     ]
   }), //Fin state
 
@@ -72,9 +66,28 @@ export const useStore = defineStore({
       return state.managers.filter((m) => m.disponible === false);
     },
 
-    getProductores: (state) => {
-      return state.productores;
+    // getProductores: (state) => {
+    //   return state.productores;
+    // },
+
+    getDatosGuardarProductores: (state) => {
+      const array = state.productores.map(ele => {
+        return ele.nivel;
+      })
+      return array;
     },
+
+    getDatosGuardarManagers: (state) => {
+      const array = state.managers.map(ele => {
+        return ele;
+      })
+      return array;
+    },
+
+
+    
+
+
   }, //Fin getters
   actions: {
     sePuedeComprar(cantidad) {
@@ -127,6 +140,6 @@ export const useStore = defineStore({
     },
 
 
-    settearFecha(id){}
+    settearFecha(id) { }
   }, //Fin actions
 });

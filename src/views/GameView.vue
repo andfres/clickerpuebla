@@ -29,11 +29,9 @@ onMounted(async () => {
   cargando.value = false;
 });
 
-const guarDardatosTiempo = setInterval(guardarDatos, 1000);
+// const guarDardatosTiempo = setInterval(guardarDatos, 1000);
 
-// onMounted( () => {
-//   guarDardatosTiempo
-// })
+
 
 onUnmounted(() => {
   clearInterval(guarDardatosTiempo);
