@@ -9,10 +9,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref , watch } from "vue";
 import Logro from "@/components/Logro.vue";
 import { useStore } from "@/store/store";
-import { watch } from "@vue/runtime-core";
 
 const store = useStore();
 
@@ -56,17 +55,18 @@ const aumentarContador = () => {
 
 let bandera = 0;
 
-watch(contador.value, (newContador, oldContador) => {
+watch(contador, (newContador, oldContador) => {
 
-  if (contador === logros.length ) return; 
-  if (contador >= logros[bandera].cantidad ){
-    logros[bandera].logrado.true;
-  }
+   if (bandera === logros.length ) return; 
+   if (contador.value >= logros[bandera].cantidad ){
+     logros[bandera].logrado = true;
+     console.log("eee", logros[bandera].logrado );
+     
+     bandera += 1;
+   }
 
 })
 
-
-if (contador < )
 
 </script>
 
