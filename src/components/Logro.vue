@@ -33,8 +33,6 @@ const props = defineProps({
   titulo: String,
   descripcion: String,
   imagen: String,
-  logradoResultado: Boolean,
-  cadena: String,
   fecha: String
 });
 

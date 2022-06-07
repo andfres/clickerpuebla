@@ -12,34 +12,42 @@ const almacenarDatosStore = (datos) => {
 };
 
 const actualizarDatosStore = (datos) => {
-  const {recursos_guardados, productores_guardados, managers_guardados } = datos;
+  const { recursos_guardados, productores_guardados, managers_guardados } =
+    datos;
   const store = useStore();
   store.recursos = recursos_guardados;
 
-  // esto me lo va a pisar y se van a
-  // store.productores = [...productores_guardados];
-  // store.managers = [...managers_guardados];
+  //va a pisar solo los datos que se guardan
+  store.productores = store.productores.map((ele, i) => {
+    return { ...ele, ...productores_guardados[i] };
+  });
+
+  store.managers = store.managers.map((ele, i) => {
+    return { ...ele, ...managers_guardados[i] };
+  });
+
 };
 
 //guarda datos en de la store en localStorage
 export const guardarDatos = () => {
   const store = useStore();
-  const datos = {
-    recursos_guardados: store.recursos,
-    productores_guardados: store.getProductores,
-    managers_guardados: store.managers,
-  };
+  // const datos = {
+  //   recursos_guardados: store.recursos,
+  //   productores_guardados: store.getProductores,
+  //   managers_guardados: store.managers,
+  // };
 
+  //para guardar en local o base de datos
   const datos_guardar = {
-    recursos_guardados: store.recursos ,
+    recursos_guardados: store.recursos,
     productores_guardados: store.getDatosGuardarProductores,
     managers_guardados: store.getDatosGuardarManagers,
   };
 
-  console.log("datos_guardar" , datos_guardar );
+  console.log("datos_guardar", datos_guardar);
   console.log("Los datos han sido guardados");
   //window.localStorage.setItem("datos", JSON.stringify(datos));
-  ls.set("datos_guardados", JSON.stringify(datos));
+  ls.set("datos_guardados", JSON.stringify(datos_guardar));
 };
 
 //lee Datos guardados en la localStorage
@@ -64,18 +72,16 @@ export const leerDatos = () => {
 
 const datosIniciales = () => {
   const datos = {
-    recursos: 9999999999999999999999999999999999999,
+    recursos: 999999,
     productores: creaProductores(),
     managers: crearManagers(),
   };
   return datos;
 };
 
-
-
 export const importData = () => {
   almacenarDatosStore(datosIniciales());
-  // if (leerDatos()) actualizarDatosStore(leerDatos());
+  if (leerDatos()) actualizarDatosStore(leerDatos());
 };
 
 export const reiniciarJuego = () => {
@@ -83,12 +89,9 @@ export const reiniciarJuego = () => {
   guardarDatos();
 };
 
-
-
-
 //retorna true si hay datos
 export const haydatos = () => {
   let datos = leerDatos();
-  if (datos)  return true;
- return false;
+  if (datos) return true;
+  return false;
 };

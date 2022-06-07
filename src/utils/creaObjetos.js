@@ -5,7 +5,7 @@ const nombresProductores = [
   "Templo",
   "Forja",
   "Muelle",
-  "Mana",
+  "Templo Oscuro",
 ];
 
 export const creaProductores = () => {
