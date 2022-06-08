@@ -11,7 +11,7 @@
         @click="recolectar"
       >
         <!-- <img alt="" class="" :src="`${base}img/edificios/${imagen}`" /> -->
-        <img :alt="nombre" :src="imagenesEdificios()[id]" />
+        <img :alt="nombre" :src="imagenesEdificios()[id]" draggable="false" />
       </button>
 
 

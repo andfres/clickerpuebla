@@ -21,10 +21,10 @@ import { computed } from "@vue/runtime-core";
 import Header from "@/components/layaouts/Header.vue";
 
 
-import { haydatos  } from "@/utils/partida"
+import { leerDatos  } from "@/utils/partida"
 
 const mensaje_jugar = computed(() => {
-  if (!haydatos()) return "Nueva partida"
+  if (!leerDatos()) return "Nueva partida"
   return "Continuar partida"
 })
 

@@ -58,5 +58,9 @@ body {
   background-attachment: fixed;
   height: 100vh;
   font-family: $fuente-principal;
+
+  button{
+    font-family: $fuente-principal;
+  }
 }
 </style>

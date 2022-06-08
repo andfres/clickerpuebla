@@ -2,7 +2,6 @@
   <div class="managers">
 
 
-
     <h3 class="titulo">¡Los Managers te hacen la vida más facil!</h3>
     <p>
       Contrata a managers para que <br />
@@ -63,18 +62,15 @@ const todosComprados = computed(() => {
   }
 }
 
-.fotoprueba{
-  width: 40px;
-  height: 40px;
-  border: 2px solid red;
-}
 
 .contenedor-managers {
+  
   margin: 1rem 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
 }
 
 .titulo {

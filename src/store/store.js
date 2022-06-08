@@ -5,7 +5,7 @@ export const useStore = defineStore({
   state: () => ({
     productores: [],
     managers: [],
-    recursos: 999999999999999999999999,
+    recursos: 9,
     multiplicador: 1,
     zapatero:
     {
@@ -13,51 +13,22 @@ export const useStore = defineStore({
       genera_al_cambiar: 15
     },
     mensaje: "<p>mensaje desde storeeeeeeeeee</p>",
-    logros: [
+    logros: [],
 
+    mejoras: [
       {
         id: 1,
-        logrado: true,
-        titulo: "buen inicio",
-        descripcion: "almacenar 200 monedas",
-        imagen: "trophy",
-        fecha: "null",
-        logradoFuncion: function () {
-          if (this.logrado) return;
-          this.fecha = "cambio fecha -----------------------------------";
-          if (true) {
-          }
-          console.log("fecha", this.fecha)
-          return true
-        }
-      },
-      {
-        id: 2,
-        logrado: true,
-        titulo: "el amo del pueblo",
-        descripcion: "almacenar 1000 monedas",
-        imagen: "trophy",
-        fecha: "null",
-        logradoFuncion: (() => { return true; })
-      },
-      {
-        id: 3,
-        logrado: true,
-        titulo: "el amo del pueblo",
-        descripcion: "almacenar 1000 monedas",
-        imagen: "trophy",
-        fecha: "null",
-        logradoFuncion: (() => { return true; })
-      },
-    ]
+        adquirida: false,
+        precio: 40,
+        aplica: (() =>  duplicarVelocidad("Granero"))
+      }
+    ],
+    
+
+
   }), //Fin state
 
   getters: {
-    managersChicas: (state) => {
-      return state.managers.filter(
-        (m) => m.nombre === "Maria" || m.nombre === "Ana"
-      );
-    },
 
     managersDisponibles: (state) => {
       return state.managers.filter((m) => m.contratado === false);
@@ -65,10 +36,6 @@ export const useStore = defineStore({
     managersAdquiridos: (state) => {
       return state.managers.filter((m) => m.contratado === true);
     },
-
-    // getProductores: (state) => {
-    //   return state.productores;
-    // },
 
     getDatosGuardarProductores: (state) => {
       const array = state.productores.map(ele => {
@@ -84,8 +51,22 @@ export const useStore = defineStore({
       return array;
     },
 
+    getDatosGuardarLogros: (state) => {
+      const array = state.logros.map(ele => {
+        return {
+          logrado: ele.logrado,
+          fecha: ele.fecha
+        };
+      })
+      return array;
+    },
 
-    
+    logrosLogrados: (state) => {
+      return state.logros.filter((logro) => logro.logrado === true);
+    },
+    logrosNoLogrados: (state) => {
+      return state.logros.filter((logro) => logro.logrado === false);
+    },
 
 
   }, //Fin getters
@@ -122,8 +103,6 @@ export const useStore = defineStore({
       });
     },
 
-
-
     contratarManager(nombre) {
       this.managers.some((ele) => {
         if (ele.nombre === nombre) {
@@ -133,7 +112,13 @@ export const useStore = defineStore({
       });
     },
 
-
-    settearFecha(id) { }
+    completarLogro (id){
+      this.logros.some((ele) => {
+        if (ele.id === id) {
+          ele.logrado = true;
+          console.log(id + " logrado");
+        }
+      });
+    } 
   }, //Fin actions
 });

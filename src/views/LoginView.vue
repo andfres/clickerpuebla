@@ -1,12 +1,8 @@
 <template>
 
-    <div class="modal">
-      
-      <div class="modal-content"> 
-        <Login />
-      </div>
-
-    </div>
+  <div class="contenedor-formularios">
+      <Login />
+  </div>
 
 </template>
 

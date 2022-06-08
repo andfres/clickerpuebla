@@ -1,47 +1,57 @@
 import { useStore } from "@/store/store";
-import { creaProductores, crearManagers } from "@/utils/creaObjetos";
+// import { creaProductores, creaManagers, creaLogros } from "@/utils/creaObjetos";
+import creaObjetos from "@/utils/creaObjetos";
 import ls from "localStorage-slim";
 ls.config.encrypt = false;
 
-const almacenarDatosStore = (datos) => {
-  const { recursos, productores, managers } = datos;
+
+const { creaProductores, creaManagers, creaLogros } = creaObjetos;
+const inicializarDatos = () => {
   const store = useStore();
-  store.recursos = recursos;
-  store.productores = [...productores];
-  store.managers = [...managers];
+  store.recursos = 1;
+  store.productores = [...creaProductores()];
+  store.managers = [...creaManagers()];
+  store.logros = [...creaLogros()];
 };
 
-const actualizarDatosStore = (datos) => {
-  const { recursos_guardados, productores_guardados, managers_guardados } =
-    datos;
+
+
+const actualizar_state_con_datos_almacenados__local_storage = (datos) => {
+  const { recursos_guardados, productores_guardados, managers_guardados, logros_guardados } = datos;
   const store = useStore();
   store.recursos = recursos_guardados;
 
-  //va a pisar solo los datos que se guardan
-  store.productores = store.productores.map((ele, i) => {
-    return { ...ele, ...productores_guardados[i] };
-  });
+  try {
+    //va a pisar solo los datos que se guardan
+    store.productores = store.productores.map((ele, i) => {
+      return { ...ele, ...productores_guardados[i] };
+    });
 
-  store.managers = store.managers.map((ele, i) => {
-    return { ...ele, ...managers_guardados[i] };
-  });
+    store.managers = store.managers.map((ele, i) => {
+      return { ...ele, ...managers_guardados[i] };
+    });
+
+    store.logros = store.logros.map((ele, i) => {
+      return { ...ele, ...logros_guardados[i] };
+    });
+
+  } catch (e) {
+    console.log("peto", e);
+    ls.remove("datos_guardados");
+  }
 
 };
 
 //guarda datos en de la store en localStorage
 export const guardarDatos = () => {
   const store = useStore();
-  // const datos = {
-  //   recursos_guardados: store.recursos,
-  //   productores_guardados: store.getProductores,
-  //   managers_guardados: store.managers,
-  // };
 
   //para guardar en local o base de datos
   const datos_guardar = {
     recursos_guardados: store.recursos,
     productores_guardados: store.getDatosGuardarProductores,
     managers_guardados: store.getDatosGuardarManagers,
+    logros_guardados: store.getDatosGuardarLogros,
   };
 
   console.log("datos_guardar", datos_guardar);
@@ -52,7 +62,6 @@ export const guardarDatos = () => {
 
 //lee Datos guardados en la localStorage
 export const leerDatos = () => {
-  //const datos = JSON.parse(window.localStorage.getItem("datos"));
   try {
     const datos_localstorage = ls.get("datos_guardados");
 
@@ -65,33 +74,19 @@ export const leerDatos = () => {
   } catch (e) {
     //intentar leer datos, si estan corruptos borrarlos
     console.log("peto al leer los datos", e);
-    ls.remove("datos");
+    ls.remove("datos_guardados");
     return;
   }
 };
 
-const datosIniciales = () => {
-  const datos = {
-    recursos: 999999,
-    productores: creaProductores(),
-    managers: crearManagers(),
-  };
-  return datos;
-};
 
 export const importData = () => {
-  almacenarDatosStore(datosIniciales());
-  if (leerDatos()) actualizarDatosStore(leerDatos());
+  inicializarDatos();
+  if (leerDatos()) actualizar_state_con_datos_almacenados__local_storage(leerDatos());
 };
 
 export const reiniciarJuego = () => {
-  almacenarDatosStore(datosIniciales());
+  inicializarDatos();
   guardarDatos();
 };
 
-//retorna true si hay datos
-export const haydatos = () => {
-  let datos = leerDatos();
-  if (datos) return true;
-  return false;
-};

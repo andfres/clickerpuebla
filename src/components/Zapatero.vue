@@ -18,8 +18,6 @@
 <script setup>
 //    @mousemove="limpiarZapato"
 // :src="`${base}img/zapatos/${imagen}.png`"
-
-
 import  imagenesZapatos  from "@/assets/img/zapatos";
 import { ref } from "vue";
 import { useStore } from "@/store/store";
@@ -37,6 +35,30 @@ const { zapatero } = store;
 
 
 
+const getMousePos = (evt) => {
+  const pos = evt.currentTarget.getBoundingClientRect();
+  console.log("x" ,evt.clientX, pos.left )
+  console.log("y" ,evt.clientY, pos.top )
+
+  const x = evt.clientX - pos.left;
+  const y = evt.clientY - pos.top;
+    console.log("x",x,"| y:", y );
+
+     return {
+     x: x,
+     y: y
+   };
+
+
+
+};
+
+// document.querySelector("#target").addEventListener('mousemove', (evt) => {
+//   const mPos = getMousePos(evt);
+//   evt.currentTarget.textContent = `Mouse position x:${mPos.x}  y:${mPos.y}`;
+// });
+
+
 const cambiarImagen = () => {
   imagen.value++;
  console.log("length",  imgZapatos.length)
@@ -50,27 +72,29 @@ console.log("genera" , ganacias);
 
 // const ganacias = 1;
 const gananciasTerminar = 20;
-const maxCount1 = 20;
+const maxCount1 = 5;
 const maxCount2 = 200;
 
 let count = 0;
 let count2 = 0;
 
-const limpiarZapato = () => {
+const limpiarZapato = (evt) => {
   count++;
   count2++;
+
+  //  animacionDinero(divZapato.value, gananciasTerminar, true, getMousePos(evt));
 
   if (count >= maxCount1) {
     count = 0;
     recolectar(ganacias);
-    animacionDinero(divZapato.value, ganacias, true);
+    animacionDinero(divZapato.value, ganacias, true, getMousePos(evt));
   }
 
   if (count2 >= maxCount2) {
     count2 = 2;
     cambiarImagen();
     recolectar(20);
-    animacionDinero(divZapato.value, gananciasTerminar, true);
+    animacionDinero(divZapato.value, gananciasTerminar, true, getMousePos(evt));
   }
 };
 </script>
@@ -83,10 +107,10 @@ const limpiarZapato = () => {
   --background-color: rgb(50, 171, 205);
   display: flex;
   justify-content: center;
-  padding: 1rem;
 
   img {
     padding: 1rem;
+    width: 100%;
     min-width: 150px;
     background-color: rgb(50, 171, 205);
     cursor: url("@/assets/cepillo.png"), auto;

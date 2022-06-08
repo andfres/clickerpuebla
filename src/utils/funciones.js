@@ -1,5 +1,5 @@
 
-export const animacionDinero = (target, dinero, befenicio) => {
+export const animacionDinero = (target, dinero, befenicio, posicionRaton) => {
 
     const clase = (befenicio) ? "beneficio" : "gasto";
     if (!befenicio) dinero = "-" + dinero;
@@ -8,6 +8,17 @@ export const animacionDinero = (target, dinero, befenicio) => {
     let div = document.createElement("div");
   
     div.classList.add(clase);
+    
+    const x =posicionRaton.x;
+    const y =posicionRaton.y;
+
+    div.style.top = `${y}px`;
+    div.style.left = `${x}px`;
+
+    // div.style.top = `0`;
+    // div.style.left = `0`;
+
+
     div.append(dinero);
     target.append(div);
   

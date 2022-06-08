@@ -1,74 +1,78 @@
 <template>
   <div>
-    <p>has desbloqueado 2/10 logros</p>
-    <button @click="aumentarContador">aumentar {{contador}}</button>
+    <p>has desbloqueado {{ cantidadLogrosLogrados }}/ {{ cantidadLogros }} logrosNoLogrados</p>
 
-    <Logro v-for="(item, i) in logros" :key="i" v-bind="item">
+    <div class="barra">
+      <div class="barra-interna" :style="{ width: porcentaje * 100 + '%' }"></div>
+
+    </div>
+
+
+
+    <p>Trofeos conseguidos</p>
+
+    <Logro v-for="(item, i) in logrosLogrados" :key="i" v-bind="item">
+    </Logro>
+
+    <p>Trofeos bloqueados</p>
+
+    <Logro v-for="(item, i) in logrosNoLogrados" :key="i" v-bind="item">
     </Logro>
   </div>
 </template>
 
 <script setup>
-import { ref , watch } from "vue";
+import { computed } from "vue";
+
 import Logro from "@/components/Logro.vue";
 import { useStore } from "@/store/store";
+import { storeToRefs } from "pinia";
 
 const store = useStore();
+const { logrosLogrados, logrosNoLogrados, logros } = storeToRefs(store);
 
-// const { logros } = store;
+const cantidadLogros = logros.value.length;
 
-const logros = [
-  {
-    id: "dinero1",
-    cantidad: 5,
-    logrado: false,
-    titulo: "buen inicio",
-    descripcion: "almacenar 200 monedas",
-    imagen: "trophy",
-    fecha: "null",
-  },
-  {
-    id: "dinero2",
-    cantidad: 8,
-    logrado: false,
-    titulo: "el amo del pueblo",
-    descripcion: "almacenar 1000 monedas",
-    imagen: "trophy",
-    fecha: "null",
-  },
-  {
-    id: "dinero3",
-    cantidad: 10,
-    logrado: false,
-    titulo: "el amo del pueblo",
-    descripcion: "almacenar 1000 monedas",
-    imagen: "trophy",
-    fecha: "null",
-  },
-];
+const cantidadLogrosLogrados = computed(() => {
+  return logrosLogrados.value.length;
+});
 
-const contador = ref(0);
-
-const aumentarContador = () => {
-  contador.value += 1;
-};
-
-let bandera = 0;
-
-watch(contador, (newContador, oldContador) => {
-
-   if (bandera === logros.length ) return; 
-   if (contador.value >= logros[bandera].cantidad ){
-     logros[bandera].logrado = true;
-     console.log("eee", logros[bandera].logrado );
-     
-     bandera += 1;
-   }
-
-})
-
+const porcentaje = computed(() => {
+  return logrosLogrados.value.length / logros.value.length ;
+});
 
 </script>
 
-<style>
+<style lang="scss">
+.barra {
+  border: 2px solid green;
+  position: relative;
+  height: max(1.4rem, 20%);
+  min-height: 10px;
+
+  border-radius: 5px;
+  color: rgb(15, 15, 15);
+
+  .barra-interna {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 3px;
+    background-color: greenyellow;
+    box-shadow: inset 0px -9px rgba(0, 0, 255, 0.1);
+  }
+
+
+
+}
 </style>
+
+
+
+
+
+
+

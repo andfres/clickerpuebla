@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { onMounted, onUnmounted } from "@vue/runtime-core";
 
 import Banco from "@/components/Banco.vue";
@@ -10,6 +10,11 @@ import Header from "@/components/layaouts/Header.vue";
 import MenuGuardar from "@/components/layaouts/MenuGuardar.vue";
 import imagenesTodas from "@/assets/img";
 import { guardarDatos } from "@/utils/partida";
+
+import { useStore } from "@/store/store";
+import { storeToRefs } from "pinia";
+
+
 
 const cargando = ref(true);
 const cargando_msg = ref("...");
@@ -29,12 +34,40 @@ onMounted(async () => {
   cargando.value = false;
 });
 
+
+
+
+//Controla si se cumplen los logros
+const store = useStore();
+const { recursos, logrosNoLogrados} = storeToRefs(store);
+watch(recursos, (newrecursos, oldrecursos) => {
+
+  if(logrosNoLogrados.value.length === 0) return;
+  if (newrecursos >= logrosNoLogrados.value[0].cantidad) {
+
+    const fecha = new Date();
+
+    const day_month_year = fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getFullYear();
+    const hours_minutes = fecha.toLocaleTimeString('default', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+
+    const fechaObjeto = {
+      dia: day_month_year,
+      hora: hours_minutes
+    }
+    logrosNoLogrados.value[0].fecha = fechaObjeto;
+    logrosNoLogrados.value[0].logrado = true;
+  }
+})
+
 // const guarDardatosTiempo = setInterval(guardarDatos, 1000);
 
 
 
 onUnmounted(() => {
-  clearInterval(guarDardatosTiempo);
+  // clearInterval(guarDardatosTiempo);
 });
 </script>
 

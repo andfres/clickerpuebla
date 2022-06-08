@@ -1,4 +1,5 @@
 <template>
+<div class="formulario-contenedor">
   <div class="formulario">
     <h2 class="titulo-form">Login</h2>
     <form @submit="onSubmit">
@@ -21,11 +22,15 @@
       <button type="submit">Submit</button>
     </form>
 
-    <div>
+
+  </div>
+
+      <div class="tienes_cuenta">
       <p>¿No tienes cuenta?</p>
       <RouterLink to="/registro">registrate</RouterLink>
     </div>
   </div>
+
 </template>
 
 <script setup>
@@ -63,13 +68,5 @@ const { value: password, errorMessage: passwordError } = useField("password");
 </script>
 
 <style lang = "scss">
-.formulario {
-  .titulo-form {
-    text-align: center;
-  }
-  .form-grup {
-    display: flex;
-    flex-direction: column;
-  }
-}
+
 </style>

@@ -6,7 +6,7 @@
     </div> -->
 
     <div class="manager-img">
-      <img alt="" class="" :src="imagenesManager()[imagen - 1]" />
+      <img alt="" class="" :src="imagenesManager()[imagen - 1]" draggable="false"/>
     </div>
 
     <div class="manager-centro">
@@ -81,24 +81,29 @@ const contratar = (e) => {
   min-width: 350px;
   max-width: 400px;
   height: min-content;
-  padding: 2px 5px;
+  padding: 3px 5px;
+  border-radius: 10px;
 
   gap: 10px;
   align-items: center;
   background-color: $color-fondo-productor;
-  border-top: 4px solid rgba(17, 21, 42, 0.256);
-  border-bottom: 4px solid rgba(255, 253, 233, 0.879);
+
+
+    box-shadow: -2px 4px 1px #00000047;
+
 
   .manager-img {
-    flex: 0 0 90px;
-    border-radius: 10%;
-    border: 4px solid rgb(255, 255, 255);
-    background-color: rgba(227, 227, 227, 0.678);
-    background-color: red;
+    flex: 0 0 85px;
+   border-radius: 10px;
+    border: 3px solid rgb(255, 255, 255);
+    background-color: rgb(227, 227, 227);
 
     img {
-      width: 100%;
+      width: 85px;
+      height: 85px;
+      /* width: 100%; */
       display: block;
+      border-radius: 10px;
     }
   }
 
@@ -116,6 +121,7 @@ const contratar = (e) => {
     max-height: 30px;
     padding: 5px;
     background-color: $base-color;
+    border-radius: 10px;
   }
 }
 </style>
