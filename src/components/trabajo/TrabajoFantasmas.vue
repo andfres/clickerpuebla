@@ -22,7 +22,7 @@ import  imagenesZapatos  from "@/assets/img/zapatos";
 import { ref } from "vue";
 import { useStore } from "@/store/store";
 import { storeToRefs } from "pinia";
-import { animacionDinero, wait } from "../utils/funciones";
+import { animacionDinero, wait } from "../../utils/funciones";
 
 // const base = import.meta.env.BASE_URL;
 

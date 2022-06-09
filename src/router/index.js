@@ -3,7 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import GameView from "../views/GameView.vue";
 import Registro from "../views/RegistroView.vue";
 import Login from "../views/LoginView.vue";
-import Zapatero from "../components/Zapatero.vue";
+import TrabajoLimpiaBotas from "../components/TrabajoLimpiaBotas.vue";
 import Managers from "../components/Managers.vue";
 import Mejoras from "../components/Mejoras.vue";
 import AboutView from "../views/AboutView.vue";
@@ -40,8 +40,8 @@ const router = createRouter({
       component: GameView,
       children: [
         {
-          path: "",
-          component: Zapatero,
+          path: "trabajo",
+          component: TrabajoLimpiaBotas,
         },
         {
           path: "managers",

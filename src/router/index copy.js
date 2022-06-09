@@ -28,7 +28,7 @@ const router = createRouter({
       children: [
         {
           path: "",
-          component: () => import("../components/Zapatero.vue"),
+          component: () => import("../components/TrabajoLimpiaBotas.vue"),
         },
         {
           path: "managers",
