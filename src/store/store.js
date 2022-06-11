@@ -1,35 +1,32 @@
 import { defineStore } from "pinia";
 
+import creaObjetos from "@/utils/creaObjetos";
+const { creaProductores, creaManagers, creaLogros, creaMejoras } = creaObjetos;
+
 export const useStore = defineStore({
   id: "main",
   state: () => ({
-    productores: [],
-    managers: [],
-    recursos: 9,
+    recursos: 888888,
+    productores: creaProductores(),
+    managers: creaManagers(),
+    logros: creaLogros(),
+    mejoras: creaMejoras(),
+
     multiplicador: 1,
-    zapatero:
-    {
+    zapatero: {
       genera_por_clic: 2,
-      genera_al_cambiar: 15
+      genera_al_cambiar: 15,
+    },
+    fantasmas: {
+      vida_maxima: 10,
+      genera_al_matar: 100,
+      damage_sword: 1,
     },
     mensaje: "<p>mensaje desde storeeeeeeeeee</p>",
-    logros: [],
-
-    mejoras: [
-      {
-        id: 1,
-        adquirida: false,
-        precio: 40,
-        aplica: (() =>  duplicarVelocidad("Granero"))
-      }
-    ],
-    
-
-
+    mejoras_mostrar: 6,
   }), //Fin state
 
   getters: {
-
     managersDisponibles: (state) => {
       return state.managers.filter((m) => m.contratado === false);
     },
@@ -38,26 +35,36 @@ export const useStore = defineStore({
     },
 
     getDatosGuardarProductores: (state) => {
-      const array = state.productores.map(ele => {
-        return {nivel: ele.nivel};
-      })
+      const array = state.productores.map((ele) => {
+        return { nivel: ele.nivel };
+      });
       return array;
     },
 
     getDatosGuardarManagers: (state) => {
-      const array = state.managers.map(ele => {
-        return {contratado: ele.contratado};
-      })
+      const array = state.managers.map((ele) => {
+        return { contratado: ele.contratado };
+      });
       return array;
     },
 
     getDatosGuardarLogros: (state) => {
-      const array = state.logros.map(ele => {
+      const array = state.logros.map((ele) => {
         return {
           logrado: ele.logrado,
-          fecha: ele.fecha
+          fecha: ele.fecha,
         };
-      })
+      });
+      return array;
+    },
+
+    getDatosGuardarMejoras: (state) => {
+      const array = state.mejoras.map((ele) => {
+        return {
+          adquirida: ele.adquirida,
+          parametros: ele.parametros,
+        };
+      });
       return array;
     },
 
@@ -68,7 +75,18 @@ export const useStore = defineStore({
       return state.logros.filter((logro) => logro.logrado === false);
     },
 
+    mejorasDisponibles: (state) => {
+      return state.mejoras.filter((mejora) => mejora.adquirida === false);
+    },
 
+    primerasMejorasDisponibles: (state) => {
+      const array = state.mejoras.filter(
+        (mejora) => mejora.adquirida === false
+      );
+
+      array.sort((a, b) => a.precio - b.precio);
+      return array.slice(0, state.mejoras_mostrar);
+    },
   }, //Fin getters
   actions: {
     sePuedeComprar(cantidad) {
@@ -83,14 +101,39 @@ export const useStore = defineStore({
       this.recursos = this.recursos + cantidad;
     },
 
-    duplicarVelocidad(nombre) {
+    duplicarVelocidad(nombre, cantidad) {
       this.productores.some((ele) => {
-        if (ele.nombre === nombre) {
+        //si el nombre no coincide retorna
+        try {
+          if (ele.nombre !== nombre) return;
+
+          // si el tiempo es menor a 1, aumenta la produccion
           if (ele.tiempo <= 1) {
-            ele.produccionInicial = ele.produccionInicial * 2;
+            ele.produccionInicial += Math.round(
+              (ele.produccionInicial * cantidad) / 100
+            );
+
+            //si el tiempo aun es mas de 1
           } else {
-            ele.tiempo = Math.round(ele.tiempo / 2);
+            let tiempo = ele.tiempo;
+            //se calcula de nuevo el tiempo
+            tiempo = Math.round((tiempo * 100) / (cantidad + 100));
+
+            //si fuese a ser menor
+            if (tiempo < 1) {
+              const sobra = 1 - tiempo;
+              //aumentamos la produccion necesaria hasta que el tiempo solo fuese 1 segundo
+              ele.produccionInicial += ele.produccionInicial * (sobra * 100);
+              ele.tiempo = 1;
+            }
+
+            //si no fuese a llegar a menos de 1, se aplcia el tiempo
+            else {
+              ele.tiempo = tiempo;
+            }
           }
+        } catch (e) {
+          console.log(e);
         }
       });
     },
@@ -112,13 +155,30 @@ export const useStore = defineStore({
       });
     },
 
-    completarLogro (id){
+    completarLogro(id) {
       this.logros.some((ele) => {
         if (ele.id === id) {
           ele.logrado = true;
           console.log(id + " logrado");
         }
       });
-    } 
+    },
+
+    comprarMejora(id) {
+      this.mejoras.some((ele) => {
+        if (ele.id === id) {
+          ele.adquirida = true;
+          console.log("mejora" + id + " comprada");
+        }
+      });
+    },
+
+    mejorar_cepillo_clic(cantidad) {
+      this.zapatero.genera_por_clic += cantidad;
+    },
+
+    mejorar_espada(cantidad) {
+      this.fantasmas.damage_sword += cantidad;
+    },
   }, //Fin actions
 });

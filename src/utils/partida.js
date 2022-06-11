@@ -1,23 +1,36 @@
 import { useStore } from "@/store/store";
-// import { creaProductores, creaManagers, creaLogros } from "@/utils/creaObjetos";
 import creaObjetos from "@/utils/creaObjetos";
+import aplicarMejora from "@/utils/aplicarMejora.js";
 import ls from "localStorage-slim";
 ls.config.encrypt = false;
 
+const { creaProductores, creaManagers, creaLogros, creaMejoras } = creaObjetos;
 
-const { creaProductores, creaManagers, creaLogros } = creaObjetos;
+
 const inicializarDatos = () => {
   const store = useStore();
-  store.recursos = 1;
+
+
+  console.log("store" , store.zapatero)
+
+  store.$reset()
+
+  console.log("sotore reset", store.zapatero)
+  
   store.productores = [...creaProductores()];
   store.managers = [...creaManagers()];
   store.logros = [...creaLogros()];
+  store.mejoras = [...creaMejoras()];
 };
 
-
-
 const actualizar_state_con_datos_almacenados__local_storage = (datos) => {
-  const { recursos_guardados, productores_guardados, managers_guardados, logros_guardados } = datos;
+  const {
+    recursos_guardados,
+    productores_guardados,
+    managers_guardados,
+    logros_guardados,
+    mejoras_guardados,
+  } = datos;
   const store = useStore();
   store.recursos = recursos_guardados;
 
@@ -35,11 +48,20 @@ const actualizar_state_con_datos_almacenados__local_storage = (datos) => {
       return { ...ele, ...logros_guardados[i] };
     });
 
+    //se aplican las mejoras
+    mejoras_guardados.map((ele, i) => {
+      // console.log("mejora", ele);
+      if (ele.adquirida) aplicarMejora(ele.parametros);
+    });
+
+    //se guardan las mejoras
+    store.mejoras = store.mejoras.map((ele, i) => {
+      return { ...ele, ...mejoras_guardados[i] };
+    });
   } catch (e) {
     console.log("peto", e);
     ls.remove("datos_guardados");
   }
-
 };
 
 //guarda datos en de la store en localStorage
@@ -52,9 +74,10 @@ export const guardarDatos = () => {
     productores_guardados: store.getDatosGuardarProductores,
     managers_guardados: store.getDatosGuardarManagers,
     logros_guardados: store.getDatosGuardarLogros,
+    mejoras_guardados: store.getDatosGuardarMejoras,
   };
 
-  console.log("datos_guardar", datos_guardar);
+   console.log("datos_guardar", datos_guardar);
   console.log("Los datos han sido guardados");
   //window.localStorage.setItem("datos", JSON.stringify(datos));
   ls.set("datos_guardados", JSON.stringify(datos_guardar));
@@ -66,7 +89,7 @@ export const leerDatos = () => {
     const datos_localstorage = ls.get("datos_guardados");
 
     if (datos_localstorage) {
-      console.log("leyendo datos", datos_localstorage);
+       console.log("leyendo datos", datos_localstorage);
       return JSON.parse(datos_localstorage);
     }
     console.log("no habia datos");
@@ -79,14 +102,14 @@ export const leerDatos = () => {
   }
 };
 
-
 export const importData = () => {
   inicializarDatos();
-  if (leerDatos()) actualizar_state_con_datos_almacenados__local_storage(leerDatos());
+  if (leerDatos())
+    actualizar_state_con_datos_almacenados__local_storage(leerDatos());
 };
 
 export const reiniciarJuego = () => {
+  ls.remove("datos_guardados");
   inicializarDatos();
   guardarDatos();
 };
-

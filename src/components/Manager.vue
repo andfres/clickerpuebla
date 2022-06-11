@@ -1,33 +1,34 @@
 <template>
-  <div class="manager">
+  <div class="columna">
 
-    <!-- <div class="manager-img">
-      <img alt="" class="" :src="`${base}img/managers/${imagen}.png`" />
-    </div> -->
-
-    <div class="manager-img">
-      <img alt="" class="" :src="imagenesManager()[imagen - 1]" draggable="false"/>
+    <div class="img">
+      <img
+        alt=""
+        class=""
+        :src="imagenesManager()[imagen - 1]"
+        draggable="false"
+      />
     </div>
 
-    <div class="manager-centro">
-      <h4>{{ nombre }}</h4>
-      <p>administra {{ nombreProductor }}</p>
-      <p>{{ precio }}$</p>
+    <div class="contenedor_titulo">
+      <div class="titulo_interior">{{ nombre }}</div>
+      <div class="descripcion">administra {{ nombreProductor }}</div>
     </div>
 
     <button
-      v-if="disponible"
-      class="contratar"
+      v-if="!contratado"
+      class="boton-comprar"
       @click="contratar"
       :disabled="disabled"
     >
       Contratar!
+      <p>{{ precio }} 💰</p>
     </button>
   </div>
 </template>
 
 <script setup>
-import  imagenesManager  from "@/assets/img/managers";
+import imagenesManager from "@/assets/img/managers";
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "@/store/store";
@@ -49,12 +50,8 @@ const props = defineProps({
   foto: String,
   precio: Number,
   nombreProductor: String,
-  imagen:  String,
-
-  disponible: {
-    type: Boolean,
-    default: true,
-  },
+  imagen: String,
+  contratado: Boolean,
 });
 
 const disabled = computed(() => {
@@ -64,64 +61,74 @@ const disabled = computed(() => {
 const contratar = (e) => {
   comprar(props.precio);
   animacionDinero(e.target, props.precio, false);
+  contratarManager(props.nombre);
 
   // mensaje.value = `
   // <p class="nombreProductor">${props.nombreProductor}</p>
   // <p><strong>autorecolección</strong> on</p>`;
-
-  contratarManager(props.nombre);
 };
+
+
 </script>
 
 <style lang="scss">
 @import "@/scss/_variables.scss";
-.manager {
+.columna {
   display: flex;
   width: 100%;
   min-width: 350px;
   max-width: 400px;
   height: min-content;
-  padding: 3px 5px;
+  padding: 5px;
   border-radius: 10px;
 
-  gap: 10px;
+  gap: 5px;
   align-items: center;
   background-color: $color-fondo-productor;
+  box-shadow: -2px 4px 1px #00000047;
 
-
-    box-shadow: -2px 4px 1px #00000047;
-
-
-  .manager-img {
-    flex: 0 0 85px;
-   border-radius: 10px;
+  .img {
+    flex: 0 0 70px;
+    border-radius: 10px;
     border: 3px solid rgb(255, 255, 255);
     background-color: rgb(227, 227, 227);
 
     img {
-      width: 85px;
-      height: 85px;
+      width: 70px;
+      height: 70px;
       /* width: 100%; */
       display: block;
       border-radius: 10px;
     }
   }
 
-  .manager-centro {
+  .contenedor_titulo {
     flex: 1;
     text-align: center;
-    padding: 10px;
 
-    h4 {
+    .titulo_interior {
       margin-bottom: 5px;
       font-size: 1.4rem;
     }
   }
-  .contratar {
-    max-height: 30px;
-    padding: 5px;
-    background-color: $base-color;
-    border-radius: 10px;
+}
+
+.boton-comprar {
+  text-align: center;
+  padding: 5px;
+  background-color: $base-color;
+  border-radius: 10px;
+
+
+  &:hover:enabled{
+    background-color: rgb(238, 109, 229);
   }
+
+  &:disabled{
+    background-color: rgb(201, 145, 207);
+  } 
+
+
+
 }
 </style>

@@ -1,8 +1,7 @@
 
 
 <template>
-  <div>
-  </div>
+  <div></div>
   <div class="productor">
     <div class="recolectar">
       <button
@@ -13,7 +12,6 @@
         <!-- <img alt="" class="" :src="`${base}img/edificios/${imagen}`" /> -->
         <img :alt="nombre" :src="imagenesEdificios()[id]" draggable="false" />
       </button>
-
 
       <p v-if="animarRecolectar" class="recolectado">+ {{ produccion }}</p>
     </div>
@@ -36,7 +34,9 @@
           </div>
           <div v-else class="barra-datos">
             <div>
-              <span>{{ produccion }} 💰</span>
+              <!-- <span> {{ tiempo }}</span> -->
+              <!-- <span>{{ Math.round(produccion) }} 💰</span> -->
+              <span>{{ Math.round(produccion) }} 💰</span>
               <span> {{ tiempoFalta }}</span>
             </div>
           </div>
@@ -54,27 +54,25 @@
           <div></div>
         </button>
       </div>
-
     </div>
   </div>
 </template>
 
 
 <script setup>
-
-import  imagenesEdificios  from "@/assets/img/edificios";
+import imagenesEdificios from "@/assets/img/edificios";
 import { ref, computed, toRefs, onMounted, onUnmounted, watch } from "vue";
 import { useStore } from "@/store/store";
 import { animacionDinero, wait } from "../utils/funciones";
 const store = useStore();
 const base = import.meta.env.BASE_URL;
 
-const { sePuedeComprar, comprar, cambiarMensaje } = store;
+const { sePuedeComprar, cambiarMensaje } = store;
 
 const props = defineProps({
-  nombre:  String,
-  id:  Number,
-  imagen:  String,
+  nombre: String,
+  id: Number,
+  imagen: String,
   nivel: Number,
   produccionInicial: Number,
   costeInicial: Number,
@@ -84,12 +82,12 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-
 });
 
 const MULTIPLICADOR = 1.17;
 
-const { produccionInicial, costeInicial, nombre, nivel, autoRecolectar } = toRefs(props);
+const { produccionInicial, costeInicial, nombre, nivel, autoRecolectar } =
+  toRefs(props);
 
 const tiempo = ref(props.tiempo);
 const tiempoActual = ref(0);
@@ -151,8 +149,6 @@ const animarRecolect = async () => {
   animarRecolectar.value = false;
 };
 
-
-
 const updateTiem = () => {
   if (!listoRecolectar.value) {
     const elapsed = Date.now() - lastUpdate.value;
@@ -169,32 +165,29 @@ const updateTiem = () => {
   }
 };
 
-const updateTiempo = setInterval(updateTiem , 100) 
-
-
-
+const updateTiempo = setInterval(updateTiem, 100);
 
 onMounted(() => {
   updateTiempo;
 });
 
 onUnmounted(() => {
-   clearInterval(updateTiempo)
+  clearInterval(updateTiempo);
 });
-
-
 
 //se pone en listoRecolectar false para que no espere a dar el boton
 watch(autoRecolectar, (val) => {
   listoRecolectar.value = false;
 });
 
-
-
 watch(tiempo, (val) => {
+  tiempo.value = val;
   lastUpdate.value = Date.now();
   tiempoActual.value = 0;
+  
 });
+
+
 
 const mejorar = (e) => {
   let targ = e.target;
@@ -223,22 +216,17 @@ button,
   font-weight: bolder;
   filter: drop-shadow(-2px 4px 1px #00000047);
 
-
   .recolectar {
     display: flex;
     position: relative;
     z-index: 2;
     --flex: 1 1 20%;
 
-
-
     .boton-recolectar {
       border: 2px solid orange;
       border-radius: 50%;
       animation: infinite resplandorAnimation 1s;
       background-color: $color-fondo-productor;
-
-
 
       img {
         --width: 100px;

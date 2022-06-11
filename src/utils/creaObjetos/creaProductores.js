@@ -11,7 +11,7 @@ const creaProductores = () => {
       objeto["nombre"] = nombresProductores[i];
       objeto["produccionInicial"] = 2 * i + 2;
       objeto["costeInicial"] = 50 * i + 50;
-      objeto["tiempo"] = 0 + 3 * i;
+      objeto["tiempo"] = 2 + 2 * i;
       objeto["nivel"] = 1;
       array.push(objeto);
     }

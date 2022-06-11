@@ -3,12 +3,17 @@ import HomeView from "../views/HomeView.vue";
 import GameView from "../views/GameView.vue";
 import Registro from "../views/RegistroView.vue";
 import Login from "../views/LoginView.vue";
-import TrabajoLimpiaBotas from "../components/TrabajoLimpiaBotas.vue";
+
 import Managers from "../components/Managers.vue";
 import Mejoras from "../components/Mejoras.vue";
 import AboutView from "../views/AboutView.vue";
 import Productores from "@/components/Productores.vue";
 import Logros from "@/components/Logros.vue";
+
+import Trabajos from "../components/trabajo/Trabajos.vue";
+import TrabajoLimpiaBotas from "../components/trabajo/TrabajoLimpiaBotas.vue";
+import TrabajoFantasmas from "../components/trabajo/TrabajoFantasmas.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,8 +45,20 @@ const router = createRouter({
       component: GameView,
       children: [
         {
-          path: "trabajo",
-          component: TrabajoLimpiaBotas,
+          path: "",
+          component: Trabajos,
+          children: [
+            {
+              path: "",
+              component: TrabajoLimpiaBotas,
+            },
+            {
+              path: "fantasmas",
+              component: TrabajoFantasmas,
+            },
+          
+          ]
+          
         },
         {
           path: "managers",

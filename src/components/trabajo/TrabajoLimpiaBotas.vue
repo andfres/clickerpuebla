@@ -3,7 +3,7 @@
     <p>Siempre puedes trabjar tu mismo</p>
     <p>Limpia zapatos para ganarte un dinerillo</p>
 
-    <div ref="divZapato" class="zapato">
+    <div ref="divZapato" class="zapato trabajo">
       <img
         @mousemove="limpiarZapato"
         @touchmove="limpiarZapato"
@@ -12,65 +12,46 @@
         draggable="false"
       />
     </div>
+
+    <button @click="mostrarValores">ver valores</button>
   </div>
 </template>
 
 <script setup>
 //    @mousemove="limpiarZapato"
 // :src="`${base}img/zapatos/${imagen}.png`"
-import  imagenesZapatos  from "@/assets/img/zapatos";
+import imagenesZapatos from "@/assets/img/zapatos";
 import { ref } from "vue";
 import { useStore } from "@/store/store";
+
 import { storeToRefs } from "pinia";
 import { animacionDinero, wait } from "../../utils/funciones";
-
+import getMousePos from "./getMousePos.js";
 // const base = import.meta.env.BASE_URL;
 
 const store = useStore();
 const { recolectar } = store;
+const { zapatero } = storeToRefs(store);
+
 const divZapato = ref(null);
-const imgZapatos = imagenesZapatos()
+const imgZapatos = imagenesZapatos();
 const imagen = ref(0);
-const { zapatero } = store;
 
 
-
-const getMousePos = (evt) => {
-  const pos = evt.currentTarget.getBoundingClientRect();
-  console.log("x" ,evt.clientX, pos.left )
-  console.log("y" ,evt.clientY, pos.top )
-
-  const x = evt.clientX - pos.left;
-  const y = evt.clientY - pos.top;
-    console.log("x",x,"| y:", y );
-
-     return {
-     x: x,
-     y: y
-   };
-
-
-
-};
-
-// document.querySelector("#target").addEventListener('mousemove', (evt) => {
-//   const mPos = getMousePos(evt);
-//   evt.currentTarget.textContent = `Mouse position x:${mPos.x}  y:${mPos.y}`;
-// });
+const mostrarValores = () => {
+  console.log(zapatero)
+}
 
 
 const cambiarImagen = () => {
   imagen.value++;
- console.log("length",  imgZapatos.length)
-  if (imagen.value >= imgZapatos.length ) {
+  console.log("length", imgZapatos.length);
+  if (imagen.value >= imgZapatos.length) {
     imagen.value = 0;
   }
 };
 
-const ganacias = zapatero.genera_por_clic;
-console.log("genera" , ganacias);
 
-// const ganacias = 1;
 const gananciasTerminar = 20;
 const maxCount1 = 5;
 const maxCount2 = 200;
@@ -86,8 +67,8 @@ const limpiarZapato = (evt) => {
 
   if (count >= maxCount1) {
     count = 0;
-    recolectar(ganacias);
-    animacionDinero(divZapato.value, ganacias, true, getMousePos(evt));
+    recolectar(zapatero.value.genera_por_clic);
+    animacionDinero(divZapato.value, zapatero.value.genera_por_clic, true, getMousePos(evt));
   }
 
   if (count2 >= maxCount2) {
@@ -102,12 +83,11 @@ const limpiarZapato = (evt) => {
 
 
 <style lang="scss">
+.trabajo {
+  margin: 2rem;
+  
+}
 .zapato {
-  width: 100%;
-  --background-color: rgb(50, 171, 205);
-  display: flex;
-  justify-content: center;
-
   img {
     padding: 1rem;
     width: 100%;
@@ -116,11 +96,4 @@ const limpiarZapato = (evt) => {
     cursor: url("@/assets/cepillo.png"), auto;
   }
 }
-
-// .prueba{
-//     width: 500px;
-//     height: 500px;
-//     background-color: red;
-//     background-image: url('@/assets/cepillo.png');
-// }
 </style>

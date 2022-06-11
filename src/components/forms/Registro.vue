@@ -148,14 +148,12 @@ const msg_ok = ref("");
   }
 
   .error {
-    /* height: 15px; */
     color: red;
     font-size: 14px;
   }
 
 
   .continuar {
-    --border: 2px solid red;
     display: flex;
     justify-content: center;
 

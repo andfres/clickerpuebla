@@ -5,18 +5,19 @@ import { onBeforeMount, onMounted } from "@vue/runtime-core";
 import { importData } from "@/utils/partida";
 import { getAll } from "@/servicios/users";
 
-const f = async () => {
-  console.log("obteniendo todos");
-  getAll();
-};
+// const f = async () => {
+//   console.log("obteniendo todos");
+//   getAll();
+// };
 
-f();
+// f();
 
-// {almacenarDatosStore , guardarDatos , leerDatos , datosIniciales, reiniciarJuego, importData}
 
-onBeforeMount(() => {
+onMounted(() => {
   importData();
 });
+
+
 </script>
 
 <template>

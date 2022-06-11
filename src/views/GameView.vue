@@ -4,10 +4,11 @@ import { onMounted, onUnmounted } from "@vue/runtime-core";
 
 import Banco from "@/components/Banco.vue";
 import Productores from "@/components/Productores.vue";
-import Managers from "@/components/Managers.vue";
 import MenuGame from "@/components/MenuGame.vue";
 import Header from "@/components/layaouts/Header.vue";
 import MenuGuardar from "@/components/layaouts/MenuGuardar.vue";
+
+
 import imagenesTodas from "@/assets/img";
 import { guardarDatos } from "@/utils/partida";
 

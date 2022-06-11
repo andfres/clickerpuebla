@@ -1,6 +1,6 @@
 .gastoBeneficioContenedor {
   position: relative;
-  border: 1px solid red;
+  // border: 1px solid red;
 }
 
 
@@ -21,6 +21,11 @@
 .gasto {
   color: red;
 }
+
+.noRaton{
+  pointer-events:none;
+}
+
 
 
 

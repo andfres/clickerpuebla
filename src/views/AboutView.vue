@@ -13,13 +13,28 @@
     <div>
       <h1>To do</h1>
       <ul>
+
+
+
+        [] estilo carga  (poco prioritario)
+        [] estilos letras blanco
+        [] estilos logros
+        [] logros adquiridos no mejorar
+        [] tamaño columnas azules
+        [] imagnes mejoras
+        [] enlaces imanes trabajos
+        [] generar mejoras 
+        [X] mostar solo x mejoras
+        [X] filtrar mejoras por precio
+        
+
+
+
+
         almacenar el estado del tiempo de creación de los edificios
         crear los servicios
 
-        
-        
         [] jwt (prioritario) 
-        [] modificar edificios?
         [] buscar x paginador 
 
         [X] devolver usuario name y puntos x puntos
@@ -27,14 +42,18 @@
         
         [X] swagger (prioritario)
         
-        [] mejorar formularios  (poco prioritario)
-        [] estilo carga  (poco prioritario)
+        [X] mejorar formularios  (poco prioritario)
+
+
+
+
+
         
         [] clasificatoria modal? arriba del jueguito? o donde?
 
         [] mejorar sh para que cargue desde otra rama de github (poco prioritario)
-        [] mejorar mejoras
-        [] empezar documentacion
+        [X] hacer mejoras
+        [X] empezar documentacion
 
 
         <li> descubir xq escribir en html process. env. junto peta</li>

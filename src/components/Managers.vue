@@ -8,7 +8,7 @@
       recolecten los negocios por ti
     </p>
 
-    <div class="contenedor-managers">
+    <div class="contenedor-columnas">
       <h3 class="titulo" v-if="!todosComprados">Managers disponibles</h3>
 
       <Manager
@@ -54,16 +54,18 @@ const todosComprados = computed(() => {
 </script >
 
 <style lang="scss">
-.managers {
-  text-align: center;
-
-  & > p {
-    color: white;
-  }
-}
 
 
-.contenedor-managers {
+// .managers {
+//   text-align: center;
+
+//   & > p {
+//     color: white;
+//   }
+// }
+
+
+.contenedor-columnas {
   
   margin: 1rem 0;
   box-sizing: border-box;
@@ -77,4 +79,6 @@ const todosComprados = computed(() => {
   margin-bottom: 10px;
   color: rgb(255, 248, 41);
 }
+
+
 </style>
