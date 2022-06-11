@@ -5,6 +5,7 @@
   <div class="productor">
     <div class="recolectar">
       <button
+        ref="botonRecolectar"
         class="boton-recolectar"
         :disabled="!listoRecolectar"
         @click="recolectar"
@@ -12,8 +13,6 @@
         <!-- <img alt="" class="" :src="`${base}img/edificios/${imagen}`" /> -->
         <img :alt="nombre" :src="imagenesEdificios()[id]" draggable="false" />
       </button>
-
-      <p v-if="animarRecolectar" class="recolectado">+ {{ produccion }}</p>
     </div>
 
     <div class="centro">
@@ -64,6 +63,8 @@ import imagenesEdificios from "@/assets/img/edificios";
 import { ref, computed, toRefs, onMounted, onUnmounted, watch } from "vue";
 import { useStore } from "@/store/store";
 import { animacionDinero, wait } from "../utils/funciones";
+import getMousePos from "@/utils/getMousePos.js";
+
 const store = useStore();
 const base = import.meta.env.BASE_URL;
 
@@ -93,8 +94,7 @@ const tiempo = ref(props.tiempo);
 const tiempoActual = ref(0);
 const lastUpdate = ref(Date.now());
 const listoRecolectar = ref(false);
-const animarRecolectar = ref(false);
-const animarComprar = ref(false);
+const botonRecolectar = ref();
 
 //** computed */
 const produccion = computed(() => {
@@ -134,20 +134,27 @@ const tiempoFalta = computed(() => {
   return resultado;
 });
 
-const recolectar = () => {
-  store.recursos += produccion.value;
-  lastUpdate.value = Date.now();
-  tiempoActual.value = 0;
-  listoRecolectar.value = false;
+;
 
-  animarRecolect();
-};
-
-const animarRecolect = async () => {
-  animarRecolectar.value = true;
-  await wait(1000);
-  animarRecolectar.value = false;
-};
+ const recoleccion = () => {
+   store.recursos += produccion.value;
+   lastUpdate.value = Date.now();
+   tiempoActual.value = 0;
+   listoRecolectar.value = false;
+ };
+ const recolectar = (evt) => {
+   recoleccion();
+   animacionDinero(
+     botonRecolectar.value,
+     produccion.value,
+     "beneficio",
+     getMousePos(evt)
+   );
+ };
+ const recolectarAuto = () => {
+   recoleccion();
+   animacionDinero(botonRecolectar.value, produccion.value, "beneficio");
+ };
 
 const updateTiem = () => {
   if (!listoRecolectar.value) {
@@ -159,7 +166,7 @@ const updateTiem = () => {
       tiempoActual.value = props.tiempo;
 
       if (autoRecolectar.value) {
-        recolectar();
+        recolectarAuto();
       }
     }
   }
@@ -184,16 +191,13 @@ watch(tiempo, (val) => {
   tiempo.value = val;
   lastUpdate.value = Date.now();
   tiempoActual.value = 0;
-  
 });
 
-
-
-const mejorar = (e) => {
-  let targ = e.target;
+const mejorar = (evt) => {
+  let targ = evt.target;
   store.recursos -= coste.value;
   store.subirNivel(nombre.value);
-  animacionDinero(targ, coste.value, false);
+  animacionDinero(targ, coste.value, "gasto", getMousePos(evt));
 };
 </script>
 

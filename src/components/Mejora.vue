@@ -55,7 +55,7 @@ const props = defineProps({
 
 const contratar = (e) => {
   comprar(props.precio);
-  animacionDinero(e.target, props.precio, false);
+  animacionDinero(e.target, props.precio, "gasto" );
   comprarMejora(props.id);
   aplicarMejora(props.parametros);
 

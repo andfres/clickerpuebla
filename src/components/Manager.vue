@@ -1,6 +1,5 @@
 <template>
   <div class="columna">
-
     <div class="img">
       <img
         alt=""
@@ -60,15 +59,14 @@ const disabled = computed(() => {
 
 const contratar = (e) => {
   comprar(props.precio);
-  animacionDinero(e.target, props.precio, false);
+
+  animacionDinero(e.target, props.precio, "gasto");
   contratarManager(props.nombre);
 
   // mensaje.value = `
   // <p class="nombreProductor">${props.nombreProductor}</p>
   // <p><strong>autorecolección</strong> on</p>`;
 };
-
-
 </script>
 
 <style lang="scss">
@@ -119,16 +117,12 @@ const contratar = (e) => {
   background-color: $base-color;
   border-radius: 10px;
 
-
-  &:hover:enabled{
+  &:hover:enabled {
     background-color: rgb(238, 109, 229);
   }
 
-  &:disabled{
+  &:disabled {
     background-color: rgb(201, 145, 207);
-  } 
-
-
-
+  }
 }
 </style>

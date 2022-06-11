@@ -26,7 +26,7 @@ import { useStore } from "@/store/store";
 
 import { storeToRefs } from "pinia";
 import { animacionDinero, wait } from "../../utils/funciones";
-import getMousePos from "./getMousePos.js";
+import getMousePos from "@/utils/getMousePos.js";
 // const base = import.meta.env.BASE_URL;
 
 const store = useStore();

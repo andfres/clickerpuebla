@@ -1,26 +1,12 @@
 import { useStore } from "@/store/store";
-import creaObjetos from "@/utils/creaObjetos";
 import aplicarMejora from "@/utils/aplicarMejora.js";
 import ls from "localStorage-slim";
 ls.config.encrypt = false;
 
-const { creaProductores, creaManagers, creaLogros, creaMejoras } = creaObjetos;
-
 
 const inicializarDatos = () => {
   const store = useStore();
-
-
-  console.log("store" , store.zapatero)
-
   store.$reset()
-
-  console.log("sotore reset", store.zapatero)
-  
-  store.productores = [...creaProductores()];
-  store.managers = [...creaManagers()];
-  store.logros = [...creaLogros()];
-  store.mejoras = [...creaMejoras()];
 };
 
 const actualizar_state_con_datos_almacenados__local_storage = (datos) => {
@@ -103,7 +89,7 @@ export const leerDatos = () => {
 };
 
 export const importData = () => {
-  inicializarDatos();
+  // inicializarDatos();
   if (leerDatos())
     actualizar_state_con_datos_almacenados__local_storage(leerDatos());
 };

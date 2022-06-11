@@ -1,8 +1,9 @@
 
-export const animacionDinero = (target, dinero, befenicio, posicionRaton) => {
+export const animacionDinero = (target, dinero, clase, posicionRaton) => {
 
-    const clase = (befenicio) ? "beneficio" : "gasto";
-    if (!befenicio) dinero = "-" + dinero;
+    // "beneficio" ,  "gasto" , "damage";
+
+    if (clase === "gasto") dinero = "-" + dinero;
   
     target.classList.add("gastoBeneficioContenedor");
     let div = document.createElement("div");
@@ -16,7 +17,8 @@ export const animacionDinero = (target, dinero, befenicio, posicionRaton) => {
 
       div.style.top = `${y}px`;
       div.style.left = `${x}px`;
-
+    }else{
+      div.classList.add("centrar");
     }
 
     div.append(dinero);

@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>Mata fantasmas para ganar dinero</p>
-   
+    {{ ultimo_trabajo }}
 
     <div ref="divZapato" class="fantasma trabajo">
       <div class="barraVida">
@@ -13,7 +13,7 @@
       </div>
 
       <img
-        @click="limpiarZapato"
+        @click="atacarFantasma"
         alt=""
         :src="imgZapatos[imagen]"
         draggable="false"
@@ -29,17 +29,17 @@ import imagenesFantasmas from "@/assets/img/fantasmas2";
 import { ref, computed } from "vue";
 import { useStore } from "@/store/store";
 import { storeToRefs } from "pinia";
-import { animacionDinero, wait } from "../../utils/funciones";
-import getMousePos from "./getMousePos.js";
-
+import { animacionDinero } from "../../utils/funciones";
+import getMousePos from "@/utils/getMousePos.js";
 
 // const base = import.meta.env.BASE_URL;
 
 const store = useStore();
-const { recolectar, fantasmas } = store;
+const { recolectar, fantasmas , ultimo_trabajo} = store;
 const divZapato = ref(null);
 const imgZapatos = imagenesFantasmas();
 const imagen = ref(0);
+
 
 
 const VIDA_MAX_ENEMIGO = fantasmas.vida_maxima;
@@ -57,16 +57,37 @@ const cambiarImagen = () => {
   }
 };
 
-const ganacias = fantasmas.genera_al_matar;
+const atacarFantasma = (evt) => {
+  const porcentaje_critico = 20;
+  const daño_critico = 2;
 
-const limpiarZapato = (evt) => {
-  vidaEnemigo.value -= fantasmas.damage_sword;
+  const dado = Math.floor(Math.random() * 100) + 1;
+  console.log(dado);
+
+  let daño_final;
+
+  if (dado < porcentaje_critico) {
+    daño_final = fantasmas.damage_sword * daño_critico;
+    animacionDinero(divZapato.value, "!CRÍTICO!", "damage", getMousePos(evt));
+  } else {
+    daño_final = fantasmas.damage_sword;
+    animacionDinero(divZapato.value, daño_final, "damage", getMousePos(evt));
+  }
+
+  vidaEnemigo.value -= daño_final;
+
 
   if (vidaEnemigo.value <= 0) {
     vidaEnemigo.value = VIDA_MAX_ENEMIGO;
     cambiarImagen();
-    recolectar(ganacias);
-    animacionDinero(divZapato.value, ganacias, true, getMousePos(evt));
+
+    recolectar(fantasmas.genera_al_matar);
+    animacionDinero(
+      divZapato.value,
+      fantasmas.genera_al_matar,
+      "beneficio",
+      getMousePos(evt)
+    );
   }
 };
 </script>
@@ -77,7 +98,6 @@ const limpiarZapato = (evt) => {
 .fantasma {
   // width: 100%;
   position: relative;
-
 
   .barraVida {
     border: 1px solid red;

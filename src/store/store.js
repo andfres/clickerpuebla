@@ -24,6 +24,7 @@ export const useStore = defineStore({
     },
     mensaje: "<p>mensaje desde storeeeeeeeeee</p>",
     mejoras_mostrar: 6,
+    ultimo_trabajo: "fantasmas"
   }), //Fin state
 
   getters: {

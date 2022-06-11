@@ -37,9 +37,15 @@ const creaMejoras = () => {
   }
 
   const otras = [
-    [1, "Barrido superior", 500],
-    [1, "Productos para zapatos", 200000],
-    [1, "No le busques explicación", 500000],
+    [1, "Barrido superior", 500, "mejorar_cepillo_clic"],
+    [1, "Productos para zapatos", 200000, "mejorar_cepillo_clic"],
+    [1, "No le busques explicación", 500000, "mejorar_cepillo_clic" ],
+
+    [1, "Afilar espada", 400, "mejorar_espada"],
+    [1, "Aceite antifantasmas", 300, "mejorar_espada"],
+    [1, "Conjuro antifantasmas", 300, "mejorar_espada"],
+
+
   ];
 
   for (let detalle of otras) {
@@ -47,18 +53,46 @@ const creaMejoras = () => {
     objeto.id = id;
     objeto.titulo = detalle[1];
     objeto.precio = detalle[2],
-    objeto.descripcion = `Aumenta en ${detalle[0]} el dinero producido al frotar zapatos`;
     objeto.adquirida = false;
     objeto.parametros = {
-      tipo: "mejorar_cepillo_clic",
+      tipo: detalle[3],
       cantidad: detalle[0],
     };
+
+    if(detalle[3] === "mejorar_cepillo_clic") {
+      objeto.descripcion = `Aumenta en ${detalle[0]} el dinero producido al frotar zapatos`;
+    }
+
+    if(detalle[3] === "mejorar_espada") {
+      objeto.descripcion = `Aumenta en ${detalle[0]} el daño de la espada`;
+    }
+
+
+    if(detalle[3] === "") {
+      objeto.descripcion = `Aumenta en ${detalle[0]} el dinero producido al matar fantasmas`;
+    } 
+
 
     mejoras.push(objeto);
     id += 1;
   }
   return mejoras;
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default creaMejoras;
 

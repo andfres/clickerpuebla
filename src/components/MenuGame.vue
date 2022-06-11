@@ -1,8 +1,12 @@
 <template>
   <div>
-  
     <div class="menu-i">
       <RouterLink class="router-link" to="/game">Trabajo</RouterLink>
+
+      {{ultimo_trabajo}}
+
+      <RouterLink class="router-link" to="/game">Trabajo</RouterLink>
+
       <RouterLink class="router-link" to="/game/managers">Managers</RouterLink>
       <RouterLink class="router-link" to="/game/mejoras">Mejoras</RouterLink>
       <RouterLink class="router-link" to="/game/logros">Logros</RouterLink>
@@ -12,6 +16,15 @@
 </template>
 
 <script setup>
+
+import { storeToRefs } from "pinia";
+import { useStore } from "@/store/store";
+
+const store = useStore();
+const { ultimo_trabajo } = storeToRefs(store);
+
+
+
 </script>
 
 <style lang="scss">
@@ -19,24 +32,21 @@
   color: white;
   display: flex;
   gap: 10px;
-  margin-bottom: 1rem ;
+  margin-bottom: 1rem;
 
-
-  .router-link{
+  .router-link {
     font-size: 1.3rem;
     padding: 5px;
     border: 2px solid white;
     border-radius: 10px;
-    
-    &:hover{
-      background-color: orange ;
+
+    &:hover {
+      background-color: orange;
       color: black;
     }
   }
 
-  
-
-  .volver{
+  .volver {
     margin-left: auto;
   }
   a {
