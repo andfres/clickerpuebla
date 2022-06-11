@@ -3,10 +3,9 @@ import aplicarMejora from "@/utils/aplicarMejora.js";
 import ls from "localStorage-slim";
 ls.config.encrypt = false;
 
-
 const inicializarDatos = () => {
   const store = useStore();
-  store.$reset()
+  store.$reset();
 };
 
 const actualizar_state_con_datos_almacenados__local_storage = (datos) => {
@@ -63,7 +62,7 @@ export const guardarDatos = () => {
     mejoras_guardados: store.getDatosGuardarMejoras,
   };
 
-   console.log("datos_guardar", datos_guardar);
+  console.log("datos_guardar", datos_guardar);
   console.log("Los datos han sido guardados");
   //window.localStorage.setItem("datos", JSON.stringify(datos));
   ls.set("datos_guardados", JSON.stringify(datos_guardar));
@@ -75,7 +74,12 @@ export const leerDatos = () => {
     const datos_localstorage = ls.get("datos_guardados");
 
     if (datos_localstorage) {
-       console.log("leyendo datos", datos_localstorage);
+      console.groupCollapsed("leyendo datos")
+      console.log(datos_localstorage);
+      console.groupEnd("")
+
+      console.log(Date.now())
+
       return JSON.parse(datos_localstorage);
     }
     console.log("no habia datos");
@@ -90,8 +94,7 @@ export const leerDatos = () => {
 
 export const importData = () => {
   // inicializarDatos();
-  if (leerDatos())
-    actualizar_state_con_datos_almacenados__local_storage(leerDatos());
+  actualizar_state_con_datos_almacenados__local_storage(leerDatos());
 };
 
 export const reiniciarJuego = () => {

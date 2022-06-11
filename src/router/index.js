@@ -53,6 +53,10 @@ const router = createRouter({
               component: TrabajoLimpiaBotas,
             },
             {
+              path: "zapatero",
+              component: TrabajoLimpiaBotas,
+            },
+            {
               path: "fantasmas",
               component: TrabajoFantasmas,
             },

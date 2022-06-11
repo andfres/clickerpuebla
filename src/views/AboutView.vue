@@ -23,9 +23,10 @@
         [] tamaño columnas azules
         [] imagnes mejoras
         [] enlaces imanes trabajos
-        [] generar mejoras 
+        [X] generar mejoras 
         [X] mostar solo x mejoras
         [X] filtrar mejoras por precio
+        [X] que se vea el ultimo trabajo
         
 
 
@@ -65,9 +66,7 @@
         <li>[X] deploy API de prueba spring + posgrest</li>
         <li>[X] Modal + teleport (en about)</li>
         <li>[X] formulario -> vee-Validate + yup</li>
-        <li>[X] hacer deploy proyecto react</li>
         <li>[X] estudiar como lanzar LIVE SERVER en una subcarpeta</li>
-        <li>[X] Creado script "deploy.sh" para la automaticación del despliegue</li>
       </ul>
     </div>
 

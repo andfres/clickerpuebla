@@ -8,14 +8,11 @@ import MenuGame from "@/components/MenuGame.vue";
 import Header from "@/components/layaouts/Header.vue";
 import MenuGuardar from "@/components/layaouts/MenuGuardar.vue";
 
-
 import imagenesTodas from "@/assets/img";
 import { guardarDatos } from "@/utils/partida";
 
 import { useStore } from "@/store/store";
 import { storeToRefs } from "pinia";
-
-
 
 const cargando = ref(true);
 const cargando_msg = ref("...");
@@ -35,37 +32,33 @@ onMounted(async () => {
   cargando.value = false;
 });
 
-
-
-
 //Controla si se cumplen los logros
 const store = useStore();
-const { recursos, logrosNoLogrados} = storeToRefs(store);
+const { recursos, logrosNoLogrados } = storeToRefs(store);
 watch(recursos, (newrecursos, oldrecursos) => {
-
-  if(logrosNoLogrados.value.length === 0) return;
+  if (newrecursos < oldrecursos) return;
+  if (logrosNoLogrados.value.length === 0) return;
   if (newrecursos >= logrosNoLogrados.value[0].cantidad) {
-
     const fecha = new Date();
 
-    const day_month_year = fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getFullYear();
-    const hours_minutes = fecha.toLocaleTimeString('default', {
-      hour: '2-digit',
-      minute: '2-digit',
+    const day_month_year =
+      fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getFullYear();
+    const hours_minutes = fecha.toLocaleTimeString("default", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
     });
 
     const fechaObjeto = {
       dia: day_month_year,
-      hora: hours_minutes
-    }
+      hora: hours_minutes,
+    };
     logrosNoLogrados.value[0].fecha = fechaObjeto;
     logrosNoLogrados.value[0].logrado = true;
   }
-})
+});
 
 // const guarDardatosTiempo = setInterval(guardarDatos, 1000);
-
-
 
 onUnmounted(() => {
   // clearInterval(guarDardatosTiempo);
@@ -74,7 +67,7 @@ onUnmounted(() => {
 
 <template>
   <Header></Header>
-  
+
   <div v-if="cargando">
     <div class="lds-ring">
       <div></div>
@@ -89,9 +82,7 @@ onUnmounted(() => {
     <MenuGuardar></MenuGuardar>
     <Banco class="banco"></Banco>
 
-    <div class="contenedor-router">
-      <Productores></Productores>
-    </div>
+    <Productores></Productores>
 
     <div class="menu">
       <MenuGame class="menu-nav"></MenuGame>
@@ -116,28 +107,29 @@ main {
     color: white;
   }
 
-  .contenedor-router {
-    flex: 0 0 300px;
+
+  .productores{
+    gap: 7px;
   }
 
+  .productores,
   .menu {
-    flex: 0 0 300px;
+    //flex:  0 300px;
+    width: 350px;
+        background-color: $colorPrincipal;
+    border-radius: 15px;
   }
 
   .banco,
   .menu,
-  .contenedor-router,
+  .productores,
   .routerview,
   .modal {
     padding: $margin;
     margin: $margin;
   }
 
-  .contenedor-router,
-  .menu {
-    background-color: $colorPrincipal;
-    border-radius: 15px;
-  }
+
 
   .banco {
     width: 100%;

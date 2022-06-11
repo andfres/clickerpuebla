@@ -1,17 +1,15 @@
 <template>
   <div class="logro">
-
-    <div v-if="!logrado">
-      <img class="img" alt="" :src="`${imagenesLogros.bloqueado}`" draggable="false" />
+    <div v-if="!logrado" class="img">
+      <img alt="" :src="`${imagenesLogros.bloqueado}`" draggable="false" />
     </div>
 
-    <div v-else>
-      <img class="img" alt="" :src="`${imagenesLogros[imagen]}`" draggable="false" />
+    <div v-else class="img">
+      <img alt="" :src="`${imagenesLogros[imagen]}`" draggable="false" />
     </div>
-
 
     <div class="contenedor_titulo">
-      <div class="titulo">{{ titulo }}</div>
+      <div class="titulo_interior">{{ titulo }}</div>
       <div class="descripcion">{{ descripcion }}</div>
     </div>
     <!-- <div class="coumun">comun?</div> -->
@@ -20,51 +18,52 @@
       <div class="fecha">{{ fecha.dia }}</div>
       <div class="fecha">{{ fecha.hora }}</div>
     </div>
-
-
   </div>
 </template>
 
 <script setup>
 import imagenesLogros from "@/assets/img/logros";
-import { boolean } from "yup/lib/locale";
-
-// console.log("imagenesLogros", imagenesLogros);
 
 const props = defineProps({
   logrado: Boolean,
   titulo: String,
   descripcion: String,
   imagen: String,
-  fecha: Object
+  fecha: Object,
 });
-
-// console.log("logradoResultado", props.logradoResultado);
-
-
 </script>
 
 <style scoped lang="scss">
+@import "@/scss/_variables.scss";
+
 .logro {
-  background-color: white;
   display: flex;
-  gap: 10px;
-  padding: 10px;
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+
+  gap: 5px;
+  align-items: center;
+  background-color: $color-secundario;
+  box-shadow: -2px 4px 1px #00000047;
 
   .img {
-    width: 40px;
-    height: 40px;
-    border: 1px solid red;
-  }
+    flex: 0 0 70px;
+    border-radius: 10px;
+    border: 3px solid rgb(255, 255, 255);
+    background-color: rgb(227, 227, 227);
 
-  .contenedor_titulo {
-
-
-
-    .titulo {
-      color: red;
+    img {
+      width: 70px;
+      height: 70px;
+      /* width: 100%; */
+      display: block;
+      border-radius: 10px;
     }
   }
 
+  .contenedorFecha {
+    margin-left: auto;
+  }
 }
 </style>

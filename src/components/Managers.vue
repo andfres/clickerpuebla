@@ -56,14 +56,6 @@ const todosComprados = computed(() => {
 <style lang="scss">
 
 
-// .managers {
-//   text-align: center;
-
-//   & > p {
-//     color: white;
-//   }
-// }
-
 
 .contenedor-columnas {
   

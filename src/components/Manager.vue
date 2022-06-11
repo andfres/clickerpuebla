@@ -71,18 +71,17 @@ const contratar = (e) => {
 
 <style lang="scss">
 @import "@/scss/_variables.scss";
+
 .columna {
   display: flex;
   width: 100%;
-  min-width: 350px;
-  max-width: 400px;
-  height: min-content;
   padding: 5px;
   border-radius: 10px;
+  justify-content: space-between;
 
   gap: 5px;
   align-items: center;
-  background-color: $color-fondo-productor;
+  background-color: $color-secundario;
   box-shadow: -2px 4px 1px #00000047;
 
   .img {
@@ -97,16 +96,6 @@ const contratar = (e) => {
       /* width: 100%; */
       display: block;
       border-radius: 10px;
-    }
-  }
-
-  .contenedor_titulo {
-    flex: 1;
-    text-align: center;
-
-    .titulo_interior {
-      margin-bottom: 5px;
-      font-size: 1.4rem;
     }
   }
 }
@@ -125,4 +114,30 @@ const contratar = (e) => {
     background-color: rgb(201, 145, 207);
   }
 }
+
+.titulo_interior {
+  margin-bottom: 5px;
+  font-size: 1.4rem;
+  color: rgb(190, 5, 97);
+}
+
+
+
+
+.managers,
+.logros,
+.mejoras,
+.conte_trabajo {
+  & > p {
+    color: white;
+  }
+  text-align: center;
+}
+
+//.router-link-active 
+.router-link-exact-active{
+  display: none;
+}
+
+
 </style>

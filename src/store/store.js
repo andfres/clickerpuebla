@@ -6,7 +6,7 @@ const { creaProductores, creaManagers, creaLogros, creaMejoras } = creaObjetos;
 export const useStore = defineStore({
   id: "main",
   state: () => ({
-    recursos: 888888,
+    recursos: 9999999999999,
     productores: creaProductores(),
     managers: creaManagers(),
     logros: creaLogros(),

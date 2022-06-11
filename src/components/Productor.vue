@@ -211,12 +211,9 @@ button,
   font-size: 14px;
 }
 .productor {
-  min-width: 350px;
-  max-width: 400px;
+  width: 100%;
   min-height: 100px;
   display: flex;
-  padding: 5px;
-  --height: min-content;
   font-weight: bolder;
   filter: drop-shadow(-2px 4px 1px #00000047);
 
@@ -224,17 +221,13 @@ button,
     display: flex;
     position: relative;
     z-index: 2;
-    --flex: 1 1 20%;
 
     .boton-recolectar {
       border: 2px solid orange;
       border-radius: 50%;
       animation: infinite resplandorAnimation 1s;
-      background-color: $color-fondo-productor;
+      background-color: $color-secundario;
 
-      img {
-        --width: 100px;
-      }
     }
 
     .boton-recolectar:disabled {
@@ -269,7 +262,7 @@ button,
     flex-direction: column;
     justify-content: center;
     gap: 6%;
-    background-color: $color-fondo-productor;
+    background-color: $color-secundario;
 
     .contenedor_nombre {
       display: flex;

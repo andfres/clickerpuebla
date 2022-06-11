@@ -1,23 +1,27 @@
 <template>
-  <div>
-    <p>has desbloqueado {{ cantidadLogrosLogrados }}/ {{ cantidadLogros }} logrosNoLogrados</p>
+  <div class="logros">
+    <p>
+      Has desbloqueado {{ cantidadLogrosLogrados }}/
+      {{ cantidadLogros }} Trofeos
+    </p>
 
     <div class="barra">
-      <div class="barra-interna" :style="{ width: porcentaje * 100 + '%' }"></div>
-
+      <div
+        class="barra-interna"
+        :style="{ width: porcentaje * 100 + '%' }"
+      ></div>
     </div>
 
+    <div class="contenedor-columnas">
+      <h3 class="titulo" v-if="algunoComprado">Tus Trofeos</h3>
+      <Logro v-for="(item, i) in logrosLogrados" :key="i" v-bind="item">
+      </Logro>
 
+      <h3 class="titulo" v-if="!todosComprados">Trofeos bloqueados</h3>
 
-    <p>Trofeos conseguidos</p>
-
-    <Logro v-for="(item, i) in logrosLogrados" :key="i" v-bind="item">
-    </Logro>
-
-    <p>Trofeos bloqueados</p>
-
-    <Logro v-for="(item, i) in logrosNoLogrados" :key="i" v-bind="item">
-    </Logro>
+      <Logro v-for="(item, i) in logrosNoLogrados" :key="i" v-bind="item">
+      </Logro>
+    </div>
   </div>
 </template>
 
@@ -38,10 +42,18 @@ const cantidadLogrosLogrados = computed(() => {
 });
 
 const porcentaje = computed(() => {
-  return logrosLogrados.value.length / logros.value.length ;
+  return logrosLogrados.value.length / logros.value.length;
 });
 
+const algunoComprado = computed(() => {
+  return logrosLogrados.value.length > 0 ? true : false;
+});
+
+const todosComprados = computed(() => {
+  return logrosNoLogrados.value.length === 0 ? true : false;
+});
 </script>
+
 
 <style lang="scss">
 .barra {
@@ -64,9 +76,6 @@ const porcentaje = computed(() => {
     background-color: greenyellow;
     box-shadow: inset 0px -9px rgba(0, 0, 255, 0.1);
   }
-
-
-
 }
 </style>
 

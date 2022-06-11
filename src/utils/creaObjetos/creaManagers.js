@@ -18,7 +18,7 @@ const crearManagers = () => {
     objeto["id"] = i;
     objeto["nombreProductor"] = nombreProductor;
     objeto["nombre"] = nombreManager[i];
-    objeto["precio"] = 100000 * i + 100;
+    objeto["precio"] = 300 * i + 200 + Math.pow(i, 4);
     objeto["imagen"] = i + 1 + "";
     objeto["contratado"] = false
     array.push(objeto);

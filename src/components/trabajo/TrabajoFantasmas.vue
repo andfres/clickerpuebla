@@ -1,7 +1,6 @@
 <template>
-  <div>
+  <div class="conte_trabajo">
     <p>Mata fantasmas para ganar dinero</p>
-    {{ ultimo_trabajo }}
 
     <div ref="divZapato" class="fantasma trabajo">
       <div class="barraVida">
@@ -35,12 +34,15 @@ import getMousePos from "@/utils/getMousePos.js";
 // const base = import.meta.env.BASE_URL;
 
 const store = useStore();
-const { recolectar, fantasmas , ultimo_trabajo} = store;
+const { recolectar, fantasmas } = store;
+
 const divZapato = ref(null);
-const imgZapatos = imagenesFantasmas();
 const imagen = ref(0);
+const imgZapatos = imagenesFantasmas();
 
 
+const { ultimo_trabajo } = storeToRefs(store);
+ultimo_trabajo.value= "fantasmas";
 
 const VIDA_MAX_ENEMIGO = fantasmas.vida_maxima;
 const vidaEnemigo = ref(VIDA_MAX_ENEMIGO);
@@ -75,7 +77,6 @@ const atacarFantasma = (evt) => {
   }
 
   vidaEnemigo.value -= daño_final;
-
 
   if (vidaEnemigo.value <= 0) {
     vidaEnemigo.value = VIDA_MAX_ENEMIGO;

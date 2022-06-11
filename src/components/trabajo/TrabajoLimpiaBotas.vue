@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="conte_trabajo">
     <p>Siempre puedes trabjar tu mismo</p>
     <p>Limpia zapatos para ganarte un dinerillo</p>
 
@@ -36,6 +36,10 @@ const { zapatero } = storeToRefs(store);
 const divZapato = ref(null);
 const imgZapatos = imagenesZapatos();
 const imagen = ref(0);
+
+
+const { ultimo_trabajo } = storeToRefs(store);
+ultimo_trabajo.value= "zapatero";
 
 
 const mostrarValores = () => {
