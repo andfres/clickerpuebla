@@ -68,14 +68,14 @@ const limpiarZapato = (evt) => {
   if (count >= maxCount1) {
     count = 0;
     recolectar(zapatero.value.genera_por_clic);
-    animacionDinero(divZapato.value, zapatero.value.genera_por_clic, true, getMousePos(evt));
+    animacionDinero(divZapato.value, zapatero.value.genera_por_clic, "beneficio", getMousePos(evt));
   }
 
   if (count2 >= maxCount2) {
     count2 = 2;
     cambiarImagen();
     recolectar(20);
-    animacionDinero(divZapato.value, gananciasTerminar, true, getMousePos(evt));
+    animacionDinero(divZapato.value, gananciasTerminar, "beneficio", getMousePos(evt));
   }
 };
 </script>
