@@ -26,9 +26,10 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
 
 import Logro from "@/components/Logro.vue";
+
+import { computed } from "vue";
 import { useStore } from "@/store/store";
 import { storeToRefs } from "pinia";
 

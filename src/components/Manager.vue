@@ -77,7 +77,6 @@ const contratar = (e) => {
   width: 100%;
   padding: 5px;
   border-radius: 10px;
-  justify-content: space-between;
 
   gap: 5px;
   align-items: center;
@@ -100,11 +99,16 @@ const contratar = (e) => {
   }
 }
 
+
+.contenedor_titulo{
+  flex: 1;
+}
 .boton-comprar {
   text-align: center;
   padding: 5px;
   background-color: $base-color;
   border-radius: 10px;
+  margin-left: auto;
 
   &:hover:enabled {
     background-color: rgb(238, 109, 229);

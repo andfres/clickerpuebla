@@ -2,8 +2,8 @@
 
   const array = [];
   const dineroConseguir = [
-    [100, "el puto amo"],
-    [250, "el jefe del pueblo"],
+    [2, "Buen inicio"],
+    [5, "Estas haciendolo bien"],
     [700, "no entiendo na"],
     [5000, "el rey"],
     [40000000, "Fin del juego"],

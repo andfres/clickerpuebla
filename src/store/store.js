@@ -6,7 +6,7 @@ const { creaProductores, creaManagers, creaLogros, creaMejoras } = creaObjetos;
 export const useStore = defineStore({
   id: "main",
   state: () => ({
-    recursos: 9999999999999,
+    recursos: 0,
     productores: creaProductores(),
     managers: creaManagers(),
     logros: creaLogros(),
@@ -24,7 +24,8 @@ export const useStore = defineStore({
     },
     mensaje: "<p>mensaje desde storeeeeeeeeee</p>",
     mejoras_mostrar: 6,
-    ultimo_trabajo: "fantasmas"
+    ultimo_trabajo: "fantasmas",
+    logrosRecientes: [],
   }), //Fin state
 
   getters: {
@@ -181,5 +182,22 @@ export const useStore = defineStore({
     mejorar_espada(cantidad) {
       this.fantasmas.damage_sword += cantidad;
     },
+
+    borrarlogrosRecientes(id) {
+
+      this.logrosRecientes = this.logrosRecientes.filter((ele) => {
+        if (ele.id !== id) {
+          return ele;
+        }
+      });
+    },
+
+    borrarTodoslogrosRecientes(){
+      this.logrosRecientes=[];
+
+    }
+
+
+
   }, //Fin actions
 });

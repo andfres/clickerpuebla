@@ -33,7 +33,7 @@ const props = defineProps({
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import "@/scss/_variables.scss";
 
 .logro {
@@ -48,15 +48,15 @@ const props = defineProps({
   box-shadow: -2px 4px 1px #00000047;
 
   .img {
-    flex: 0 0 70px;
+    flex: 0 0 60px;
     border-radius: 10px;
     border: 3px solid rgb(255, 255, 255);
-    background-color: rgb(227, 227, 227);
+    background-color: rgb(98, 98, 98);
+    padding: 2px;
 
     img {
-      width: 70px;
-      height: 70px;
-      /* width: 100%; */
+
+      width: 100%; 
       display: block;
       border-radius: 10px;
     }

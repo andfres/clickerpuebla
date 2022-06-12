@@ -7,6 +7,7 @@ import Productores from "@/components/Productores.vue";
 import MenuGame from "@/components/MenuGame.vue";
 import Header from "@/components/layaouts/Header.vue";
 import MenuGuardar from "@/components/layaouts/MenuGuardar.vue";
+import Logros_emergentes from "@/components/Logros_emergentes.vue";
 
 import imagenesTodas from "@/assets/img";
 import { guardarDatos } from "@/utils/partida";
@@ -16,6 +17,9 @@ import { storeToRefs } from "pinia";
 
 const cargando = ref(true);
 const cargando_msg = ref("...");
+const store = useStore();
+const { recursos, logrosNoLogrados } = storeToRefs(store);
+
 
 onMounted(async () => {
   console.log("Precargar imagenes");
@@ -33,8 +37,7 @@ onMounted(async () => {
 });
 
 //Controla si se cumplen los logros
-const store = useStore();
-const { recursos, logrosNoLogrados } = storeToRefs(store);
+
 watch(recursos, (newrecursos, oldrecursos) => {
   if (newrecursos < oldrecursos) return;
   if (logrosNoLogrados.value.length === 0) return;
@@ -53,8 +56,12 @@ watch(recursos, (newrecursos, oldrecursos) => {
       dia: day_month_year,
       hora: hours_minutes,
     };
+
+    store.logrosRecientes = [...store.logrosRecientes, logrosNoLogrados.value[0]];
     logrosNoLogrados.value[0].fecha = fechaObjeto;
     logrosNoLogrados.value[0].logrado = true;
+
+    
   }
 });
 
@@ -79,16 +86,18 @@ onUnmounted(() => {
   </div>
 
   <main v-else>
-    <MenuGuardar></MenuGuardar>
+    <MenuGuardar />
     <Banco class="banco"></Banco>
 
-    <Productores></Productores>
+    <Productores />
 
     <div class="menu">
       <MenuGame class="menu-nav"></MenuGame>
       <router-view class=""></router-view>
     </div>
   </main>
+
+  <Logros_emergentes />
 </template>
 
 
@@ -107,8 +116,7 @@ main {
     color: white;
   }
 
-
-  .productores{
+  .productores {
     gap: 7px;
   }
 
@@ -116,7 +124,7 @@ main {
   .menu {
     //flex:  0 300px;
     width: 350px;
-        background-color: $colorPrincipal;
+    background-color: $colorPrincipal;
     border-radius: 15px;
   }
 
@@ -128,8 +136,6 @@ main {
     padding: $margin;
     margin: $margin;
   }
-
-
 
   .banco {
     width: 100%;
