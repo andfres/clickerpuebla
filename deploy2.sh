@@ -5,20 +5,20 @@ set -e
 
 npm run build
 
+git add .
+git commit -m 'deploy'
+git push origin master
+
 cd dist
 
-
-git init
+# git init
 git checkout build
-git add -A
-git commit -m 'deploy'
+git add .
+git commit -m 'prueba'
+git push origin build 
+
+# git push heroku build
 
 
-
-# if you are deploying to https://<USERNAME>.github.io
-# git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git main
-
-# if you are deploying to https://<USERNAME>.github.io/<REPO>
-# git push -f git@github.com:<USERNAME>/<REPO>.git main:gh-pages
 
 cd -

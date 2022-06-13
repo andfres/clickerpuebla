@@ -87,6 +87,7 @@ onUnmounted(() => {
 
   <div v-else>
     <main >
+      
       <MenuGuardar />
       <Banco class="banco"></Banco>
 
