@@ -1,110 +1,105 @@
-<template>
-  <Header></Header>
 
-  <!-- <button @click="visible = true">mostrar ocultar modal</button>
-  <teleport to="body">
-    <Modal v-bind:showModal="visible" @close="visible = false">
-      <Login />
-    </Modal>
-  </teleport> -->
-
-  <div class="novedades">
     <!-- 
-    <div>
-      <h1>To do</h1>
-      <ul>
+
+    spring 
+    tiene que devolver
+    datos usuario todos a la vez
+
+
+    [] logros calcular porcentaje gente lo tiene
+    [] devolver usuarios ordenados por dinero
+
+    ¿que datos guardar?  5 objetos, 1 Number, 4 Arrays
+    1 nombre, nick, password, email -> no se modifica
+
+    2 recursos -> cambia constamente
+
+    3 edificios -> son 6  por <ahora class=""></ahora>
+      tablas o array?
+      ¿se actualiza de 1 en 1? o se actualizan todos a la vez
+    4 managers  igual que 3
+
+    5 mejoras hay muchas... y son cambiantes.. 
+    6 logros igual que 5
+---------------------------------------------
+
+    nuevo boton... si  logeado... guardar datos...
+    en cuanto logeado... cargar datos...  
+    estimacion total 4 dias?  
+
+
+    pasos empezar 
+
+    [x] guardar 1
+    mandar jwt...
+    
+
+
+    guardar 234
+    5y6 dejar de actualziar para que sean iguales.... 
+
+
+    
 
 
 
-        [] estilo carga  (poco prioritario)
-        [] estilos letras blanco
-        [] estilos logros
-        [] logros adquiridos no mejorar
-        [] tamaño columnas azules
-        [] imagnes mejoras
-        [] enlaces imanes trabajos
-        [X] generar mejoras 
-        [X] mostar solo x mejoras
-        [X] filtrar mejoras por precio
-        [X] que se vea el ultimo trabajo
-        
 
 
-
-
-        almacenar el estado del tiempo de creación de los edificios
-        crear los servicios
-
-        [] jwt (prioritario) 
-        [] buscar x paginador 
-
-        [X] devolver usuario name y puntos x puntos
-        [X] alamacenar datos prueba server (prioritario)
-        
-        [X] swagger (prioritario)
-        
-        [X] mejorar formularios  (poco prioritario)
+  
 
 
 
 
 
-        
-        [] clasificatoria modal? arriba del jueguito? o donde?
+    mejorar logros
+      primer edificio
+      x fantamas matados
+      x botas matadas
 
-        [] mejorar sh para que cargue desde otra rama de github (poco prioritario)
-        [X] hacer mejoras
-        [X] empezar documentacion
+      si x botas matadas...
+      desbloqueas fantasmas...?
 
 
-        <li> descubir xq escribir en html process. env. junto peta</li>
-        <li>[X] aprender a inicializar la base de datos</li>
-        <li>[X] cargar imagenes antes de poder jugar</li>
-        <li>[X] estudiar que bash de git no se cierre despues de ejecutar script sh</li>
-        <li>[X] Los datos se guardan automaticamente cada X segundos</li>
-        <li>[X] Los datos de la localStorage han sido ofuscados</li>
-        <li>[X] deploy API de prueba spring + posgrest</li>
-        <li>[X] Modal + teleport (en about)</li>
-        <li>[X] formulario -> vee-Validate + yup</li>
-        <li>[X] estudiar como lanzar LIVE SERVER en una subcarpeta</li>
-      </ul>
-    </div>
+
+
+
+    almacenar el estado del tiempo de creación de los edificios
+    crear los servicios
+    [] clasificatoria modal? arriba del jueguito? o donde?
+    [] jwt (prioritario) 
+    [] buscar x paginador 
+    [] edificios nivel 0
+    [] mejorar sh para que cargue desde otra rama de github (poco prioritario)
+
+
+    [] estilo carga  (poco prioritario)
+    [X] estilos letras blanco
+    [X] estilos logros
+    [X] tamaño columnas azules
+    [X] generar mejoras 
+    [X] mostar solo x mejoras
+    [X] filtrar mejoras por precio
+    [X] que se vea el ultimo trabajo
+    
+    [X] devolver usuario name y puntos x puntos
+    [X] alamacenar datos prueba server (prioritario)
+    [X] swagger (prioritario)
+    [X] mejorar formularios  (poco prioritario)
+
+    [X] hacer mejoras
+    [X] empezar documentacion
+
+    [] descubir xq escribir en html process. env. junto peta
+    [X] aprender a inicializar la base de datos 
+    [X] cargar imagenes antes de poder jugar 
+    [X] estudiar que bash de git no se cierre despues de ejecutar script sh 
+    [X] Los datos se guardan automaticamente cada X segundos 
+    [X] Los datos de la localStorage han sido ofuscados 
+    [X] deploy API de prueba spring + posgrest 
+    [X] Modal + teleport (en about) 
+    [X] formulario -> vee-Validate + yup 
+    [X] estudiar como lanzar LIVE SERVER en una subcarpeta 
+    
+    
 
     -->
-  </div>
-</template>
-
-
-
-
-<script setup>
-import Header from "@/components/layaouts/Header.vue";
-
-// import Modal from "@/components/layaouts/Modal.vue";
-// import Login from "@/components/forms/Login.vue";
-// import { ref } from "vue";
-// const visible = ref(false);
-</script>
-
-<style lang="scss">
-.modal_child {
-  background-color: red;
-}
-
-.novedades {
-  font-family: "arial";
-  border: 1px solid white;
-  padding: 2rem;
-  margin: 1rem;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.717);
-  flex-wrap: wrap;
-
-  display: flex;
-  gap: 3rem;
-
-  li {
-    margin: 8px;
-  }
-}
-</style>

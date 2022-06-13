@@ -44,7 +44,7 @@ const actualizar_state_con_datos_almacenados__local_storage = (datos) => {
       return { ...ele, ...mejoras_guardados[i] };
     });
   } catch (e) {
-    console.log("peto", e);
+    console.error(e);
     ls.remove("datos_guardados");
   }
 };
@@ -83,17 +83,21 @@ export const leerDatos = () => {
       return JSON.parse(datos_localstorage);
     }
     console.log("no habia datos");
+    guardarDatos();
+
     return;
   } catch (e) {
     //intentar leer datos, si estan corruptos borrarlos
     console.log("peto al leer los datos", e);
     ls.remove("datos_guardados");
+    guardarDatos();
+
+
     return;
   }
 };
 
 export const importData = () => {
-  // inicializarDatos();
   actualizar_state_con_datos_almacenados__local_storage(leerDatos());
 };
 

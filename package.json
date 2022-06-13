@@ -6,6 +6,7 @@
     "build": "vite build",
     "preview": "vite preview --port 5050",
     "deploy": "deploy.sh",
+    "deploy2": "deploy2.sh",
     "prueba": "node prueba  --mode=development"
   },
   "dependencies": {

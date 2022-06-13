@@ -2,7 +2,7 @@
   <div class="conte_trabajo">
     <p>Mata fantasmas para ganar dinero</p>
 
-    <div ref="divZapato" class="fantasma trabajo">
+    <div ref="divZapato" class="fantasma_conte trabajo">
       <div class="barraVida">
         <div
           class="barraInterna"
@@ -11,7 +11,7 @@
         <div class="barraDatos">{{ vidaEnemigo }} / {{ VIDA_MAX_ENEMIGO }}</div>
       </div>
 
-      <img
+      <img class="fantasma"
         @click="atacarFantasma"
         alt=""
         :src="imgZapatos[imagen]"
@@ -96,9 +96,10 @@ const atacarFantasma = (evt) => {
 
 
 <style scoped lang="scss">
-.fantasma {
+.fantasma_conte {
   // width: 100%;
   position: relative;
+  border: 1px solid red;
 
   .barraVida {
     border: 1px solid red;
