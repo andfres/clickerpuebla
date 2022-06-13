@@ -228,6 +228,9 @@ button,
       animation: infinite resplandorAnimation 1s;
       background-color: $color-secundario;
 
+      &:hover{
+        background-color: rgb(218, 245, 146);
+      }
     }
 
     .boton-recolectar:disabled {
@@ -272,7 +275,8 @@ button,
     }
     .nombre {
       font-family: "Lexend Deca", sans-serif;
-      font-size: 1.2em;
+      // font-size: 1.2em;
+      font-size:calc(0.8rem + 0.4vw);
       color: rgb(255, 255, 255);
       text-shadow: 1px 1px 1px black, -1px -1px 1px black, -1px 1px 1px black,
         1px -1px 1px black;

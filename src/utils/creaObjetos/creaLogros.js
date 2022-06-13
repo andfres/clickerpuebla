@@ -2,11 +2,17 @@
 
   const array = [];
   const dineroConseguir = [
-    [2, "Buen inicio"],
-    [5, "Estas haciendolo bien"],
-    [700, "no entiendo na"],
-    [5000, "el rey"],
-    [40000000, "Fin del juego"],
+    [2, "Primer paso"],
+    [200, "Sigue asi"],
+    [500, "Estas haciendolo bien"],
+    [2000, "Autonomo"],
+    [3000, "El rico de la calle"],
+    [50000, "El jefazo del pueblo"],
+    [500000, "El rey"],
+    [5000000, "De oro"],
+    [5000000, "El Amo"],
+    [50000000000, "El Amo supremo"],
+    [99999999999999999, "Fin del juego"],
   ];
 
   for ( let [i,  arrays] of dineroConseguir.entries()) {

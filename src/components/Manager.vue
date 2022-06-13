@@ -138,10 +138,7 @@ const contratar = (e) => {
   text-align: center;
 }
 
-//.router-link-active 
-.router-link-exact-active{
-  display: none;
-}
+
 
 
 </style>

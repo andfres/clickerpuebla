@@ -12,12 +12,9 @@ import { getAll } from "@/servicios/users";
 
 // f();
 
-
 onMounted(() => {
   importData();
 });
-
-
 </script>
 
 <template>
@@ -31,6 +28,16 @@ onMounted(() => {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .contenedor_prueba {
@@ -60,7 +67,7 @@ body {
   height: 100vh;
   font-family: $fuente-principal;
 
-  button{
+  button {
     font-family: $fuente-principal;
   }
 }

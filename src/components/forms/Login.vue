@@ -1,40 +1,39 @@
 <template>
-<div class="formulario-contenedor">
-  <div class="formulario">
-    <h2 class="titulo-form">Login</h2>
-    <form @submit="onSubmit">
-      <div class="form-grup">
-        <label for="email">Email</label>
-        <input name="email" id="email" v-model="email" />
-        <span>{{ emailError }}</span>
-      </div>
-      <div class="form-grup">
-        <label for="password">Contraseña</label>
-        <input
-          name="password"
-          id="password"
-          v-model="password"
-          type="password"
-        />
-        <span>{{ passwordError }}</span>
-      </div>
+  <div class="formulario-contenedor">
+    <div class="formulario">
+      <h2 class="titulo-form">Login</h2>
+      <form @submit="onSubmit">
+        <div class="form-grup">
+          <label for="email">Email</label>
+          <input name="email" id="email" v-model="email" />
+          <span>{{ emailError }}</span>
+        </div>
+        <div class="form-grup">
+          <label for="password">Contraseña</label>
+          <input
+            name="password"
+            id="password"
+            v-model="password"
+            type="password"
+          />
+          <span>{{ passwordError }}</span>
+        </div>
 
-      <button type="submit">Submit</button>
-    </form>
+        <div class="continuar">
+          <button type="submit">Continuar</button>
+        </div>
+      </form>
+    </div>
 
-
-  </div>
-
-      <div class="tienes_cuenta">
+    <div class="tienes_cuenta">
       <p>¿No tienes cuenta?</p>
       <RouterLink to="/registro">registrate</RouterLink>
     </div>
   </div>
-
 </template>
 
 <script setup>
-import { login } from "@/servicios/users"
+import { login } from "@/servicios/users";
 import { useForm, useField } from "vee-validate";
 import * as yup from "yup";
 
@@ -57,7 +56,6 @@ const onSubmit = handleSubmit((values) => {
   console.log("valores", values);
   login(values);
   // alert(JSON.stringify(values));
-  
 }, onInvalidSubmit);
 
 // Create a form context with the validation schema
@@ -68,5 +66,4 @@ const { value: password, errorMessage: passwordError } = useField("password");
 </script>
 
 <style lang = "scss">
-
 </style>

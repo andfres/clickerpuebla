@@ -14,12 +14,12 @@ export const useStore = defineStore({
 
     multiplicador: 1,
     zapatero: {
-      genera_por_clic: 2,
+      genera_por_clic: 1,
       genera_al_cambiar: 15,
     },
     fantasmas: {
       vida_maxima: 10,
-      genera_al_matar: 100,
+      genera_al_matar: 50,
       damage_sword: 1,
     },
     mensaje: "<p>mensaje desde storeeeeeeeeee</p>",

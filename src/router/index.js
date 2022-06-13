@@ -6,7 +6,6 @@ import Login from "../views/LoginView.vue";
 
 import Managers from "../components/Managers.vue";
 import Mejoras from "../components/Mejoras.vue";
-import AboutView from "../views/AboutView.vue";
 import Productores from "@/components/Productores.vue";
 import Logros from "@/components/Logros.vue";
 
@@ -22,11 +21,6 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
-    },
-    {
-      path: "/about",
-      name: "about",
-      component: AboutView,
     },
     {
       path: "/registro",

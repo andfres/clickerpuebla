@@ -41,8 +41,6 @@ const borrar = () => {
 
   .contenedor_logros_emergentes {
     
-
-    border: 1px solid red;
     position: sticky;
     bottom: 50px;
     display: flex;
@@ -53,13 +51,16 @@ const borrar = () => {
 
   .cerrar-varios{
     transform: translate(130px, -10px);
+    pointer-events: initial; 
 
   }
 }
 
 .contenedor_logros_emergentes{
-  z-index: -1;
+  pointer-events: none; 
 }
+
+
 </style>
 
 

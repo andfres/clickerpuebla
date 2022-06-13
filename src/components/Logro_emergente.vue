@@ -5,18 +5,16 @@
     </div>
 
     <div class="contenedor_titulo">
-      <div>Logro desbloqueado</div>
+      <div class="desbloqueado">¡Logro desbloqueado!</div>
       <div class="titulo_interior1">{{ titulo }}</div>
       <div class="descripcion1">{{ descripcion }}</div>
     </div>
 
-
-    <button @click="borrar"  class="cerrar">X</button>
+    <button @click="borrar" class="cerrar">X</button>
   </div>
 </template>
 
 <script setup>
-
 import imagenesLogros from "@/assets/img/logros";
 import { useStore } from "@/store/store";
 import { storeToRefs } from "pinia";
@@ -36,9 +34,7 @@ console.log("props.id", props.id);
 
 const borrar = () => {
   borrarlogrosRecientes(props.id);
-
-}
-
+};
 </script>
 
 
@@ -47,7 +43,8 @@ const borrar = () => {
 @import "@/scss/_variables.scss";
 
 .logro_emergente {
-  
+  pointer-events: initial;
+
   color: white;
   display: flex;
   width: min(250px, 70%);
@@ -66,8 +63,7 @@ const borrar = () => {
     padding: 3px;
 
     img {
-
-       width: 100%;
+      width: 100%;
       display: block;
       border-radius: 10px;
     }
@@ -77,9 +73,25 @@ const borrar = () => {
     margin-left: auto;
   }
 
-  .cerar{
-    background-color: none;
-    
+  .desbloqueado {
+    color: yellow;
+  }
+
+  .titulo_interior1 {
+    color: rgb(242, 0, 255);
+  }
+
+  .cerrar {
+    padding: 10px;
+    color: white;
+    background-color: rgb(45, 45, 45);
+    border: none;
+    font-size: 1.4rem;
+    align-self: flex-start;
+
+    &:hover {
+      color: rgb(242, 0, 255);
+    }
   }
 }
 </style>

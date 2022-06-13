@@ -2,8 +2,6 @@
    <header>
     <nav>
       <RouterLink to="/">Home</RouterLink> |
-      <RouterLink to="/about">About</RouterLink> |
-      <!-- <RouterLink to="/game">Game</RouterLink> -->
     </nav>
 
     <nav>

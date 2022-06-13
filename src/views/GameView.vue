@@ -20,7 +20,6 @@ const cargando_msg = ref("...");
 const store = useStore();
 const { recursos, logrosNoLogrados } = storeToRefs(store);
 
-
 onMounted(async () => {
   console.log("Precargar imagenes");
 
@@ -57,11 +56,12 @@ watch(recursos, (newrecursos, oldrecursos) => {
       hora: hours_minutes,
     };
 
-    store.logrosRecientes = [...store.logrosRecientes, logrosNoLogrados.value[0]];
+    store.logrosRecientes = [
+      ...store.logrosRecientes,
+      logrosNoLogrados.value[0],
+    ];
     logrosNoLogrados.value[0].fecha = fechaObjeto;
     logrosNoLogrados.value[0].logrado = true;
-
-    
   }
 });
 
@@ -85,17 +85,21 @@ onUnmounted(() => {
     <div>Cargando {{ cargando_msg }}</div>
   </div>
 
-  <main v-else>
-    <MenuGuardar />
-    <Banco class="banco"></Banco>
+  <div v-else>
+    <main >
+      <MenuGuardar />
+      <Banco class="banco"></Banco>
 
-    <Productores />
+      <div class="columna_principal">
+        <Productores />
+      </div>
 
-    <div class="menu">
-      <MenuGame class="menu-nav"></MenuGame>
-      <router-view class=""></router-view>
-    </div>
-  </main>
+      <div class="columna_principal">
+        <MenuGame class="memu-nav"></MenuGame>
+        <router-view class=""></router-view>
+      </div>
+    </main>
+  </div>
 
   <Logros_emergentes />
 </template>
@@ -111,30 +115,11 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   position: relative;
+  width: 100%;
+  border: auto;
 
   & > h1 {
     color: white;
-  }
-
-  .productores {
-    gap: 7px;
-  }
-
-  .productores,
-  .menu {
-    //flex:  0 300px;
-    width: 350px;
-    background-color: $colorPrincipal;
-    border-radius: 15px;
-  }
-
-  .banco,
-  .menu,
-  .productores,
-  .routerview,
-  .modal {
-    padding: $margin;
-    margin: $margin;
   }
 
   .banco {
@@ -148,19 +133,30 @@ main {
     );
     text-align: center;
     font-size: 1.5rem;
-
-    margin: $margin;
     position: sticky;
     top: 10px;
-
     z-index: 2;
   }
 
+  .columna_principal {
+    width: 350px;
+    max-width: 100%;
+    background-color: $colorPrincipal;
+    border-radius: 15px;
+  }
+
+  .banco,
+  .columna_principal {
+    padding: $margin;
+    margin: $margin;
+  }
+
   .productores {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    --max-width: 400px;
+    gap: 7px;
   }
 }
 </style>

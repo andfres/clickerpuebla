@@ -13,7 +13,6 @@
       />
     </div>
 
-    <button @click="mostrarValores">ver valores</button>
   </div>
 </template>
 
@@ -42,9 +41,7 @@ const { ultimo_trabajo } = storeToRefs(store);
 ultimo_trabajo.value= "zapatero";
 
 
-const mostrarValores = () => {
-  console.log(zapatero)
-}
+
 
 
 const cambiarImagen = () => {
