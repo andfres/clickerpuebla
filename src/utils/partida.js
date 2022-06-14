@@ -1,6 +1,8 @@
 import { useStore } from "@/store/store";
 import aplicarMejora from "@/utils/aplicarMejora.js";
 import ls from "localStorage-slim";
+import servicioGuardarDatos from "@/servicios/servicioGuardarDatos.js";
+
 ls.config.encrypt = false;
 
 const inicializarDatos = () => {
@@ -51,6 +53,13 @@ const actualizar_state_con_datos_almacenados__local_storage = (datos) => {
 
 //guarda datos en de la store en localStorage
 export const guardarDatos = () => {
+  //window.localStorage.setItem("datos", JSON.stringify(datos));
+  ls.set("datos_guardados", JSON.stringify(datos_guardar()));
+  console.log("Los datos han sido guardados");
+};
+
+// obtiene de la store los datos que se van a guardar
+const datos_guardar = () => {
   const store = useStore();
 
   //para guardar en local o base de datos
@@ -61,11 +70,9 @@ export const guardarDatos = () => {
     logros_guardados: store.getDatosGuardarLogros,
     mejoras_guardados: store.getDatosGuardarMejoras,
   };
-
   console.log("datos_guardar", datos_guardar);
-  console.log("Los datos han sido guardados");
-  //window.localStorage.setItem("datos", JSON.stringify(datos));
-  ls.set("datos_guardados", JSON.stringify(datos_guardar));
+
+  return datos_guardar;
 };
 
 //lee Datos guardados en la localStorage
@@ -74,11 +81,11 @@ export const leerDatos = () => {
     const datos_localstorage = ls.get("datos_guardados");
 
     if (datos_localstorage) {
-      console.groupCollapsed("leyendo datos")
+      console.groupCollapsed("leyendo datos");
       console.log(datos_localstorage);
-      console.groupEnd("")
+      console.groupEnd("");
 
-      console.log(Date.now())
+      console.log(Date.now());
 
       return JSON.parse(datos_localstorage);
     }
@@ -92,7 +99,6 @@ export const leerDatos = () => {
     ls.remove("datos_guardados");
     guardarDatos();
 
-
     return;
   }
 };
@@ -105,4 +111,8 @@ export const reiniciarJuego = () => {
   ls.remove("datos_guardados");
   inicializarDatos();
   guardarDatos();
+};
+
+export const guardarDatosServidor = () => {
+  servicioGuardarDatos(datos_guardar());
 };

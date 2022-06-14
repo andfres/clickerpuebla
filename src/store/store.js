@@ -26,6 +26,12 @@ export const useStore = defineStore({
     mejoras_mostrar: 6,
     ultimo_trabajo: "fantasmas",
     logrosRecientes: [],
+    usuario:{
+      nombre: "andres",
+      nickName: "andfres",
+      email: "andfres@gmail.com",
+      rol: "ADMIN",
+    }
   }), //Fin state
 
   getters: {

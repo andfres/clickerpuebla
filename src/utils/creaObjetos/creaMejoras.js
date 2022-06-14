@@ -5,13 +5,15 @@ const creaMejoras = () => {
 
   const detalles = [
     [50, "Pequeño impulso"],
-    [50, "Pequeño mejor impulso"],
+    [75, "impulso Molon"],
+    [75, "Pequeño mejor impulso"],
     [75, "Rico impulso"],
     [90, "Super impulso"],
     [100, "impuso Definitivo"],
     [100, "impuso Definitivo2"],
     [125, "impulso Maximo"],
-    [125, "impulso Maximo2"],
+    
+    
   ];
 
   let id = 1;
