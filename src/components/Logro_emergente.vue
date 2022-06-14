@@ -35,6 +35,8 @@ console.log("props.id", props.id);
 const borrar = () => {
   borrarlogrosRecientes(props.id);
 };
+
+
 </script>
 
 

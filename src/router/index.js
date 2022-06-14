@@ -8,6 +8,7 @@ import Managers from "../components/Managers.vue";
 import Mejoras from "../components/Mejoras.vue";
 import Productores from "@/components/Productores.vue";
 import Logros from "@/components/Logros.vue";
+import Clasificacion from "@/components/clasificacion/Clasificacion.vue";
 
 import Trabajos from "../components/trabajo/Trabajos.vue";
 import TrabajoLimpiaBotas from "../components/trabajo/TrabajoLimpiaBotas.vue";
@@ -70,6 +71,11 @@ const router = createRouter({
           path: "logros",
           component: Logros,
         },
+        {
+          path: "clasificacion",
+          component: Clasificacion,
+        },
+  
   
       ],
     },

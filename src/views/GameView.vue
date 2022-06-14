@@ -75,7 +75,7 @@ onUnmounted(() => {
 <template>
   <Header></Header>
 
-  <div v-if="cargando">
+  <div v-if="cargando" class="cargando">
     <div class="lds-ring">
       <div></div>
       <div></div>
@@ -86,8 +86,8 @@ onUnmounted(() => {
   </div>
 
   <div v-else>
-    <main >
-      
+    <main>
+
       <MenuGuardar />
       <Banco class="banco"></Banco>
 
@@ -97,7 +97,7 @@ onUnmounted(() => {
 
       <div class="columna_principal">
         <MenuGame class="memu-nav"></MenuGame>
-        <router-view class=""></router-view>
+        <router-view></router-view>
       </div>
     </main>
   </div>
@@ -119,19 +119,17 @@ main {
   width: 100%;
   border: auto;
 
-  & > h1 {
+  &>h1 {
     color: white;
   }
 
   .banco {
     width: 100%;
     height: min-content;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 1) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(255, 255, 255, 0) 100%);
     text-align: center;
     font-size: 1.5rem;
     position: sticky;
@@ -159,5 +157,14 @@ main {
     align-items: center;
     gap: 7px;
   }
+
+
+
+}
+
+.cargando {
+  margin: auto;
+  color: white;
+  text-align: center;
 }
 </style>
