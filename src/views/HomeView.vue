@@ -1,11 +1,5 @@
 
 <template>
-  <Header></Header>
-
-  <!-- <main>
-    <h1>home</h1>
-  </main> -->
-
   <div class="conte_boton_jugar">
     <RouterLink to="/game">
       <button class="boton_jugar">{{ mensaje_jugar }}</button>
@@ -16,8 +10,6 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import { computed } from "@vue/runtime-core";
-import Header from "@/components/layaouts/Header.vue";
-
 import { leerDatos } from "@/utils/partida";
 
 const mensaje_jugar = computed(() => {

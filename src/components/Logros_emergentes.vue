@@ -41,7 +41,8 @@ const borrar = () => {
 
   .contenedor_logros_emergentes {
     
-    position: sticky;
+    width: 100%;
+    position: fixed;
     bottom: 50px;
     display: flex;
     flex-direction: column;

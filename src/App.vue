@@ -1,6 +1,18 @@
+<template>
+  <Header></Header>
+  <main>
+    <RouterView />
+  </main>
+
+  <Footer></Footer>
+</template>
+
 <script setup>
 import { ref } from "vue";
 import { onBeforeMount, onMounted } from "@vue/runtime-core";
+
+import Header from "@/components/layaouts/Header.vue";
+import Footer from "@/components/layaouts/Footer.vue";
 
 import { importData } from "@/utils/partida";
 import { getAll } from "@/servicios/users";
@@ -17,9 +29,7 @@ onMounted(() => {
 });
 </script>
 
-<template>
-  <RouterView />
-</template>
+
 
 <style lang="scss">
 @import "@/scss/_variables.scss";
@@ -48,24 +58,24 @@ onMounted(() => {
   }
 }
 
-header {
-  padding: 1rem;
-  margin: 0.5rem;
-  nav {
-    color: white;
-
-    a {
-      color: white;
-    }
-  }
-}
-
 body {
   background-image: url("/src/assets/fondo.jpg");
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;
   font-family: $fuente-principal;
+
+  #app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid red;
+
+    main {
+      flex: 1;
+    }
+  }
 
   button {
     font-family: $fuente-principal;

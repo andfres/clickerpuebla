@@ -1,3 +1,37 @@
+
+<template>
+
+  <div v-if="cargando" class="cargando">
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>Cargando {{ cargando_msg }}</div>
+  </div>
+
+  <section v-else>
+
+
+      <MenuGuardar />
+      <Banco class="banco"></Banco>
+
+      <div class="columna_principal">
+        <Productores />
+      </div>
+
+      <div class="columna_principal">
+        <MenuGame class="memu-nav"></MenuGame>
+        <router-view></router-view>
+      </div>
+    
+  </section>
+
+  <Logros_emergentes />
+</template>
+
+
 <script setup>
 import { ref, watch } from "vue";
 import { onMounted, onUnmounted } from "@vue/runtime-core";
@@ -5,7 +39,6 @@ import { onMounted, onUnmounted } from "@vue/runtime-core";
 import Banco from "@/components/Banco.vue";
 import Productores from "@/components/Productores.vue";
 import MenuGame from "@/components/MenuGame.vue";
-import Header from "@/components/layaouts/Header.vue";
 import MenuGuardar from "@/components/layaouts/MenuGuardar.vue";
 import Logros_emergentes from "@/components/Logros_emergentes.vue";
 
@@ -72,46 +105,13 @@ onUnmounted(() => {
 });
 </script>
 
-<template>
-  <Header></Header>
-
-  <div v-if="cargando" class="cargando">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <div>Cargando {{ cargando_msg }}</div>
-  </div>
-
-  <div v-else>
-    <main>
-
-      <MenuGuardar />
-      <Banco class="banco"></Banco>
-
-      <div class="columna_principal">
-        <Productores />
-      </div>
-
-      <div class="columna_principal">
-        <MenuGame class="memu-nav"></MenuGame>
-        <router-view></router-view>
-      </div>
-    </main>
-  </div>
-
-  <Logros_emergentes />
-</template>
-
 
 
 <style lang="scss"  >
 @import "@/scss/_variables.scss";
 @import "@/scss/_spiner.scss";
 
-main {
+section {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -157,9 +157,6 @@ main {
     align-items: center;
     gap: 7px;
   }
-
-
-
 }
 
 .cargando {

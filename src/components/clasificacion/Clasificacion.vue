@@ -32,10 +32,9 @@ const { clasificacion } = storeToRefs(store);
 
 
 
-// onMounted(() => {
-//   getClasi();
-// });
-
+ onMounted(() => {
+   getClasi();
+ });
 
 </script>
 
