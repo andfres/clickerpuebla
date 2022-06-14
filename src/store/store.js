@@ -22,10 +22,11 @@ export const useStore = defineStore({
       genera_al_matar: 50,
       damage_sword: 1,
     },
-    mensaje: "<p>mensaje desde storeeeeeeeeee</p>",
     mejoras_mostrar: 6,
     ultimo_trabajo: "fantasmas",
     logrosRecientes: [],
+    location: "localhost:8080/api",
+    clasificacion: [],
   }), //Fin state
 
   getters: {
@@ -192,8 +193,8 @@ export const useStore = defineStore({
       });
     },
 
-    borrarTodoslogrosRecientes(){
-      this.logrosRecientes=[];
+    borrarTodoslogrosRecientes() {
+      this.logrosRecientes = [];
 
     }
 

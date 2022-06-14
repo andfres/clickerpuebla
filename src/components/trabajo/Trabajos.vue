@@ -1,7 +1,10 @@
 <template>
   <div class="links_trabajos">
-    <RouterLink class="router-link" to="/game">Limpia Botas</RouterLink>
-    <RouterLink class="router-link" to="/game/fantasmas"
+ <!-- class="router-link" 
+ class="router-link"  -->
+
+    <RouterLink to="/game">Limpia Botas</RouterLink>
+    <RouterLink to="/game/fantasmas"
       >Mata Fantasmas</RouterLink
     >
   </div>
