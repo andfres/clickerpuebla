@@ -1,12 +1,16 @@
 import bloqueado from "./bloqueado.png";
-import desbloqueado from "./desbloqueado.png";
 import trophy from "./trophy.png";
+import plata from "./plata.png";
+import bronce from "./bronce.png";
 
 const imagenesLogros =
 {
     bloqueado: bloqueado,
-    desbloqueado: desbloqueado,
-    trophy:trophy
+    trophy:trophy,
+    plata:plata,
+    bronce:bronce
+
+
 }
 
 export default imagenesLogros;

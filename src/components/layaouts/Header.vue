@@ -2,11 +2,13 @@
   <header class="header">
     <nav>
       <RouterLink to="/">Home</RouterLink>
+      <RouterLink v-if="store.accesoPermitido()" to="/admin">Admin</RouterLink>
     </nav>
 
     <RouterLink to="/"><Logo /></RouterLink>
 
-    <nav v-if="logeado">
+    <nav v-if="store.logeado()" class="logeado">
+      <p>Hola, {{ usuario.nombre }} </p>
       <button @click="logout">Log Out</button>
     </nav>
 
@@ -30,14 +32,11 @@ const store = useStore();
 
 const { usuario } = storeToRefs(store);
 
-const logeado = computed(() => {
-  if (usuario.value.nombre != "") return true;
-  return false;
-});
 
 const logout = () => {
   console.log("usuario.value", usuario.value);
-  usuario.value = { nombre: "", nickName: "", email: "", rol: "" };
+  // usuario.value = { nombre: "", nickName: "", email: "", roles: "" ,tokenDeAcceso: ""};
+  store.$reset(usuario);
   console.log("usuario.value", usuario.value);
 };
 </script>
@@ -73,6 +72,12 @@ header {
         color: rgb(21, 0, 255);
       }
     }
+  }
+
+  .logeado{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
   }
 }
 </style>

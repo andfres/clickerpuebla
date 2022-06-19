@@ -25,14 +25,22 @@ export const useStore = defineStore({
     mejoras_mostrar: 6,
     ultimo_trabajo: "fantasmas",
     logrosRecientes: [],
-    usuario:{
-      nombre: "andres",
-      nickName: "andfres",
-      email: "andfres@gmail.com",
-      rol: "ADMIN",
+    usuario: {
+      nombre: "",
+      username: "",
+      email: "",
+      roles: [],
+      tokenDeAcceso: "",
     },
     location: "localhost:8080/api",
     clasificacion: [],
+    mensajeOk: false,
+
+    // "nombre": "a",
+    // "username": "a",
+    // "email": "a@gmail.com",
+    // "dinero": 0,
+    // "tokenDeAcceso"
   }), //Fin state
 
   getters: {
@@ -191,7 +199,6 @@ export const useStore = defineStore({
     },
 
     borrarlogrosRecientes(id) {
-
       this.logrosRecientes = this.logrosRecientes.filter((ele) => {
         if (ele.id !== id) {
           return ele;
@@ -201,10 +208,18 @@ export const useStore = defineStore({
 
     borrarTodoslogrosRecientes() {
       this.logrosRecientes = [];
+    },
 
-    }
+    accesoPermitido() {
+      return this.usuario.roles.some((ele) => {
+        return ele.nombre === "ROLE_ADMIN";
+      });
+    },
 
-
-
+    logeado() {
+      if (this.usuario.nombre != "") return true;
+      return false;
+      
+    },
   }, //Fin actions
 });

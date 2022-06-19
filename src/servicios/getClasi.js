@@ -2,8 +2,7 @@
 import { useStore } from "@/store/store";
 import { storeToRefs } from "pinia";
 
-
-export const getClasi = async () => {
+const getClasi = async () => {
   const store = useStore();
   const { clasificacion } = storeToRefs(store);
 
@@ -51,3 +50,6 @@ export const getClasi = async () => {
 
 
 };
+
+
+export default getClasi;

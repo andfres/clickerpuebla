@@ -23,6 +23,9 @@
     6 logros igual que 5
 ---------------------------------------------
 
+
+   pagina solo administrador
+
     nuevo boton... si  logeado... guardar datos...
     en cuanto logeado... cargar datos...  
     estimacion total 4 dias?  

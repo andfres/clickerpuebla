@@ -12,7 +12,6 @@
       <div class="titulo_interior">{{ titulo }}</div>
       <div class="descripcion">{{ descripcion }}</div>
     </div>
-    <!-- <div class="coumun">comun?</div> -->
 
     <div v-if="fecha" class="contenedorFecha">
       <div class="fecha">{{ fecha.dia }}</div>
@@ -30,7 +29,11 @@ const props = defineProps({
   descripcion: String,
   imagen: String,
   fecha: Object,
+  cantidad: String,
+  id: Number
 });
+
+
 </script>
 
 <style lang="scss">

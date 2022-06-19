@@ -1,9 +1,8 @@
 <template>
   <div class="formulario-contenedor">
-
     <div class="formulario">
       <h2 class="titulo-form">Registro</h2>
-      <form @submit="onSubmit">
+      <form @submit="onSubmit" id="registro" ref="re">
         <div class="form-grup">
           <label for="nombre">Intruduce tu nombre</label>
           <input name="nombre" id="nombre" v-model="nombre" />
@@ -24,13 +23,23 @@
 
         <div class="form-grup">
           <label for="password">Elige una contraseña</label>
-          <input name="password" id="password" v-model="password" type="password" />
+          <input
+            name="password"
+            id="password"
+            v-model="password"
+            type="password"
+          />
           <span class="error">{{ passwordError }}</span>
         </div>
 
         <div class="form-grup">
           <label for="passwordConfirmation">Repite la contraseña</label>
-          <input name="passwordConfirmation" id="passwordConfirmation" v-model="passwordConfirmation" type="password" />
+          <input
+            name="passwordConfirmation"
+            id="passwordConfirmation"
+            v-model="passwordConfirmation"
+            type="password"
+          />
           <span class="error">{{ passwordConfirmationError }}</span>
         </div>
 
@@ -38,14 +47,9 @@
           <button type="submit">Continuar</button>
         </div>
 
-
-
         <span style="color: red" v-if="msg_error"> {{ msg_error }} </span>
         <span style="color: green" v-if="msg_ok"> {{ msg_ok }} </span>
-
       </form>
-
-
     </div>
     <div class="tienes_cuenta">
       <p>¿Ya tienes cuenta?</p>
@@ -56,19 +60,27 @@
 
 <script setup>
 import { ref } from "vue";
-import { registro } from "@/servicios/users"
+import servicios from "@/servicios";
 import { useForm, useField } from "vee-validate";
 import * as yup from "yup";
-import corona from "@/assets/img/logo/corona1.png";
+import { useStore } from "@/store/store";
+import { storeToRefs } from "pinia";
+import router from "@/router";
 
+const store = useStore();
+const { mensajeOk } = storeToRefs(store);
+
+const msg_error = ref("");
+const msg_ok = ref("");
 
 const schema = yup.object({
   nombre: yup.string().required().min(4).max(20),
   alias: yup.string().required().min(4),
   email: yup.string().required().email(),
   password: yup.string().required().min(4),
-  passwordConfirmation: yup.string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
+  passwordConfirmation: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 
 const { handleSubmit } = useForm({
@@ -80,44 +92,35 @@ function onInvalidSubmit({ values, errors, results }) {
   console.log(errors); // a map of field names and their first error message
   console.log(results); // a detailed map of field names and their validation results
 }
+
+//document.querySelector("#registro").reset();
+// no es la solucion , tampco con ref,
+
 const onSubmit = handleSubmit(async (values) => {
-
-  msg_error.value = '';
-  msg_ok.value = '';
-
+  msg_error.value = "";
+  msg_ok.value = "";
   try {
-    await registro(values);
-
-    msg_ok.value = 'Registro ok';
-
+    await servicios.registro(values);
+    msg_ok.value = "Registro ok";
+    mensajeOk.value = true;
+    router.push("/login");
   } catch (e) {
     msg_error.value = e.message;
   }
-
-
-  // alert(JSON.stringify(values));
-  // console.log(values);
-
-
+  
+  console.log("msg_Error", msg_error.value);
 }, onInvalidSubmit);
-
 
 const { value: nombre, errorMessage: nombreError } = useField("nombre");
 const { value: alias, errorMessage: aliasError } = useField("alias");
 const { value: email, errorMessage: emailError } = useField("email");
 const { value: password, errorMessage: passwordError } = useField("password");
-const { value: passwordConfirmation, errorMessage: passwordConfirmationError } = useField("passwordConfirmation");
-
-const msg_error = ref("");
-const msg_ok = ref("");
-
-
+const { value: passwordConfirmation, errorMessage: passwordConfirmationError } =
+  useField("passwordConfirmation");
 </script>
 
 <style lang = "scss">
 @import "@/scss/_variables.scss";
-
-
 
 .formulario,
 .tienes_cuenta {
@@ -134,11 +137,9 @@ const msg_ok = ref("");
 }
 
 .formulario {
-
   .titulo-form {
     text-align: center;
     margin-bottom: 10px;
-
   }
 
   .form-grup {
@@ -151,7 +152,6 @@ const msg_ok = ref("");
     color: red;
     font-size: 14px;
   }
-
 
   .continuar {
     display: flex;
@@ -166,10 +166,8 @@ const msg_ok = ref("");
       border-radius: 10px;
       border: 2px solid rgb(255, 255, 255);
     }
-
   }
 }
-
 
 .tienes_cuenta {
   display: flex;

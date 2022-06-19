@@ -13,7 +13,6 @@ import Registro from "@/components/forms/Registro.vue";
 @import "@/scss/_variables.scss";
 
 .contenedor-formularios {
-  margin-top: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;

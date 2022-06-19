@@ -51,6 +51,7 @@ const props = defineProps({
   nombreProductor: String,
   imagen: String,
   contratado: Boolean,
+  id: Number
 });
 
 const disabled = computed(() => {

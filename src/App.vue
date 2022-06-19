@@ -15,7 +15,6 @@ import Header from "@/components/layaouts/Header.vue";
 import Footer from "@/components/layaouts/Footer.vue";
 
 import { importData } from "@/utils/partida";
-import { getAll } from "@/servicios/users";
 
 // const f = async () => {
 //   console.log("obteniendo todos");
@@ -74,6 +73,9 @@ body {
 
     main {
       flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 

@@ -45,7 +45,8 @@ const borrar = () => {
     position: fixed;
     bottom: 50px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
+
     align-items: center;
     gap: 5px;
   }

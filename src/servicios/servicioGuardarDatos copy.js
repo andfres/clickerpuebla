@@ -9,7 +9,7 @@ const servicioGuardarDatos = async (datos_guardar) => {
   const { usuario } = store;
 
   const data = {
-    edificios: datos_guardar.productores_guardados,
+    dinero: datos_guardar.recursos_guardados,
   };
 
   const settings = {
