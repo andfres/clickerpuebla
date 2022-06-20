@@ -47,7 +47,11 @@ onMounted(() => {
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+
+  text-decoration: none;
 }
+
+
 
 .contenedor_prueba {
   padding: 1rem;

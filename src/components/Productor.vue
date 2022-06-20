@@ -134,27 +134,26 @@ const tiempoFalta = computed(() => {
   return resultado;
 });
 
-;
+const recoleccion = () => {
+  store.recolectar(produccion.value);
+  lastUpdate.value = Date.now();
+  tiempoActual.value = 0;
+  listoRecolectar.value = false;
+};
 
- const recoleccion = () => {
-   store.recursos += produccion.value;
-   lastUpdate.value = Date.now();
-   tiempoActual.value = 0;
-   listoRecolectar.value = false;
- };
- const recolectar = (evt) => {
-   recoleccion();
-   animacionDinero(
-     botonRecolectar.value,
-     produccion.value,
-     "beneficio",
-     getMousePos(evt)
-   );
- };
- const recolectarAuto = () => {
-   recoleccion();
-   animacionDinero(botonRecolectar.value, produccion.value, "beneficio");
- };
+const recolectar = (evt) => {
+  recoleccion();
+  animacionDinero(
+    botonRecolectar.value,
+    produccion.value,
+    "beneficio",
+    getMousePos(evt)
+  );
+};
+const recolectarAuto = () => {
+  recoleccion();
+  animacionDinero(botonRecolectar.value, produccion.value, "beneficio");
+};
 
 const updateTiem = () => {
   if (!listoRecolectar.value) {
@@ -195,7 +194,7 @@ watch(tiempo, (val) => {
 
 const mejorar = (evt) => {
   let targ = evt.target;
-  store.recursos -= coste.value;
+  store.comprar(coste.value)
   store.subirNivel(nombre.value);
   animacionDinero(targ, coste.value, "gasto", getMousePos(evt));
 };
@@ -228,7 +227,7 @@ button,
       animation: infinite resplandorAnimation 1s;
       background-color: $color-secundario;
 
-      &:hover{
+      &:hover {
         background-color: rgb(218, 245, 146);
       }
     }
@@ -276,7 +275,7 @@ button,
     .nombre {
       font-family: "Lexend Deca", sans-serif;
       // font-size: 1.2em;
-      font-size:calc(0.8rem + 0.4vw);
+      font-size: calc(0.8rem + 0.4vw);
       color: rgb(255, 255, 255);
       text-shadow: 1px 1px 1px black, -1px -1px 1px black, -1px 1px 1px black,
         1px -1px 1px black;

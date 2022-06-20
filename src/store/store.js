@@ -6,7 +6,13 @@ const { creaProductores, creaManagers, creaLogros, creaMejoras } = creaObjetos;
 export const useStore = defineStore({
   id: "main",
   state: () => ({
+
+    datosOnline: {
+      productores: []
+    },
+
     recursos: 0,
+    recursosTotales: 0,
     productores: creaProductores(),
     managers: creaManagers(),
     logros: creaLogros(),
@@ -53,14 +59,14 @@ export const useStore = defineStore({
 
     getDatosGuardarProductores: (state) => {
       const array = state.productores.map((ele) => {
-        return { nivel: ele.nivel };
+        return {  id: ele.id , nivel: ele.nivel };
       });
       return array;
     },
 
     getDatosGuardarManagers: (state) => {
       const array = state.managers.map((ele) => {
-        return { contratado: ele.contratado };
+        return { id: ele.id , contratado: ele.contratado };
       });
       return array;
     },
@@ -68,6 +74,7 @@ export const useStore = defineStore({
     getDatosGuardarLogros: (state) => {
       const array = state.logros.map((ele) => {
         return {
+          id: ele.id ,
           logrado: ele.logrado,
           fecha: ele.fecha,
         };
@@ -78,6 +85,7 @@ export const useStore = defineStore({
     getDatosGuardarMejoras: (state) => {
       const array = state.mejoras.map((ele) => {
         return {
+          id: ele.id, 
           adquirida: ele.adquirida,
           parametros: ele.parametros,
         };
@@ -111,11 +119,12 @@ export const useStore = defineStore({
     },
 
     comprar(cantidad) {
-      this.recursos = this.recursos - cantidad;
+      this.recursos =    this.recursos - cantidad;
     },
 
     recolectar(cantidad) {
-      this.recursos = this.recursos + cantidad;
+      this.recursos =  this.recursos + cantidad;
+      this.recursosTotales =  this.recursosTotales + cantidad;
     },
 
     duplicarVelocidad(nombre, cantidad) {
@@ -219,7 +228,9 @@ export const useStore = defineStore({
     logeado() {
       if (this.usuario.nombre != "") return true;
       return false;
-      
     },
+
+ 
+
   }, //Fin actions
 });

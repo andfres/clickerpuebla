@@ -6,7 +6,7 @@ import router from "@/router";
 
 const login = async (values) => {
   const store = useStore();
-  const { tokenDeAcceso, usuario } = storeToRefs(store);
+  const { datosOnline, usuario  } = storeToRefs(store);
 
   const data = {
     usernameOrEmail: values.email,
@@ -53,6 +53,17 @@ const login = async (values) => {
     roles: dataResponse.roles,
     tokenDeAcceso: dataResponse.tokenDeAcceso,
   };
+
+  datosOnline.value = {
+    productores: dataResponse.edificios,
+    managers: dataResponse.managers,
+    mejoras: dataResponse.mejoras,
+    logros: dataResponse.logros,
+    recursos: dataResponse.dinero,
+    recursosTotales: dataResponse.dineroTotal
+    
+  }
+
 
 };
 

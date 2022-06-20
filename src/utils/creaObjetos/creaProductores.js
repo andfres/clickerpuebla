@@ -8,11 +8,12 @@ const creaProductores = () => {
     for (let i = 0; i < nombresProductores.length; i++) {
       const objeto = {};
       // const nameCapitalized = nombresProductores[i].charAt(0).toUpperCase() + nombresProductores[i].slice(1)
-      objeto["nombre"] = nombresProductores[i];
-      objeto["produccionInicial"] = 5 * i + 5;
-      objeto["costeInicial"] = 50 * i + 50;
-      objeto["tiempo"] = 2 + 2 * i;
-      objeto["nivel"] = 1;
+      objeto.id = i+1;
+      objeto.nombre = nombresProductores[i];
+      objeto.produccionInicial = 5 * i + 5;
+      objeto.costeInicial = 50 * i + 50;
+      objeto.tiempo = 2 + 2 * i;
+      objeto.nivel = 1;
       array.push(objeto);
     }
   };

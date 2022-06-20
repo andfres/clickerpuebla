@@ -1,6 +1,6 @@
 <template>
   <div class="contenedor_prueba">
-    <button v-if="store.accesoPermitido()" class="prueba" @click="guardarDatosServidor">
+    <button v-if="store.logeado()" class="prueba" @click="guardarDatosServidor">
       Guardar Datos Servidor
     </button>
     <button class="prueba" @click="guardarDatos">Guardar Datos Local</button>
