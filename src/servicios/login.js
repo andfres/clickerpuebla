@@ -1,13 +1,17 @@
 //location = "clickerpuebla-bff.herokuapp.com";
 import { useStore } from "@/store/store";
+import { useStoreOnline } from "@/store/storeOnline";
 import { storeToRefs } from "pinia";
-
 import router from "@/router";
 
 const login = async (values) => {
-  const store = useStore();
-  const { datosOnline, usuario  } = storeToRefs(store);
 
+  const store = useStore();
+  const storeOnline = useStoreOnline();
+
+  const { usuario } = storeToRefs(store);
+  const { datosOnline } = storeToRefs(storeOnline);
+  
   const data = {
     usernameOrEmail: values.email,
     password: values.password,
@@ -61,10 +65,7 @@ const login = async (values) => {
     logros: dataResponse.logros,
     recursos: dataResponse.dinero,
     recursosTotales: dataResponse.dineroTotal
-    
   }
-
-
 };
 
 export default login;

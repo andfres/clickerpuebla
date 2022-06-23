@@ -13,7 +13,6 @@
 
   <section v-else>
 
-
       <MenuGuardar />
       <Banco class="banco"></Banco>
 
@@ -53,6 +52,7 @@ const cargando_msg = ref("...");
 const store = useStore();
 const { recursos, logrosNoLogrados } = storeToRefs(store);
 
+//Carga de imagenes
 onMounted(async () => {
   console.log("Precargar imagenes");
 
@@ -61,7 +61,6 @@ onMounted(async () => {
   for (const img of imagenes) {
     const response = await fetch(img);
     await response.blob();
-    // console.log(response);
     cargando_msg.value = img;
   }
 
@@ -98,10 +97,10 @@ watch(recursos, (newrecursos, oldrecursos) => {
   }
 });
 
-// const guarDardatosTiempo = setInterval(guardarDatos, 1000);
+const guarDardatosTiempo = setInterval(guardarDatos, 5000);
 
 onUnmounted(() => {
-  // clearInterval(guarDardatosTiempo);
+  clearInterval(guarDardatosTiempo);
 });
 </script>
 

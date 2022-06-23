@@ -7,7 +7,6 @@ const creaProductores = () => {
   const addToProductores = (array) => {
     for (let i = 0; i < nombresProductores.length; i++) {
       const objeto = {};
-      // const nameCapitalized = nombresProductores[i].charAt(0).toUpperCase() + nombresProductores[i].slice(1)
       objeto.id = i+1;
       objeto.nombre = nombresProductores[i];
       objeto.produccionInicial = 5 * i + 5;

@@ -7,10 +7,6 @@ export const useStore = defineStore({
   id: "main",
   state: () => ({
 
-    datosOnline: {
-      productores: []
-    },
-
     recursos: 0,
     recursosTotales: 0,
     productores: creaProductores(),
@@ -42,20 +38,11 @@ export const useStore = defineStore({
     clasificacion: [],
     mensajeOk: false,
 
-    // "nombre": "a",
-    // "username": "a",
-    // "email": "a@gmail.com",
-    // "dinero": 0,
-    // "tokenDeAcceso"
+
   }), //Fin state
 
   getters: {
-    managersDisponibles: (state) => {
-      return state.managers.filter((m) => m.contratado === false);
-    },
-    managersAdquiridos: (state) => {
-      return state.managers.filter((m) => m.contratado === true);
-    },
+
 
     getDatosGuardarProductores: (state) => {
       const array = state.productores.map((ele) => {
@@ -112,6 +99,13 @@ export const useStore = defineStore({
       array.sort((a, b) => a.precio - b.precio);
       return array.slice(0, state.mejoras_mostrar);
     },
+
+    managersDisponibles: (state) => {
+      return state.managers.filter((m) => m.contratado === false);
+    },
+    managersAdquiridos: (state) => {
+      return state.managers.filter((m) => m.contratado === true);
+    },
   }, //Fin getters
   actions: {
     sePuedeComprar(cantidad) {
@@ -159,7 +153,7 @@ export const useStore = defineStore({
             }
           }
         } catch (e) {
-          console.log(e);
+          console.error(e);
         }
       });
     },

@@ -19,6 +19,7 @@
             id="password"
             v-model="password"
             type="password"
+            
           />
           <span>{{ passwordError }}</span>
         </div>

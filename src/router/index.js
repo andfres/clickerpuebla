@@ -6,8 +6,6 @@ import Login from "../views/LoginView.vue";
 import Error404 from "../views/Error404.vue";
 import Administracion from "../views/Administracion.vue";
 
-
-
 import Managers from "../components/Managers.vue";
 import Mejoras from "../components/Mejoras.vue";
 import Productores from "@/components/Productores.vue";
@@ -21,7 +19,6 @@ import TrabajoFantasmas from "../components/trabajo/TrabajoFantasmas.vue";
 
 import { useStore } from "@/store/store";
 // import { storeToRefs } from "pinia";
-
 
 
 const router = createRouter({
@@ -94,7 +91,6 @@ const router = createRouter({
       ],
     },
 
-
     {
       path: '/:pathMatch(.*)*',
       // name: "error404",
@@ -103,8 +99,6 @@ const router = createRouter({
     },
   ],
 
-
-
   
 });
 
@@ -112,7 +106,6 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 
   const store = useStore();
-
   const { accesoPermitido } = store;
 
   if (to.fullPath === '/admin') {

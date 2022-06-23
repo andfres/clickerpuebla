@@ -1,10 +1,14 @@
 //location = "clickerpuebla-bff.herokuapp.com";
 import { useStore } from "@/store/store";
+import { useStoreOnline } from "@/store/storeOnline";
 import { storeToRefs } from "pinia";
 
 const login = async () => {
   const store = useStore();
-  const { datosOnline, usuario } = storeToRefs(store);
+  const storeOnline = useStoreOnline();
+
+  const { usuario } = storeToRefs(store);
+  const { datosOnline } = storeToRefs(storeOnline);
 
   const settings = {
     method: "GET",

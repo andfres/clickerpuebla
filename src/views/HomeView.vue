@@ -1,23 +1,21 @@
 
 <template>
   <section class="section_partida">
-    <button @click="pedirDatos">cargar datos online</button>
+    <!-- <button @click="pedirDatos">cargar datos online</button> -->
     <div class="texto">
       <p>Selecciona datos guardados</p>
     </div>
-    <div>
-      haydatosonline
-      {{ hayDatosOnline }}
-    </div>
+
     <button
-      v-if="hayDatosOnline"
+      v-if="hayDatosOnline()"
       class="boton_jugar"
       @click="cargarDatosOnline"
     >
       <p>(Datos Online)</p>
-      <p>Valor total: {{ store.datosOnline.dineroTotal }} 💰</p>
-      <p>recursostotales??? {{ store.datosOnline.recursosTotales }} 💰</p>
+      <p>recursostotales??? {{ datosOnline.recursosTotales }} 💰</p>
     </button>
+
+    <div v-if="!hayDatosOnline() && logeado()" class="texto">No hay datos online</div>
 
     <div v-if="!logeado()" class="texto">
       <p>Inicia sesión para cargar datos Online</p>
@@ -33,13 +31,15 @@
 </template>
 
 <script setup>
-import { onMounted } from "@vue/runtime-core";
-
 import { useStore } from "@/store/store";
-import router from "@/router";
+import { useStoreOnline } from "@/store/storeOnline";
+import { storeToRefs } from "pinia";
 
+import router from "@/router";
 import { RouterLink, RouterView } from "vue-router";
 import { computed } from "@vue/runtime-core";
+import { onMounted } from "@vue/runtime-core";
+
 import {
   leerDatos,
   guardarDatos,
@@ -49,13 +49,31 @@ import {
 import servicios from "@/servicios";
 
 const store = useStore();
+const storeOnline = useStoreOnline();
 
-const { recursosTotales, datosOnline, logeado } = store;
+const { recursosTotales, logeado } = store;
+const { hayDatosOnline } = storeOnline;
+const { datosOnline } = storeToRefs(storeOnline);
 
 const datos = computed(() => {
   if (!leerDatos()) return false;
   return true;
 });
+
+const cargarDatosOnline = () => {
+  inicializarDatos();
+  usarDatosOnline();
+  router.push("/game");
+};
+
+const cargarDatosLocal = () => {
+  guardarDatos();
+  router.push("/game");
+};
+
+const pedirDatos = async () => {
+  await servicios.recuperarDatos();
+};
 
 function isEmpty(map) {
   for (var key in map) {
@@ -66,34 +84,9 @@ function isEmpty(map) {
   return true;
 }
 
-const hayDatosOnline = computed(() => {
-  // return !isEmpty(datosOnline.productores);
-
-  if (datosOnline.hasOwnProperty("logros")) {
-    return true;
-  }
-
-  return false;
+onMounted(async () => {
+  if (logeado()) pedirDatos();
 });
-
-const cargarDatosOnline = () => {
-  usarDatosOnline();
-
-  router.push("/game");
-};
-
-const cargarDatosLocal = () => {
-  guardarDatos();
-  router.push("/game");
-};
-
-// onMounted(async () => {
-//   if (logeado())
-// });
-
-const pedirDatos = async () => {
-  await servicios.recuperarDatos();
-};
 </script>
 
 

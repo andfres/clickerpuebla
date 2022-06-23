@@ -5,19 +5,35 @@
       <form @submit="onSubmit" id="registro" ref="re">
         <div class="form-grup">
           <label for="nombre">Intruduce tu nombre</label>
-          <input name="nombre" id="nombre" v-model="nombre" />
+          <input
+            name="nombre"
+            id="nombre"
+            v-model="nombre"
+            :placeholder="'Juan Manuel'"
+          />
           <span class="error">{{ nombreError }}</span>
         </div>
 
         <div class="form-grup">
           <label for="alias">Elige un alias</label>
-          <input name="alias" id="alias" v-model="alias" />
+          <input
+            name="alias"
+            id="alias"
+            v-model="alias"
+            :placeholder="'El elegido'"
+          />
           <span class="error">{{ aliasError }}</span>
         </div>
 
         <div class="form-grup">
           <label for="email">Email</label>
-          <input name="email" id="email" v-model="email" />
+          <input
+            name="email"
+            id="email"
+            v-model="email"
+            :placeholder="'juan2452@hotmail.com'"
+            autocomplete="new-password"
+          />
           <span class="error">{{ emailError }}</span>
         </div>
 
@@ -28,6 +44,7 @@
             id="password"
             v-model="password"
             type="password"
+            autocomplete="new-password"
           />
           <span class="error">{{ passwordError }}</span>
         </div>
@@ -39,6 +56,7 @@
             id="passwordConfirmation"
             v-model="passwordConfirmation"
             type="password"
+            autocomplete="new-password"
           />
           <span class="error">{{ passwordConfirmationError }}</span>
         </div>
@@ -73,15 +91,24 @@ const { mensajeOk } = storeToRefs(store);
 const msg_error = ref("");
 const msg_ok = ref("");
 
-const schema = yup.object({
-  nombre: yup.string().required().min(4).max(20),
-  alias: yup.string().required().min(4),
-  email: yup.string().required().email(),
-  password: yup.string().required().min(4),
-  passwordConfirmation: yup
-    .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match"),
-});
+
+const requerido = ('Campo requerido')
+
+const schema = yup
+  .object({
+    nombre: yup.string().required(requerido).min(4, 'Minimo 4 caracteres').max(20, 'Demasiados caracteres'),
+    alias: yup.string().required(requerido).min(4, 'Minimo 4 caracteres'),
+    email: yup.string().required(requerido).email('Formato de email incorrecto'),
+    password: yup.string().required().min(4, 'La contraseña debe tener minimo 4 caracteres'),
+    passwordConfirmation: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "Las contraseñas deben coincidir"),
+  })
+  .shape({
+    
+    
+  
+  });
 
 const { handleSubmit } = useForm({
   validationSchema: schema,
@@ -93,8 +120,6 @@ function onInvalidSubmit({ values, errors, results }) {
   console.log(results); // a detailed map of field names and their validation results
 }
 
-//document.querySelector("#registro").reset();
-// no es la solucion , tampco con ref,
 
 const onSubmit = handleSubmit(async (values) => {
   msg_error.value = "";
@@ -107,7 +132,7 @@ const onSubmit = handleSubmit(async (values) => {
   } catch (e) {
     msg_error.value = e.message;
   }
-  
+
   console.log("msg_Error", msg_error.value);
 }, onInvalidSubmit);
 

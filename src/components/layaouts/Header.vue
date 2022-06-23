@@ -10,6 +10,9 @@
     <nav v-if="store.logeado()" class="logeado">
       <p>Hola, {{ usuario.nombre }} </p>
       <button @click="logout">Log Out</button>
+
+
+
     </nav>
 
     <nav v-else class="nav">
@@ -20,23 +23,25 @@
 </template>
 
 <script setup>
+
 import { RouterLink, RouterView } from "vue-router";
 import Logo from "./Logo.vue";
-
 import { useStore } from "@/store/store";
+import { useStoreOnline } from "@/store/storeOnline";
 import { storeToRefs } from "pinia";
 
 import { onMounted, computed } from "vue";
 
 const store = useStore();
+const storeOnline = useStoreOnline();
 
 const { usuario } = storeToRefs(store);
-
 
 const logout = () => {
   console.log("usuario.value", usuario.value);
   // usuario.value = { nombre: "", nickName: "", email: "", roles: "" ,tokenDeAcceso: ""};
   store.$reset(usuario);
+  storeOnline.$reset();
   console.log("usuario.value", usuario.value);
 };
 </script>

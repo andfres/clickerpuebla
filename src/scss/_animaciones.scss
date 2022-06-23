@@ -1,14 +1,11 @@
 .gastoBeneficioContenedor {
   position: relative;
-  // border: 1px solid red;
 }
 
 .damage,
 .beneficio,
 .gasto {
   position: absolute;
-  // top: 50%;
-  // left: 50%;
   animation: 1 animacionDinero 2s;
   font-weight: bold;
   z-index: 999;
@@ -27,12 +24,10 @@
   pointer-events:none;
 }
 
-
 .centrar{
   top: 50%;
   left: 50%;
 }
-
 
 
 @keyframes animacionDinero {

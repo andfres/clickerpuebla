@@ -4,14 +4,14 @@ const creaMejoras = () => {
   const mejoras = [];
 
   const detalles = [
-    [50, "Pequeño impulso"],
-    [75, "impulso Molon"],
-    [75, "Pequeño mejor impulso"],
-    [75, "Rico impulso"],
-    [90, "Super impulso"],
-    [100, "impuso Definitivo"],
-    [100, "impuso Definitivo2"],
-    [125, "impulso Maximo"],
+    [25, "Pequeño impulso"],
+    [30, "impulso Molon"],
+    [35, "Pequeño mejor impulso"],
+    [40, "Rico impulso"],
+    [50, "Super impulso"],
+    [75, "impuso Definitivo"],
+    [75, "impuso Definitivo2"],
+    [100, "impulso Maximo"],
     
     
   ];
@@ -44,8 +44,8 @@ const creaMejoras = () => {
     [1, "No le busques explicación", 500000, "mejorar_cepillo_clic"],
 
     [1, "Afilar espada", 400, "mejorar_espada"],
-    [1, "Aceite antifantasmas", 300, "mejorar_espada"],
-    [1, "Conjuro antifantasmas", 300, "mejorar_espada"],
+    [1, "Aceite antifantasmas", 1000, "mejorar_espada"],
+    [1, "Conjuro antifantasmas", 7000, "mejorar_espada"],
   ];
 
   for (let detalle of otras) {

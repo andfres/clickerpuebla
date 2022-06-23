@@ -3,7 +3,6 @@ import { useStore } from "@/store/store";
 import { storeToRefs } from "pinia";
 
 const servicioGuardarDatos = async (datos_guardar) => {
-
   const store = useStore();
   const { usuario } = store;
 
@@ -13,12 +12,10 @@ const servicioGuardarDatos = async (datos_guardar) => {
     mejoras: datos_guardar.mejoras_guardar,
     logros: datos_guardar.logros_guardar,
     dinero: store.recursos,
-    dineroTotal: store.recursosTotales
-    
+    dineroTotal: store.recursosTotales,
   };
 
   console.log("datos que se van a mandar", data);
-
 
   const settings = {
     method: "PUT",
@@ -49,15 +46,7 @@ const servicioGuardarDatos = async (datos_guardar) => {
     }
   } catch (e) {
     console.error(e);
-    // throw new Error("Error de conexión al llamar al API");
   }
-
-  // dataResponse = await fetchResponse.json();
-  // console.log("dataResponse", dataResponse);
 };
 
 export default servicioGuardarDatos;
-
-
-
- 

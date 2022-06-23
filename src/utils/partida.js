@@ -1,4 +1,7 @@
 import { useStore } from "@/store/store";
+import { useStoreOnline } from "@/store/storeOnline";
+import { storeToRefs } from "pinia";
+
 import aplicarMejora from "@/utils/aplicarMejora.js";
 import ls from "localStorage-slim";
 import servicioGuardarDatos from "@/servicios/servicioGuardarDatos.js";
@@ -124,10 +127,13 @@ export const guardarDatosServidor = () => {
 
 export const usarDatosOnline = () => {
   try {
-    const store = useStore();
-    const { datosOnline } = store;
 
-    console.log("datosOnline -----------------", store.datosOnline);
+    const store = useStore();
+    const storeOnline = useStoreOnline();
+
+    const { datosOnline } = storeOnline;
+
+    console.log("datosOnline -----------------", datosOnline);
 
     const datosBien = {
       productores: datosOnline.productores.map((ele) => {
@@ -167,9 +173,6 @@ export const usarDatosOnline = () => {
       recursosTotales: datosOnline.recursosTotales,
     };
 
-    //aqui deberia reiniciarse todo
-    //varios problemas.. la otra partida se pierde... normal si eliges otra no'?=
-    inicializarDatos();
 
     console.log("DATOS BIEN", datosBien)
 
@@ -183,18 +186,8 @@ export const usarDatosOnline = () => {
     } = datosBien;
 
 
-
-
     store.recursos = recursos;
     store.recursosTotales = recursosTotales;
-
-
-    console.log("-------------------------------------------------")
-    console.log(datosBien.recursos)
-    console.log(datosBien.recursosTotales)
-
-    console.log(store.recursos)
-    console.log(store.recursosTotales)
 
     store.productores = store.productores.map((ele, i) => {
       return { ...ele, ...productores[i] };
@@ -210,7 +203,6 @@ export const usarDatosOnline = () => {
 
     //se aplican las mejoras
     datosOnline.mejoras.map((ele, i) => {
-      // console.log("mejora", ele);
       if (ele.adquirida) aplicarMejora(ele.parametros);
     });
 
