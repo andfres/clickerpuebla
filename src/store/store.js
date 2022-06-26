@@ -43,7 +43,6 @@ export const useStore = defineStore({
 
   getters: {
 
-
     getDatosGuardarProductores: (state) => {
       const array = state.productores.map((ele) => {
         return {  id: ele.id , nivel: ele.nivel };

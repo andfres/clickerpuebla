@@ -15,6 +15,7 @@
 import Logro_emergente from "@/components/Logro_emergente.vue";
 
 import { computed } from "vue";
+
 import { useStore } from "@/store/store";
 import { storeToRefs } from "pinia";
 
