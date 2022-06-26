@@ -21,7 +21,8 @@
       <p>Inicia sesión para cargar datos Online</p>
     </div>
 
-    <button v-if="!datos" class="boton_jugar">Nueva partida</button>
+    <button v-if="!datos" class="boton_jugar"
+    @click="nuevaPartida">Nueva partida</button>
 
     <button v-if="datos" class="boton_jugar" @click="cargarDatosLocal">
       <p>(Datos Locales)</p>
@@ -45,6 +46,8 @@ import {
   guardarDatos,
   usarDatosOnline,
   inicializarDatos,
+  reiniciarJuego,
+  importData
 } from "@/utils/partida";
 import servicios from "@/servicios";
 
@@ -66,7 +69,15 @@ const cargarDatosOnline = () => {
   router.push("/game");
 };
 
+const nuevaPartida = () => {
+  reiniciarJuego();
+  guardarDatos();
+  router.push("/game");
+};
+
+
 const cargarDatosLocal = () => {
+  importData();
   guardarDatos();
   router.push("/game");
 };

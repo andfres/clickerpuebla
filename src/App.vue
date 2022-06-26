@@ -12,11 +12,13 @@ import { ref } from "vue";
 import { onBeforeMount, onMounted } from "@vue/runtime-core";
 import Header from "@/components/layaouts/Header.vue";
 import Footer from "@/components/layaouts/Footer.vue";
-import { importData } from "@/utils/partida";
 
-onMounted(() => {
-  importData();
-});
+
+// import { importData } from "@/utils/partida";
+
+// onMounted(() => {
+//   importData();
+// });
 
 </script>
 

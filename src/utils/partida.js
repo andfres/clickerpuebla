@@ -18,13 +18,17 @@ export const inicializarDatos = () => {
 const actualizar_state_con_datos_almacenados__local_storage = (datos) => {
   const {
     recursos_guardar,
+    recursos_guardar_totales,
     productores_guardar,
     managers_guardar,
     logros_guardar,
     mejoras_guardar,
-    recursos_guardar_totales,
+  
   } = datos;
+
+
   const store = useStore();
+
   store.recursos = recursos_guardar;
   store.recursosTotales = recursos_guardar_totales;
 
@@ -60,7 +64,7 @@ const actualizar_state_con_datos_almacenados__local_storage = (datos) => {
 
 //guarda datos en de la store en localStorage
 export const guardarDatos = () => {
-  //window.localStorage.setItem("datos", JSON.stringify(datos));
+
   ls.set("datos_guardar", JSON.stringify(datos_guardar()));
   console.log("Los datos han sido guardados");
 };
@@ -68,11 +72,12 @@ export const guardarDatos = () => {
 // obtiene de la store los datos que se van a guardar
 const datos_guardar = () => {
   const store = useStore();
+  const {recursos, recursosTotales} = storeToRefs(store);
 
   //para guardar en local o base de datos
   const datos_guardar = {
-    recursos_guardar: store.recursos,
-    recursos_guardar_totales: store.recursosTotales,
+    recursos_guardar: store.getRecursos,
+    recursos_guardar_totales: store.getRecursosTotales,
     productores_guardar: store.getDatosGuardarProductores,
     managers_guardar: store.getDatosGuardarManagers,
     logros_guardar: store.getDatosGuardarLogros,
@@ -98,14 +103,14 @@ export const leerDatos = () => {
       return JSON.parse(datos_localstorage);
     }
     console.log("no habia datos");
-    // guardarDatos();
+    // reiniciarJuego();
 
     return false;
   } catch (e) {
     //intentar leer datos, si estan corruptos borrarlos
-    console.log("peto al leer los datos", e);
+    console.log("error al leer los datos", e);
     ls.remove("datos_guardar");
-    // guardarDatos();
+    // reiniciarJuego();
 
     return false;
   }

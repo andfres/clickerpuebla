@@ -7,8 +7,8 @@ export const useStore = defineStore({
   id: "main",
   state: () => ({
 
-    recursos: 0,
-    recursosTotales: 0,
+    recursos: 1,
+    recursosTotales: 1,
     productores: creaProductores(),
     managers: creaManagers(),
     logros: creaLogros(),
@@ -34,7 +34,7 @@ export const useStore = defineStore({
       roles: [],
       tokenDeAcceso: "",
     },
-    location: "localhost:8080/api",
+    location: "clickerpuebla-bff3.herokuapp.com/api",
     clasificacion: [],
     mensajeOk: false,
 
@@ -43,6 +43,14 @@ export const useStore = defineStore({
 
   getters: {
 
+    
+    getRecursos: (state) => {
+      return state.recursos;
+    },
+    
+    getRecursosTotales: (state) => {
+      return state.recursosTotales;
+    },
     getDatosGuardarProductores: (state) => {
       const array = state.productores.map((ele) => {
         return {  id: ele.id , nivel: ele.nivel };
