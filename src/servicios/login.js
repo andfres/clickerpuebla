@@ -31,7 +31,7 @@ const login = async (values) => {
 
   try {
     fetchResponse = await fetch(
-      `http://${store.location}/auth/iniciarSesion`,
+      `${store.location}/auth/iniciarSesion`,
       settings
     );
     ok = fetchResponse.ok;

@@ -24,7 +24,7 @@ export const registro = async (values) => {
 
   try {
     const fetchResponse = await fetch(
-      `http://${store.location}/auth/registrar`,
+      `${store.location}/auth/registrar`,
       settings
     );
     text = await fetchResponse.text();

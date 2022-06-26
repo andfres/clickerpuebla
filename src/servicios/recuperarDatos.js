@@ -26,7 +26,7 @@ const login = async () => {
   try {
     console.log(store.location);
     fetchResponse = await fetch(
-      `http://${store.location}/game/recuperarDatos`,
+      `${store.location}/game/recuperarDatos`,
       settings
     );
 
