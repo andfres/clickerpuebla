@@ -34,7 +34,7 @@ const servicioGuardarDatos = async (datos_guardar) => {
 
   try {
     fetchResponse = await fetch(
-      `http://${store.location}/game/guardarDatos`,
+      `${store.location}/game/guardarDatos`,
       settings
     );
     ok = fetchResponse.ok;
