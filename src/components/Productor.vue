@@ -66,7 +66,7 @@ import { animacionDinero, wait } from "../utils/funciones";
 import getMousePos from "@/utils/getMousePos.js";
 
 const store = useStore();
-const base = import.meta.env.BASE_URL;
+//const base = import.meta.env.BASE_URL;
 
 const { sePuedeComprar, cambiarMensaje } = store;
 
@@ -324,9 +324,7 @@ button,
           justify-content: space-between;
           align-items: center;
 
-          span {
-            --border: 1px solid red;
-          }
+
         }
       }
     }

@@ -3,9 +3,9 @@
     <button v-if="store.logeado()" class="prueba" @click="guardarDatosServidor">
       Guardar Datos Servidor
     </button>
-    <button class="prueba" @click="guardarDatos">Guardar Datos Local</button>
+    <!-- <button class="prueba" @click="guardarDatos">Guardar Datos Local</button>
     <button class="prueba" @click="leerDatos">Leer Datos Locales</button>
-    <button class="prueba" @click="reiniciarJuego">Reiniciar Juego</button>
+    <button class="prueba" @click="reiniciarJuego">Reiniciar Juego</button> -->
   </div>
 </template>
 

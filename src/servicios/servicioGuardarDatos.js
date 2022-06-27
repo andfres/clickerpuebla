@@ -26,8 +26,7 @@ const servicioGuardarDatos = async (datos_guardar) => {
     body: JSON.stringify(data),
   };
 
-  // console.log("tokenDeAcceso", usuario.tokenDeAcceso)
-  // console.log("settings", settings)
+
 
   let ok, text;
   let fetchResponse;

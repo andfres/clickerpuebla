@@ -34,7 +34,9 @@ export const useStore = defineStore({
       roles: [],
       tokenDeAcceso: "",
     },
-    location: "https://clickerpuebla-bff3.herokuapp.com/api",
+    //  location: "https://clickerpuebla-bff3.herokuapp.com/api",
+    location: "http://localhost:8080/api",
+    // location: import.meta.env.VITE_RUTA,
     clasificacion: [],
     mensajeOk: false,
 

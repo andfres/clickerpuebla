@@ -41,7 +41,6 @@ const disabled = computed(() => {
   return !sePuedeComprar(props.precio);
 });
 
-// console.log("imagenesLogros", imagenesLogros);
 
 const props = defineProps({
   id: Number,

@@ -14,11 +14,16 @@ import Header from "@/components/layaouts/Header.vue";
 import Footer from "@/components/layaouts/Footer.vue";
 
 
-// import { importData } from "@/utils/partida";
 
-// onMounted(() => {
-//   importData();
-// });
+
+
+
+// console.log("DEV", import.meta.env.VITE_DEV)
+//  if (import.meta.env.VITE_DEV !== true) {
+//    console.log = function () {};
+//  }
+
+
 
 </script>
 
@@ -43,8 +48,6 @@ import Footer from "@/components/layaouts/Footer.vue";
   text-decoration: none;
 }
 
-
-
 .contenedor_prueba {
   padding: 1rem;
   .prueba {
@@ -65,7 +68,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 1px solid red;
 
     main {
       flex: 1;

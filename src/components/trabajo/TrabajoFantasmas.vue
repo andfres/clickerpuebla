@@ -31,7 +31,7 @@ import { storeToRefs } from "pinia";
 import { animacionDinero } from "../../utils/funciones";
 import getMousePos from "@/utils/getMousePos.js";
 
-// const base = import.meta.env.BASE_URL;
+
 
 const store = useStore();
 const { recolectar, fantasmas } = store;
@@ -99,7 +99,6 @@ const atacarFantasma = (evt) => {
 .fantasma_conte {
   // width: 100%;
   position: relative;
-  border: 1px solid red;
 
   .barraVida {
     border: 1px solid red;

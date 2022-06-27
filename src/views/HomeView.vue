@@ -12,7 +12,7 @@
       @click="cargarDatosOnline"
     >
       <p>(Datos Online)</p>
-      <p>recursostotales??? {{ datosOnline.recursosTotales }} 💰</p>
+      <p>recursostotales: {{ datosOnline.recursosTotales }} 💰</p>
     </button>
 
     <div v-if="!hayDatosOnline() && logeado()" class="texto">No hay datos online</div>

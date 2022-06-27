@@ -32,7 +32,6 @@ import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useStore } from "@/store/store";
 import { animacionDinero, wait } from "../utils/funciones";
-const base = import.meta.env.BASE_URL;
 
 const store = useStore();
 const { mensaje } = storeToRefs(store);

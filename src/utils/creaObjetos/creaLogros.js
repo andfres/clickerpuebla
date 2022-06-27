@@ -29,7 +29,12 @@
     array.push(objeto);
   }
 
-  console.log("---------------------")
+
+  // if (import.meta.env.DEV) {
+  //   var console = {};
+  //   console.log = function () {};
+  // }
+  
   console.log("logros creados" , array)
   return array;
 }

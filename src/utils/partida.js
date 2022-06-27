@@ -8,6 +8,10 @@ import servicioGuardarDatos from "@/servicios/servicioGuardarDatos.js";
 
 ls.config.encrypt = false;
 
+
+
+
+
 export const inicializarDatos = () => {
   const store = useStore();
   const usuarioTemporal = store.usuario;

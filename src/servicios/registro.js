@@ -12,6 +12,8 @@ export const registro = async (values) => {
     password: values.password,
   };
 
+  console.log("datos registro", data)
+
   const settings = {
     method: "POST",
     headers: {

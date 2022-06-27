@@ -34,14 +34,11 @@ const props = defineProps({
   height: min-content;
   display: flex;
   align-items: center;
-  /* border: 1px solid red; */
   justify-content: space-between;
   color: white;
 
   div {
-    /* border: 1px solid gold; */
     p {
-      /* border: 1px solid green; */
       text-align: center;
     }
   }

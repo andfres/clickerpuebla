@@ -78,11 +78,7 @@ function onInvalidSubmit({ values, errors, results }) {
   console.log(results); // a detailed map of field names and their validation results
 }
 
-// const onSubmit = handleSubmit((values) => {
-//   console.log("valores", values);
-//   servicios.login(values);
-//   // alert(JSON.stringify(values));
-// }, onInvalidSubmit);
+
 
 const onSubmit = handleSubmit(async (values) => {
   msg_error.value = "";
