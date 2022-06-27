@@ -7,8 +7,8 @@ export const useStore = defineStore({
   id: "main",
   state: () => ({
 
-    recursos: 1,
-    recursosTotales: 1,
+    recursos: 0,
+    recursosTotales: 0,
     productores: creaProductores(),
     managers: creaManagers(),
     logros: creaLogros(),

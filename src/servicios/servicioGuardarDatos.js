@@ -4,7 +4,8 @@ import { storeToRefs } from "pinia";
 
 const servicioGuardarDatos = async (datos_guardar) => {
   const store = useStore();
-  const { usuario } = store;
+  const { usuario } = storeToRefs(store);
+
 
   const data = {
     edificios: datos_guardar.productores_guardar,
@@ -21,11 +22,12 @@ const servicioGuardarDatos = async (datos_guardar) => {
     method: "PUT",
     headers: {
       "Content-type": "application/json;charset=UTF-8",
-      Authorization: `Bearer ${usuario.tokenDeAcceso}`,
+      Authorization: `Bearer ${usuario.value.tokenDeAcceso}`,
     },
     body: JSON.stringify(data),
   };
 
+  console.log("token", `Bearer ${usuario.value.tokenDeAcceso}`);
 
 
   let ok, text;

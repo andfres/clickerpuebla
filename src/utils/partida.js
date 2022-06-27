@@ -6,10 +6,16 @@ import aplicarMejora from "@/utils/aplicarMejora.js";
 import ls from "localStorage-slim";
 import servicioGuardarDatos from "@/servicios/servicioGuardarDatos.js";
 
+
 ls.config.encrypt = false;
 
+// console.log(import.meta.env.VITE_DEV)
 
-
+//   if (import.meta.env.VITE_DEV === true) {
+//     ls.config.encrypt = false;
+//   }else{
+//     ls.config.encrypt = true;
+//   }
 
 
 export const inicializarDatos = () => {
