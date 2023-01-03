@@ -1,3 +1,7 @@
+# Información
+Frintal del proyecto final de curso de Daw, realizado con vue y pinia.
+Versión de node: 16.14.2
+Versión de npm: 8.6.0
 
 # vue-project
 
